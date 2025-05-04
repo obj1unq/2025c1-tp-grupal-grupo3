@@ -1,4 +1,4 @@
-# Detective de mascotas (<- borrar y completar)
+# Detective de mascotas 
 
 ## Equipo de desarrollo
 
