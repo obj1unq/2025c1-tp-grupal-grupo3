@@ -1,0 +1,21 @@
+import wollok.game.*
+import detective.*
+import direcciones.*
+
+
+
+program ejemplo{
+  game.width(20)
+  game.height(20)
+  game.cellSize(50)
+  game.title("Detective de mascotas")
+  game.boardGround("city.png")
+  game.addVisual(detective)
+
+  keyboard.w().onPressDo({ detective.mover(arriba) })   // Mover hacia arriba con la tecla 'W'
+  keyboard.a().onPressDo({ detective.mover(izquierda) }) // Mover hacia izquierda con la tecla 'A'
+  keyboard.s().onPressDo({ detective.mover(abajo) })     // Mover hacia abajo con la tecla 'S'
+  keyboard.d().onPressDo({ detective.mover(derecha) })   // Mover hacia derecha con la tecla 'D'
+
+  game.start()
+}
