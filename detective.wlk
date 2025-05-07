@@ -60,27 +60,34 @@ object detective {
     }
   }
 
-//   method agarrar() {
-//     const objetoEnPosicion = self.objetoEnPosicion()
-//     inventario.agregar(objetoEnPosicion)
-//     game.removeVisual(objetoEnPosicion)
-//   }
-
   method interactuar() {
-    const objetoEnPosicion = self.objetoEnPosicion()
-    //interactuar con objetoEnPosicion
-    //objetoEnPosicion.esCategoria().interactuar()
-    objetoEnPosicion.interactuarCon(self)
+    //const objetoEnPosicion = self.objetoEnPosicion()
+    self.validarHayObjeto()
+    self.objetoEnPosicion().interactuarCon(self)
   }
+ 
+  method validarHayObjeto() {
+    if(not self.hayObjeto()) {
+      game.say(self, "No hay nada acá")
+    }
+  }
+
+  method hayObjeto() {
+    return game.getObjectsIn(self.position()).any({element => element != self})
+  }
+
+  // method interactuar() {
+  //   const objetoEnPosicion = self.objetoEnPosicion()
+  //   objetoEnPosicion.interactuarCon(self)
+  // }
 
   method objetoEnPosicion() {
     return game.uniqueCollider(self)
   }
 
-  method vecinoEnPosicion() {
-    return game.uniqueCollider(self)
+  method cantPistas() {
+    return 
   }
-
 
 
 }

@@ -1,7 +1,7 @@
 import detective.*
 
 object inventario {
-  const property objetos = #{lupa, foto, blockNotas}
+  const property objetos = #{}
 
   method agregar(cosa) {
     objetos.add(cosa)
@@ -11,7 +11,7 @@ object inventario {
     if (not self.puedeInteractuar(cosa) ) {
       game.say(cosa, "No podes interactuar con esto ahora")
     } else {
-        cosa.interactuar()
+        cosa.interactuar() 
     }
   }
 
@@ -25,10 +25,89 @@ object inventario {
 
 }
 
-// class Objeto {
-//   const usoInfinito = false
-//   var property duracion = 0
-//   var property position = game.at(1,1)
+class Item {
+  const usoInfinito = false
+  var property duracion = 0
+  const position = game.at(1,1)
+  const image = "cosa.png"
+  const texto = "¡Encontre una cosa :p!"
+
+  method position() {
+    return position
+  }
+
+  method image() {
+    return image
+  }
+
+  method puedeUsar() {
+    return (usoInfinito || self.tieneDuracion())
+  }
+
+  method tieneDuracion() {
+   return duracion > 0
+  }
+
+  method interactuarCon(detective) {
+    game.say(detective, texto)
+    inventario.agregar(self)
+    game.removeVisual(self)
+  }
+}
+
+const lupa = new Item( usoInfinito = true, duracion = 1, position = game.at(10,10), image = "lupa.png", texto = "Encontraste una lupa")
+
+const blockNotas = new Item( usoInfinito = true, duracion = 1, position = game.at(5,5), image = "blockDeNotas.png", texto = "Encontraste un block de notas")
+
+const collar = new Item( usoInfinito = true, duracion = 1, position = game.at(7,8), image = "collar.png", texto = "Encontraste un collar")
+
+const bocadisho = new Item( usoInfinito = false, duracion = 1, position = game.at(9,9), image = "collar.png", texto = "Encontraste un bocadisho")
+// object lupa {
+//   const property usoInfinito = true
+//   const property duracion = 1
+//   const position = game.at(1, 5)
+
+//   method position() {
+//     return position
+//   }
+
+//   method image() {
+//     return "lupa.png"
+//   }
+
+//   method puedeUsar() {
+//     return (usoInfinito || self.tieneDuracion())
+//   }
+
+//   method tieneDuracion() {
+//     return duracion > 0
+//   }
+
+//   method interactuarCon(detective) {
+//     game.say(detective, "¡Encontre una lupa!")
+//     inventario.agregar(self)
+//     game.removeVisual(self)
+//   }
+// }
+
+// object collar {
+//   const property usoInfinito = true
+//   const property duracion = 1
+//   const position = game.at(10, 2)
+
+//   method position() {
+//     return position
+//   }
+
+//   method image() {
+//     return "collar.png"
+//   }
+
+//   method interactuarCon(detective) {
+//     game.say(detective, "¡Encontre una collar!")
+//     inventario.agregar(self)
+//     game.removeVisual(self)
+//   }
 
 //   method puedeUsar() {
 //     return (usoInfinito || self.tieneDuracion())
@@ -39,86 +118,30 @@ object inventario {
 //   }
 // }
 
-object lupa {
-  const property usoInfinito = true
-  const property duracion = 1
-  const position = game.at(1, 5)
+// object blockNotas {
+//   const property usoInfinito = true
+//   const property duracion = 1
+//   const position = game.at(1, 4)
 
-  method position() {
-    return position
-  }
+//   method position() {
+//     return position
+//   }
 
-  method image() {
-    return "lupa.png"
-  }
+//   method image() {
+//     return "blockDeNotas.png"
+//   }
 
-  method puedeUsar() {
-    return (usoInfinito || self.tieneDuracion())
-  }
+//   method interactuarCon(detective) {
+//     game.say(detective, "¡Encontre un block de notas!")
+//     inventario.agregar(self)
+//     game.removeVisual(self)
+//   }
 
-  method tieneDuracion() {
-    return duracion > 0
-  }
+//   method puedeUsar() {
+//     return (usoInfinito || self.tieneDuracion())
+//   }
 
-  method interactuarCon(detective) {
-    game.say(detective, "¡Encontre una lupa!")
-    inventario.agregar(self)
-    game.removeVisual(self)
-  }
-}
-
-object foto {
-  const property usoInfinito = true
-  const property duracion = 1
-  const position = game.at(10, 2)
-
-  method position() {
-    return position
-  }
-
-  method image() {
-    return "foto.png"
-  }
-
-  method interactuarCon(detective) {
-    game.say(detective, "¡Encontre una foto!")
-    inventario.agregar(self)
-    game.removeVisual(self)
-  }
-
-  method puedeUsar() {
-    return (usoInfinito || self.tieneDuracion())
-  }
-
-  method tieneDuracion() {
-    return duracion > 0
-  }
-}
-
-object blockNotas {
-  const property usoInfinito = true
-  const property duracion = 1
-  const position = game.at(1, 4)
-
-  method position() {
-    return position
-  }
-
-  method image() {
-    return "blockNotas.png"
-  }
-
-  method interactuarCon(detective) {
-    game.say(detective, "¡Encontre un block de notas!")
-    inventario.agregar(self)
-    game.removeVisual(self)
-  }
-
-  method puedeUsar() {
-    return (usoInfinito || self.tieneDuracion())
-  }
-
-  method tieneDuracion() {
-    return duracion > 0
-  }
-}
+//   method tieneDuracion() {
+//     return duracion > 0
+//   }
+// }

@@ -1,5 +1,4 @@
 import detective.*
-
 object lucia {
     var property position = game.at(1, 2)
 

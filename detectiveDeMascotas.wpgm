@@ -14,7 +14,7 @@ program detectiveDeMascotas{
 
   game.addVisual(lupa)
   game.addVisual(blockNotas)
-  game.addVisual(foto)
+  game.addVisual(collar)
   game.addVisual(detective)
   game.addVisual(lucia)
 
