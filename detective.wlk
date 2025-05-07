@@ -1,4 +1,5 @@
 import direcciones.*
+import objetos.*
 //import obstaculo.*
 
 object nivel{
@@ -6,9 +7,9 @@ object nivel{
   // const objetos = #{correa, comidaDeGAto, comidaDePerro}
 	
 	method configurarTablero(){
-		game.title("Detective de mascotas")
+	game.title("Detective de mascotas")
     game.boardGround("city.png") 	
-		game.width(20)
+	game.width(20)
     game.height(20)
     game.cellSize(50)
 		//search assets in assets folder, for example, for the background
@@ -40,7 +41,6 @@ object nivel{
 }
 
 
-
 object detective {
   var property position = game.at(3, 3)  // El detective empieza en (3, 3)
 
@@ -58,6 +58,18 @@ object detective {
       position = direccion.siguientePosicion(position)
     }
   }
+
+  method agarrar() {
+    const objetoEnPosicion = self.objetoEnPosicion()
+    inventario.agregar(objetoEnPosicion)
+    game.removeVisual(objetoEnPosicion)
+  }
+
+  method objetoEnPosicion() {
+    return game.uniqueCollider(self)
+  }
+
+
 }
 
 

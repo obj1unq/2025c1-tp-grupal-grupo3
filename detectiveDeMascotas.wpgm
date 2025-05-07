@@ -1,22 +1,26 @@
 import wollok.game.*
 import detective.*
 import direcciones.*
+import objetos.*
 
 
 
-program detectiveDeMascotasMuertas{
+program detectiveDeMascotas{
   nivel.configurarTablero()
   
   game.title("Detective de mascotas")
   game.boardGround("city.png")
 
-
+  game.addVisual(lupa)
+  game.addVisual(blockNotas)
+  game.addVisual(foto)
   game.addVisual(detective)
 
   keyboard.w().onPressDo({ detective.mover(arriba) })   // Mover hacia arriba con la tecla 'W'
   keyboard.a().onPressDo({ detective.mover(izquierda) }) // Mover hacia izquierda con la tecla 'A'
   keyboard.s().onPressDo({ detective.mover(abajo) })     // Mover hacia abajo con la tecla 'S'
   keyboard.d().onPressDo({ detective.mover(derecha) })   // Mover hacia derecha con la tecla 'D'
+  keyboard.f().onPressDo({ detective.agarrar() }) //Agarra un objeto en la posicion actual con la tecla 'F'
 
   game.start()
 }
