@@ -1,12 +1,15 @@
+import detective.*
 
 object lucia {
-    var property position = game.at(5, 5)
+    var property position = game.at(1, 2)
 
     method image() {
-        return "teemo.png"
+        return "lucia1.png"
     }
 
-    method interactuar() {
+    method interactuarCon(detective) {
+        return game.say(self, "¡Hola! ¿Estás buscando una mascota perdida?")
         
     }
 }
+

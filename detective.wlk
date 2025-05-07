@@ -1,5 +1,6 @@
 import direcciones.*
-import objetos.*
+import cosas.*
+import vecinos.*
 //import obstaculo.*
 
 object nivel{
@@ -42,7 +43,7 @@ object nivel{
 
 
 object detective {
-  var property position = game.at(3, 3)  // El detective empieza en (3, 3)
+  var property position = game.at(0, 0)  // El detective empieza en (3, 3)
 
   method puedeMover(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
@@ -50,7 +51,7 @@ object detective {
 }
 
   method image() {
-    return "teemo.png"
+    return "detective.png"
   }
 
   method mover(direccion) {
@@ -59,15 +60,27 @@ object detective {
     }
   }
 
-  method agarrar() {
+//   method agarrar() {
+//     const objetoEnPosicion = self.objetoEnPosicion()
+//     inventario.agregar(objetoEnPosicion)
+//     game.removeVisual(objetoEnPosicion)
+//   }
+
+  method interactuar() {
     const objetoEnPosicion = self.objetoEnPosicion()
-    inventario.agregar(objetoEnPosicion)
-    game.removeVisual(objetoEnPosicion)
+    //interactuar con objetoEnPosicion
+    //objetoEnPosicion.esCategoria().interactuar()
+    objetoEnPosicion.interactuarCon(self)
   }
 
   method objetoEnPosicion() {
     return game.uniqueCollider(self)
   }
+
+  method vecinoEnPosicion() {
+    return game.uniqueCollider(self)
+  }
+
 
 
 }
