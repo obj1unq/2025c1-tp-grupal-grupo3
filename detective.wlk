@@ -1,34 +1,60 @@
 import direcciones.*
 //import obstaculo.*
 
+object nivel{
+	// const npcs = #{viudaNegra} 
+  // const objetos = #{correa, comidaDeGAto, comidaDePerro}
+	
+	method configurarTablero(){
+		game.title("Detective de mascotas")
+    game.boardGround("city.png") 	
+		game.width(20)
+    game.height(20)
+    game.cellSize(50)
+		//search assets in assets folder, for example, for the background
+		//game.ground("fondo.jpg") //Este pone la imagen de fondo en cada celda.
+	}
+
+	// method finalizar(){
+	// 	game.schedule(2000, { game.stop() })
+	// }
+	
+	method existe(posicion)	{
+		return self.existeX(posicion.x()) && self.existeY(posicion.y())
+	}
+
+	method enLimite(coord, max){
+		return coord.between(0, max - 1) 
+	}
+
+	method existeX(x){
+		return self.enLimite(x, game.width())
+		// x >= 0 && x <= game.width() - 1
+	} 
+
+	method existeY(y){
+		return self.enLimite(y, game.height())
+		//y.between(0, game.height() - 1) 
+		// x >= 0 && x <= game.width() - 1
+	} 
+}
+
+
+
 object detective {
   var property position = game.at(3, 3)  // El detective empieza en (3, 3)
 
-  // method iniciar() {
-  //   // Movimiento con teclas WASD
-  //   keyboard.i().onPressDo("w", { self.mover(arriba) })
-  //   keyboard.i().onPressDo("s", { self.mover(abajo) })
-  //   keyboard.i().onPressDo("a", { self.mover(izquierda) })
-  //   keyboard.i().onPressDo("d", { self.mover(derecha) })
-  // }
+  method puedeMover(direccion) {
+    const nuevaPos = direccion.siguientePosicion(position)
+    return nivel.existe(nuevaPos)
+}
 
-  method puedeMover() {
-    return true        // implementar mas adelante: !estaHablando && !enCinematica
-  }
   method image() {
     return "teemo.png"
   }
-//   method validarMover(direccion) {
-//         if(direccion.siguientePosicion(position) == null || 
-//             // !direccion.siguientePosicion(position).canEnter(self) ||
-//             obstaculo.ocupaCelda(direccion.siguientePosicion(position))) {
-//         self.error("¡No puedo ir en esa dirección!")
-//         }
-//   }
 
   method mover(direccion) {
-    if(self.puedeMover()) {
-      //self.validarMover(direccion)
+    if(self.puedeMover(direccion)) {
       position = direccion.siguientePosicion(position)
     }
   }
@@ -37,14 +63,3 @@ object detective {
 
 
 
-//        Verificamos si la nueva celda es válida y si no está ocupada por el obstáculo
-//       if(nuevaPos != null && nuevaPos.canEnter(self) && !obstaculo.ocupaCelda(nuevaPos)) {
-//         position = nuevaPos
-//         self.moveTo(position)
-//         estado.actualizar(self)
-//       } else {
-//         game.say(self, "¡No puedes moverte ahí! Hay un obstáculo.")
-//       }
-//     }
-//   }
-// }

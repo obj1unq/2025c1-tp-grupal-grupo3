@@ -4,12 +4,13 @@ import direcciones.*
 
 
 
-program ejemplo{
-  game.width(20)
-  game.height(20)
-  game.cellSize(50)
+program detectiveDeMascotasMuertas{
+  nivel.configurarTablero()
+  
   game.title("Detective de mascotas")
   game.boardGround("city.png")
+
+
   game.addVisual(detective)
 
   keyboard.w().onPressDo({ detective.mover(arriba) })   // Mover hacia arriba con la tecla 'W'
