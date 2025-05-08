@@ -86,7 +86,7 @@ object detective {
   }
 
   method cantPistas() {
-    return 
+    return inventario.objetos.sum({ objeto => objeto.esPista()})
   }
 
 

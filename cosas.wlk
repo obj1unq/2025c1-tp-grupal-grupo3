@@ -31,7 +31,8 @@ class Item {
   const position = game.at(1,1)
   const image = "cosa.png"
   const texto = "¡Encontre una cosa :p!"
-
+  const esPista = true
+  
   method position() {
     return position
   }
@@ -53,15 +54,19 @@ class Item {
     inventario.agregar(self)
     game.removeVisual(self)
   }
+
+  method esPista() {
+    return esPista
+  }
 }
 
-const lupa = new Item( usoInfinito = true, duracion = 1, position = game.at(10,10), image = "lupa.png", texto = "Encontraste una lupa")
+const lupa = new Item( usoInfinito = true, duracion = 1, position = game.at(10,10), image = "lupa.png", texto = "Encontraste una lupa", esPista = false)
 
-const blockNotas = new Item( usoInfinito = true, duracion = 1, position = game.at(5,5), image = "blockDeNotas.png", texto = "Encontraste un block de notas")
+const blockNotas = new Item( usoInfinito = true, duracion = 1, position = game.at(5,5), image = "blockDeNotas.png", texto = "Encontraste un block de notas", esPista = false)
 
-const collar = new Item( usoInfinito = true, duracion = 1, position = game.at(7,8), image = "collar.png", texto = "Encontraste un collar")
+const collar = new Item( usoInfinito = true, duracion = 1, position = game.at(7,8), image = "collar.png", texto = "Encontraste un collar", esPista = true)
 
-const bocadisho = new Item( usoInfinito = false, duracion = 1, position = game.at(9,9), image = "collar.png", texto = "Encontraste un bocadisho")
+const bocadisho = new Item( usoInfinito = false, duracion = 1, position = game.at(9,9), image = "collar.png", texto = "Encontraste un bocadisho", esPista = true)
 // object lupa {
 //   const property usoInfinito = true
 //   const property duracion = 1
