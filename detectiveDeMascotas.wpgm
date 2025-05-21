@@ -23,6 +23,7 @@ program detectiveDeMascotas{
   keyboard.s().onPressDo({ detective.mover(abajo) })     // Mover hacia abajo con la tecla 'S'
   keyboard.d().onPressDo({ detective.mover(derecha) })   // Mover hacia derecha con la tecla 'D'
   keyboard.f().onPressDo({ detective.interactuar() }) //Agarra un objeto en la posicion actual con la tecla 'F'
+  //keyboard.c().onPressDo({lucia.dialogo().hablar()})
 
   game.start()
 }

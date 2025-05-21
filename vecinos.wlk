@@ -4,7 +4,7 @@ import wollok.game.*
 class Vecino{
     const posicionDelVecino
     const  imagenDelVecino 
-    const dialogoDelVecino 
+    const dialogo 
 
     method position() {
       return posicionDelVecino
@@ -14,30 +14,23 @@ class Vecino{
       return imagenDelVecino
     }
 
-    method dialogoDelVecino() {
-      return dialogoDelVecino
+    method dialogo() {
+      return dialogo
     }
-  
-  method hablar() { // ????
-     Dialogo.hablar() }
-}
+} 
 
 class Dialogo {
-  const dialogoDelVecino = []
+  const lineasDelVecino = []
   var indice = 0
-
-  method dialogoDelVecino(){
-    return dialogoDelVecino
-  }
 
   method hablar() {
      //Necesito cambiar cada tres segundos el dialogo hasta finalizar
-     game.onTick(3000, "hablar", {self. cambiarDialogo()})
+     if(/*si no hay tick en funcionamiento*/){game.onTick(3000, "hablar", {self. cambiarDialogo()})}
   }
 
   method cambiarDialogo() {
-      if (indice < dialogoDelVecino.size()){
-        game.say(self,(dialogoDelVecino.get(indice)))
+      if (indice < lineasDelVecino.size()){
+        game.say(self,(lineasDelVecino.get(indice)))
         indice += 1 }
       else {
          game.removeTickEvent("hablar")
@@ -45,9 +38,14 @@ class Dialogo {
   }
 }
 
+
+//DEFINICION DEL DIALOGO EN LUCIA:
 const dialogosDeLucia = ["Hola, Necesito tu ayuda", "Se perdió MICHI, mi gatito", "No puedo estar sin Michi", "Michi tiene un collar celeste", "Te agradeceria que lo encuentres"] 
-     // tengo el dialogo completo 
+    
 
-const dialogo1 = new Dialogo (dialogoDelVecino = dialogosDeLucia)
+//CREO EL DIALOGO COMO INSTANCIA DE LA CLASE A LA QUE PERTENECE
+const dialogo1 = new Dialogo (lineasDelVecino = dialogosDeLucia)
 
-const lucia = new Vecino (posicionDelVecino = game.at(1, 2), imagenDelVecino = "lucia1.png", dialogoDelVecino = dialogo1 )
+//CREO A LUCIA COMO TAL LO QUE ES : UN VECINO 
+const lucia = new Vecino (posicionDelVecino = game.at(1, 2), imagenDelVecino = "lucia1.png", dialogo = dialogo1 )
+
