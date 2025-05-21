@@ -15,8 +15,10 @@ class Vecino{
     }
 
     method dialogo() {
-      return dialogo
+      return dialogo.hablar()
     }
+
+    
 } 
 
 class Dialogo {
@@ -25,8 +27,8 @@ class Dialogo {
 
   method hablar() {
      //Necesito cambiar cada tres segundos el dialogo hasta finalizar
-     if(/*si no hay tick en funcionamiento*/){game.onTick(3000, "hablar", {self. cambiarDialogo()})}
-  }
+        return {game.onTick(3000, "hablar", {self. cambiarDialogo()})}
+    }
 
   method cambiarDialogo() {
       if (indice < lineasDelVecino.size()){
@@ -34,14 +36,14 @@ class Dialogo {
         indice += 1 }
       else {
          game.removeTickEvent("hablar")
-      }      
-  }
+        }      
+    }
 }
 
 
 //DEFINICION DEL DIALOGO EN LUCIA:
 const dialogosDeLucia = ["Hola, Necesito tu ayuda", "Se perdió MICHI, mi gatito", "No puedo estar sin Michi", "Michi tiene un collar celeste", "Te agradeceria que lo encuentres"] 
-    
+   
 
 //CREO EL DIALOGO COMO INSTANCIA DE LA CLASE A LA QUE PERTENECE
 const dialogo1 = new Dialogo (lineasDelVecino = dialogosDeLucia)
