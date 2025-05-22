@@ -5,6 +5,8 @@ class Vecino{
     const posicionDelVecino
     const  imagenDelVecino 
     const dialogo 
+    var property text = ""
+
 
     method position() {
       return posicionDelVecino
@@ -14,8 +16,8 @@ class Vecino{
       return imagenDelVecino
     }
 
-    method dialogo() {
-      return dialogo.hablar()
+    method hablar() {
+      dialogo.hablar(self)
     }
 
     
@@ -24,17 +26,23 @@ class Vecino{
 class Dialogo {
   const lineasDelVecino = []
   var indice = 0
+  var vecino = null
 
-  method hablar() {
+  method hablar(_vecino) {
      //Necesito cambiar cada tres segundos el dialogo hasta finalizar
-        return {game.onTick(3000, "hablar", {self. cambiarDialogo()})}
+      indice = 0
+      vecino = _vecino
+      self.cambiarDialogo()
+      game.onTick(3000, "hablar", {self. cambiarDialogo()})
     }
 
   method cambiarDialogo() {
       if (indice < lineasDelVecino.size()){
-        game.say(self,(lineasDelVecino.get(indice)))
+        game.say(vecino,(lineasDelVecino.get(indice)))
+        //vecino.text(lineasDelVecino.get(indice))
         indice += 1 }
       else {
+         vecino.text("")
          game.removeTickEvent("hablar")
         }      
     }
@@ -50,4 +58,3 @@ const dialogo1 = new Dialogo (lineasDelVecino = dialogosDeLucia)
 
 //CREO A LUCIA COMO TAL LO QUE ES : UN VECINO 
 const lucia = new Vecino (posicionDelVecino = game.at(1, 2), imagenDelVecino = "lucia1.png", dialogo = dialogo1 )
-
