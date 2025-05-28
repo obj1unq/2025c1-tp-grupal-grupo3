@@ -1,30 +1,7 @@
 import interactuable.*
 import detective.*
 
-// object inventario  {
-//   const property objetos = #{}
 
-//   method agregar(cosa) {
-//     objetos.add(cosa)
-//   }
-
-//   method interactuar(cosa) {
-//     if (not self.puedeInteractuar(cosa) ) {
-//       game.say(cosa, "No podes interactuar con esto ahora")
-//     } else {
-//         cosa.interactuar() 
-//     }
-//   }
-
-//   method puedeInteractuar(cosa) {
-//     return (self.tieneAlgun(cosa) && cosa.puedeUsar())
-//   }
-
-//   method tieneAlgun(cosa) {
-//     return (objetos.any({objeto => objeto == cosa}))
-//   }
-
-// }
 
 class Item inherits Interactuable{
   var property durabilidad = 0
@@ -61,15 +38,17 @@ class Item inherits Interactuable{
 
   method usar() {
     game.say(detective, "Usaste " + texto)
-    if (not usoInfinito) {
+    if (self.puedeUsar()) {
       durabilidad = durabilidad - 1
-      if (durabilidad <= 0) {
-        inventario.remover(self)
-      }
+      inventario.remover(self)
     }
   }
 
-   method respuestaItem()
+  method usoInfinito(){
+    return usoInfinito
+  }
+
+  method respuestaItem()  //PREGUNTAR
   
 }
  
@@ -98,7 +77,7 @@ object collar inherits Item(position = game.at(7,8), imagenEnMapa = "collar.png"
   }
 }
 
-object bocadisho inherits Item(position = game.at(9,9), imagenEnMapa = "collar.png", texto = "Encontraste un bocadisho"){
+object bocadillo inherits Item(position = game.at(9,9), imagenEnMapa = "collar.png", texto = "Encontraste un bocadillo"){
 
   override method respuestaItem(){
 

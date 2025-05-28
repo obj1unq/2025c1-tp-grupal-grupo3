@@ -1,18 +1,18 @@
+//import escenarios.*
 import wollok.game.*
 import detective.*
 import direcciones.*
 import cosas.*
 import vecinos.*
 import interactuable.*
-
+import escenarios.*
 
 
 program detectiveDeMascotas{
-  nivel.configurarTablero()
-  
+  escenarioCentro.configurar()
   game.title("Detective de mascotas")
   game.boardGround("mapa.png")
-
+  
   game.addVisual(lupa)
   game.addVisual(blockNotas)
   game.addVisual(collar)

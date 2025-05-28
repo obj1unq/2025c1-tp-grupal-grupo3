@@ -6,3 +6,21 @@
   }
 }*/
 
+class Visual {
+  method esTransitable() {
+      return true
+  }
+}
+
+
+class Muro inherits Visual{
+  const property position
+
+  override method esTransitable(){
+    return false
+  }
+
+  method image() {
+    return "obstaculo.png"
+  }
+}
