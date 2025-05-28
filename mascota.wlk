@@ -1,11 +1,12 @@
 import detective.*
 import cosas.*
+import interactuable.*
 
-class Mascota {
-  const position = game.at(1,1)
-  const image = "cosa.png"
-  const texto = "¡Encontre una cosa :p!"
-  const comida = bocadisho
+class Mascota inherits Interactuable{
+  const position = game.at(10,10)
+  const image = "mascota1.png"
+  const texto = "¡!"
+  const comida
 
   method position() {
     return position
@@ -15,7 +16,7 @@ class Mascota {
     return image
   }
 
-  method interactuarCon(detective) {
+  override method interactuarCon(detective) {
     game.say(detective, texto)
     game.removeVisual(self)
   }
@@ -24,5 +25,5 @@ class Mascota {
     return comida
   }
 
-  
+
 }

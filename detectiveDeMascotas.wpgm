@@ -3,6 +3,7 @@ import detective.*
 import direcciones.*
 import cosas.*
 import vecinos.*
+import interactuable.*
 
 
 
@@ -10,20 +11,24 @@ program detectiveDeMascotas{
   nivel.configurarTablero()
   
   game.title("Detective de mascotas")
-  game.boardGround("city.png")
+  game.boardGround("mapa.png")
 
   game.addVisual(lupa)
   game.addVisual(blockNotas)
   game.addVisual(collar)
   game.addVisual(detective)
   game.addVisual(lucia)
+  game.addVisual(inventario)
 
-  keyboard.w().onPressDo({ detective.mover(arriba) })   // Mover hacia arriba con la tecla 'W'
-  keyboard.a().onPressDo({ detective.mover(izquierda) }) // Mover hacia izquierda con la tecla 'A'
-  keyboard.s().onPressDo({ detective.mover(abajo) })     // Mover hacia abajo con la tecla 'S'
-  keyboard.d().onPressDo({ detective.mover(derecha) })   // Mover hacia derecha con la tecla 'D'
+  keyboard.w().onPressDo({ detective.mover(arriba) })   
+  keyboard.a().onPressDo({ detective.mover(izquierda) }) 
+  keyboard.s().onPressDo({ detective.mover(abajo) })     
+  keyboard.d().onPressDo({ detective.mover(derecha) })   
   keyboard.f().onPressDo({ detective.interactuar() }) //Agarra un objeto en la posicion actual con la tecla 'F'
-  keyboard.c().onPressDo({lucia.hablar()}) //HAY QUE BUSCAR QUE SEA COMUN A TODOS LOS VECINOS QUE VAYAN A EXISTIR 
+  //keyboard.c().onPressDo({lucia.hablar()}) //         YA ES COMUN A TODOS LOS VECINOS QUE VAYAN A EXISTIR 
+  keyboard.g().onPressDo({ inventario.usarObjetoEn(0) })
+  keyboard.h().onPressDo({ inventario.usarObjetoEn(1) })
+  keyboard.j().onPressDo({ inventario.usarObjetoEn(2) })
 
   game.start()
 }

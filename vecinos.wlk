@@ -1,7 +1,8 @@
 import detective.*
 import wollok.game.*
+import interactuable.*
 
-class Vecino{
+class Vecino inherits Interactuable{
     const posicionDelVecino
     const  imagenDelVecino 
     const dialogo 
@@ -19,6 +20,11 @@ class Vecino{
     method hablar() {
       dialogo.hablar(self)
     }
+
+    override method interactuarCon(detective) {
+    self.hablar()
+    
+  }
 
     
 } 

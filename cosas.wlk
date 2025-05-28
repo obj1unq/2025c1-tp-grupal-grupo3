@@ -1,152 +1,111 @@
+import interactuable.*
 import detective.*
 
-object inventario {
-  const property objetos = #{}
+// object inventario  {
+//   const property objetos = #{}
 
-  method agregar(cosa) {
-    objetos.add(cosa)
-  }
+//   method agregar(cosa) {
+//     objetos.add(cosa)
+//   }
 
-  method interactuar(cosa) {
-    if (not self.puedeInteractuar(cosa) ) {
-      game.say(cosa, "No podes interactuar con esto ahora")
-    } else {
-        cosa.interactuar() 
-    }
-  }
+//   method interactuar(cosa) {
+//     if (not self.puedeInteractuar(cosa) ) {
+//       game.say(cosa, "No podes interactuar con esto ahora")
+//     } else {
+//         cosa.interactuar() 
+//     }
+//   }
 
-  method puedeInteractuar(cosa) {
-    return (self.tieneAlgun(cosa) && cosa.puedeUsar())
-  }
+//   method puedeInteractuar(cosa) {
+//     return (self.tieneAlgun(cosa) && cosa.puedeUsar())
+//   }
 
-  method tieneAlgun(cosa) {
-    return (objetos.any({objeto => objeto == cosa}))
-  }
+//   method tieneAlgun(cosa) {
+//     return (objetos.any({objeto => objeto == cosa}))
+//   }
 
-}
+// }
 
-class Item {
-  const usoInfinito = false
-  var property duracion = 0
-  const position = game.at(1,1)
-  const image = "cosa.png"
-  const texto = "¡Encontre una cosa :p!"
-  const esPista = true
+class Item inherits Interactuable{
+  var property durabilidad = 0
+  var property position = game.at(1,1)
+  const imagenEnMapa = "cosa.png"
+  const imagenEnInventario = "cosa2.png"
+  const texto = "¡Encontré"  + "!"
+  const usoInfinito = true
   
-  method position() {
-    return position
+  
+  method setPosition(pos) {
+    position = pos
   }
 
   method image() {
-    return image
+    return imagenEnMapa
   }
 
-  method puedeUsar() {
-    return (usoInfinito || self.tieneDuracion())
-  }
-
-  method tieneDuracion() {
-   return duracion > 0
-  }
-
-  method interactuarCon(detective) {
+  override method interactuarCon(detective) {
     game.say(detective, texto)
     inventario.agregar(self)
     game.removeVisual(self)
+    inventario.visualizarInventario()
   }
 
-  method esPista() {
-    return esPista
+  method mostrarEnInventario(){
+    return imagenEnInventario
+
+  }
+
+  method puedeUsar() {
+    return usoInfinito || durabilidad > 0
+  }
+
+  method usar() {
+    game.say(detective, "Usaste " + texto)
+    if (not usoInfinito) {
+      durabilidad = durabilidad - 1
+      if (durabilidad <= 0) {
+        inventario.remover(self)
+      }
+    }
+  }
+
+   method respuestaItem()
+  
+}
+ 
+
+
+
+object lupa inherits Item (position = game.at(10,10), imagenEnMapa = "lupa.png", imagenEnInventario = "lupaMaisGrandeDuMundo.png", texto = "Encontraste una lupa"){
+
+  override method respuestaItem() {
+    game.addVisual("huella.png")
+  }
+
+}  
+
+object blockNotas inherits Item(position = game.at(0,0), imagenEnMapa = "blockDeNotas.png", texto = "Encontraste un block de notas") {
+
+  override method respuestaItem() {
+
   }
 }
 
-const lupa = new Item( usoInfinito = true, duracion = 1, position = game.at(10,10), image = "lupa.png", texto = "Encontraste una lupa", esPista = false)
+object collar inherits Item(position = game.at(7,8), imagenEnMapa = "collar.png", texto = "Encontraste un collar"){
 
-const blockNotas = new Item( usoInfinito = true, duracion = 1, position = game.at(5,5), image = "blockDeNotas.png", texto = "Encontraste un block de notas", esPista = false)
+  override method respuestaItem() { // que hago en este caso?
+    
+  }
+}
 
-const collar = new Item( usoInfinito = true, duracion = 1, position = game.at(7,8), image = "collar.png", texto = "Encontraste un collar", esPista = true)
+object bocadisho inherits Item(position = game.at(9,9), imagenEnMapa = "collar.png", texto = "Encontraste un bocadisho"){
 
-const bocadisho = new Item( usoInfinito = false, duracion = 1, position = game.at(9,9), image = "collar.png", texto = "Encontraste un bocadisho", esPista = true)
-// object lupa {
-//   const property usoInfinito = true
-//   const property duracion = 1
-//   const position = game.at(1, 5)
+  override method respuestaItem(){
 
-//   method position() {
-//     return position
-//   }
+  }
+}
 
-//   method image() {
-//     return "lupa.png"
-//   }
 
-//   method puedeUsar() {
-//     return (usoInfinito || self.tieneDuracion())
-//   }
 
-//   method tieneDuracion() {
-//     return duracion > 0
-//   }
 
-//   method interactuarCon(detective) {
-//     game.say(detective, "¡Encontre una lupa!")
-//     inventario.agregar(self)
-//     game.removeVisual(self)
-//   }
-// }
 
-// object collar {
-//   const property usoInfinito = true
-//   const property duracion = 1
-//   const position = game.at(10, 2)
-
-//   method position() {
-//     return position
-//   }
-
-//   method image() {
-//     return "collar.png"
-//   }
-
-//   method interactuarCon(detective) {
-//     game.say(detective, "¡Encontre una collar!")
-//     inventario.agregar(self)
-//     game.removeVisual(self)
-//   }
-
-//   method puedeUsar() {
-//     return (usoInfinito || self.tieneDuracion())
-//   }
-
-//   method tieneDuracion() {
-//     return duracion > 0
-//   }
-// }
-
-// object blockNotas {
-//   const property usoInfinito = true
-//   const property duracion = 1
-//   const position = game.at(1, 4)
-
-//   method position() {
-//     return position
-//   }
-
-//   method image() {
-//     return "blockDeNotas.png"
-//   }
-
-//   method interactuarCon(detective) {
-//     game.say(detective, "¡Encontre un block de notas!")
-//     inventario.agregar(self)
-//     game.removeVisual(self)
-//   }
-
-//   method puedeUsar() {
-//     return (usoInfinito || self.tieneDuracion())
-//   }
-
-//   method tieneDuracion() {
-//     return duracion > 0
-//   }
-// }
