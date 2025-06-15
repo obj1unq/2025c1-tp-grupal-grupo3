@@ -201,8 +201,9 @@ object inventario {
     posicionSlotDisponible = posicionSlotDisponible + 1
   }
 
-  method remover(cosa) {
-    objetos.remove(cosa)
+  method remover(item) {
+    objetos.remove(item)
+    game.removeVisual(item)
   }
 
   method usarObjetoEn(_posicionSlotDisponible) {
@@ -227,6 +228,8 @@ object inventario {
   method itemDeInventarioEn(_posicionSlotDisponible) {
     return game.getObjectsIn(game.at(_posicionSlotDisponible, 0)).first()
   }
+
+  
 
 
 

@@ -41,7 +41,6 @@ class ItemEnInventario inherits Interactuable{
   var property position 
   const property itemDeMapa 
   const texto = "¡Encontré"  + "!"
-  const usoInfinito 
   
   method setPosition(pos) {
     position = pos
@@ -56,20 +55,24 @@ class ItemEnInventario inherits Interactuable{
    
   }
 
-  method puedeUsar() {
-    return usoInfinito || durabilidad > 0
+  method usar() {
+    self.actualizarDurabilidad()
+    self.actualizarEstadoDe()
+    game.say(detective, "Usaste " + texto)
   }
 
-  method usar() {
-    game.say(detective, "Usaste " + texto)
-    if (self.puedeUsar()) {
-      durabilidad = durabilidad - 1
-      inventario.remover(self)
-    }
+  method actualizarEstadoDe() {
+    if (durabilidad == 0)
+      inventario.remover(self) 
   }
+
+  method actualizarDurabilidad() {
+    durabilidad = durabilidad - 1
+  }
+
 
   method usoInfinito(){
-    return usoInfinito
+    return true
   }
 
 }
@@ -81,8 +84,8 @@ object lupa inherits ItemEnMapa (position = game.at(10,10), itemParaInventario =
       }
 }  
 
-object lupaDeInventario inherits ItemEnInventario (durabilidad = 100, usoInfinito = true, position = game.at(10,10), itemDeMapa = lupa, 
-                                texto = "lupa usada" ){
+object lupaDeInventario inherits ItemEnInventario (durabilidad = 1, position = game.at(10,10), itemDeMapa = lupa, 
+                                texto = "lupa" ){
       override method image(){
         return "lupa2.png"
       }
@@ -96,7 +99,7 @@ object blockNotas inherits ItemEnMapa (position = game.at(0,0), itemParaInventar
       }
 }
 
-object blockDeInventario inherits ItemEnInventario (durabilidad = 100, usoInfinito = true, position = game.at(10,10), itemDeMapa = blockNotas, 
+object blockDeInventario inherits ItemEnInventario (durabilidad = 100, position = game.at(10,10), itemDeMapa = blockNotas, 
                                 texto = "block usado"){
       override method image(){
         return "blockDeNotas2.png"
@@ -110,7 +113,7 @@ object collar inherits ItemEnMapa(position = game.at(7,8), itemParaInventario = 
       }    
 }
 
-object collarInventario inherits ItemEnInventario (durabilidad = 100, usoInfinito = true, position = game.at(10,10), itemDeMapa = collar, 
+object collarInventario inherits ItemEnInventario (durabilidad = 1, position = game.at(10,10), itemDeMapa = collar, 
                                 texto = "collar usado"){
       override method image(){
         return "collar2.png"
@@ -118,8 +121,19 @@ object collarInventario inherits ItemEnInventario (durabilidad = 100, usoInfinit
 }
 
 
-// object bocadillo inherits ItemEnMapa(position = game.at(9,9), imagenEnMapa = "collar.png", texto = "Encontraste un bocadillo"){
-// }
+object bocadillo inherits ItemEnMapa(position = game.at(9,9), itemParaInventario = bocadilloEnInventario, 
+                          texto = "Encontraste un bocadillo"){
+      override method image(){
+        return "bocadillo.png"
+      }  
+}
+
+object bocadilloEnInventario inherits ItemEnInventario (durabilidad = 1, position = game.at(10,10), itemDeMapa = bocadillo, 
+                                texto = "bocadillo usado"){
+      override method image(){
+        return "bocadillo2.png"
+      }  
+}
 
 
 
