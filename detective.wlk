@@ -204,6 +204,11 @@ object inventario {
   method remover(item) {
     objetos.remove(item)
     game.removeVisual(item)
+    self.actualizarPosicionDisponible()
+  }
+
+  method actualizarPosicionDisponible() {
+    posicionSlotDisponible = posicionSlotDisponible - 1
   }
 
   method usarObjetoEn(_posicionSlotDisponible) {
