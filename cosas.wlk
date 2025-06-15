@@ -1,35 +1,59 @@
 import interactuable.*
 import detective.*
 
-
-
-class Item inherits Interactuable{
-  var property durabilidad = 0
-  var property position = game.at(1,1)
-  const imagenEnMapa = "cosa.png"
-  const imagenEnInventario = "cosa2.png"
+class ItemEnMapa inherits Interactuable {
+  var property position 
+  const property itemParaInventario 
   const texto = "¡Encontré"  + "!"
-  const usoInfinito = true
-  
+  //var estaEnElMapa = true
+ 
+  method setPosition(pos) {
+    position = pos
+  }
+
+  method image() 
+
+  override method interactuarCon(detective) {
+    //self.validarSiSePuedeInteractuarCon(detective)
+    game.say(detective, texto)
+    inventario.agregar(itemParaInventario)
+    game.removeVisual(self)
+    
+    //self.estaEnElMapa(false)
+  }
+
+  // method validarSiSePuedeInteractuarCon(detective) {
+  //   if (not self.fueRemovidoDelMapa())
+  // }
+
+  // method estaEnElMapa() {
+  //   return estaEnElMapa
+  // }
+
+  // method estaEnElMapa(_estado) {
+  //   estaEnElMapa = _estado
+  // }
+
+}
+
+class ItemEnInventario inherits Interactuable{
+  var property durabilidad 
+  var property position 
+  const property itemDeMapa 
+  const texto = "¡Encontré"  + "!"
+  const usoInfinito 
   
   method setPosition(pos) {
     position = pos
   }
 
-  method image() {
-    return imagenEnMapa
-  }
+  method image()
 
   override method interactuarCon(detective) {
     game.say(detective, texto)
     inventario.agregar(self)
     game.removeVisual(self)
-    inventario.visualizarInventario()
-  }
-
-  method mostrarEnInventario(){
-    return imagenEnInventario
-
+   
   }
 
   method puedeUsar() {
@@ -48,41 +72,54 @@ class Item inherits Interactuable{
     return usoInfinito
   }
 
-  method respuestaItem()  //PREGUNTAR
-  
 }
  
-
-
-
-object lupa inherits Item (position = game.at(10,10), imagenEnMapa = "lupa.png", imagenEnInventario = "lupaMaisGrandeDuMundo.png", texto = "Encontraste una lupa"){
-
-  override method respuestaItem() {
-    game.addVisual("huella.png")
-  }
-
+object lupa inherits ItemEnMapa (position = game.at(10,10), itemParaInventario = lupaDeInventario,
+                    texto = "Encontraste una lupa"){               
+      override method image(){
+        return "lupa.png"
+      }
 }  
 
-object blockNotas inherits Item(position = game.at(0,0), imagenEnMapa = "blockDeNotas.png", texto = "Encontraste un block de notas") {
-
-  override method respuestaItem() {
-
-  }
+object lupaDeInventario inherits ItemEnInventario (durabilidad = 100, usoInfinito = true, position = game.at(10,10), itemDeMapa = lupa, 
+                                texto = "lupa usada" ){
+      override method image(){
+        return "lupa2.png"
+      }
 }
 
-object collar inherits Item(position = game.at(7,8), imagenEnMapa = "collar.png", texto = "Encontraste un collar"){
 
-  override method respuestaItem() { // que hago en este caso?
-    
-  }
+object blockNotas inherits ItemEnMapa (position = game.at(0,0), itemParaInventario = blockDeInventario, 
+                           texto = "Encontraste un block de notas"){
+      override method image(){
+        return "blockDeNotas.png"
+      }
 }
 
-object bocadillo inherits Item(position = game.at(9,9), imagenEnMapa = "collar.png", texto = "Encontraste un bocadillo"){
-
-  override method respuestaItem(){
-
-  }
+object blockDeInventario inherits ItemEnInventario (durabilidad = 100, usoInfinito = true, position = game.at(10,10), itemDeMapa = blockNotas, 
+                                texto = "block usado"){
+      override method image(){
+        return "blockDeNotas2.png"
+      }
 }
+
+object collar inherits ItemEnMapa(position = game.at(7,8), itemParaInventario = collarInventario,
+                       texto = "Encontraste un collar"){
+      override method image(){
+        return "collar.png"
+      }    
+}
+
+object collarInventario inherits ItemEnInventario (durabilidad = 100, usoInfinito = true, position = game.at(10,10), itemDeMapa = collar, 
+                                texto = "collar usado"){
+      override method image(){
+        return "collar2.png"
+      }  
+}
+
+
+// object bocadillo inherits ItemEnMapa(position = game.at(9,9), imagenEnMapa = "collar.png", texto = "Encontraste un bocadillo"){
+// }
 
 
 

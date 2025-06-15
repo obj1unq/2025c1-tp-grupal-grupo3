@@ -1,8 +1,8 @@
 import detective.*
 class Interactuable {
-  method interactuarCon(detective) {
-    
-  }
+  method interactuarCon(detective) 
+
+  
 }
 
 

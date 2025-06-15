@@ -97,7 +97,7 @@ object detective {
   method puedeMover(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
     return escenarioCentro.existe(nuevaPos)
-}
+  }
 
   method image() {
     return "detective.png"
@@ -175,67 +175,63 @@ object detective {
 object inventario {
   const property objetos = []
   const property position = game.at(12, 0)
+  var posicionSlotDisponible = 15
 
-   method agregar(cosa) {
-     objetos.add(cosa)
+  method agregar(item) {
+    self.validarAgregar()
+    self.agregarVisual(item)
+    objetos.add(item)
+    self.incrementarPosicionSlotDisponible()
+  }
+
+  method agregarVisual(item) {
+    item.setPosition(game.at(posicionSlotDisponible, 0))
+    game.addVisual(item)
+  }
+
+  method validarAgregar() {
+    if (not self.haySlotDisponible())
+      self.error("No hay lugar en el inventario")
+  }
+
+  method haySlotDisponible() {
+    return posicionSlotDisponible <= 1000
+  }
+  method incrementarPosicionSlotDisponible() {
+    posicionSlotDisponible = posicionSlotDisponible + 1
   }
 
   method remover(cosa) {
     objetos.remove(cosa)
   }
 
-  method visualizarInventario() {
-    var indice = 0
-    objetos.forEach({ cosa =>
-      self.visualizarEnInventario(cosa, indice)
-      indice = indice + 1
-    })
+  method usarObjetoEn(_posicionSlotDisponible) {
+    self.validarSiHayObjetoEnPosicion(_posicionSlotDisponible)
+    self.interactuarConItemDeInventarioEn(self.itemDeInventarioEn(_posicionSlotDisponible))
+
   }
 
-  method usarObjetoEn(indice) {
-    if (indice < objetos.size()) {
-      const objeto = objetos.get(indice)
-    if (objeto.puedeUsar()) {
-      objeto.usar()
-    } else {
-      game.say(detective, "Este objeto no se puede usar ahora.")
-    }
-  } else {
-    game.say(detective, "No hay objeto en ese lugar.")
+  method validarSiHayObjetoEnPosicion(_posicionSlotDisponible) {
+    if (not self.hayObjetoEn(_posicionSlotDisponible))
+      self.error("No tengo ningún objeto en ese slot")
   }
-}
 
-
-// [[], [],[] ] const espadaActual = find(espada)
-// count(objeto espada)add(espadaActual)
-// remove(espadaActual
-// espadaActual = 0
-// mostrar(espada)
-// cosa().mostrar()
-
-// ocultar() // indice += 1 mostrar
-// )
- /* game.addVisual(espada)
-  espada.image() espada.text()""*/
-
-  method visualizarEnInventario(cosa, indice) {
-    const copiaVisual = object {
-    const position = game.at(indice +  15, 0)
-
-    method position() { return position }
-    method image() { return cosa.mostrarEnInventario() }
+  method hayObjetoEn(_posicionSlotDisponible) {
+    return not game.getObjectsIn(game.at(_posicionSlotDisponible, 0)).isEmpty()
   }
-  game.addVisual(copiaVisual)
+
+  method interactuarConItemDeInventarioEn(item) {
+    item.usar()
+  }
+
+  method itemDeInventarioEn(_posicionSlotDisponible) {
+    return game.getObjectsIn(game.at(_posicionSlotDisponible, 0)).first()
+  }
+
+
+
 }
 
-/*method text() = "(" + position.x() + ", " + position.y() + ")"
-method color() = "#ff0378"*/
-  // method image() {
-  //     return "inventario.png"
-  // }
-}
-/*method text() = "(" + position.x() + ", " + position.y() + ")"
-method color() = "#ff0378"*/
     
 
     

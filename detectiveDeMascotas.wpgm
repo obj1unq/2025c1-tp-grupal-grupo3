@@ -26,9 +26,16 @@ program detectiveDeMascotas{
   keyboard.d().onPressDo({ detective.mover(derecha) })   
   keyboard.f().onPressDo({ detective.interactuar() }) //Agarra un objeto en la posicion actual con la tecla 'F'
   //keyboard.c().onPressDo({lucia.hablar()}) //         YA ES COMUN A TODOS LOS VECINOS QUE VAYAN A EXISTIR 
-  keyboard.g().onPressDo({ inventario.usarObjetoEn(0) })
-  keyboard.h().onPressDo({ inventario.usarObjetoEn(1) })
-  keyboard.j().onPressDo({ inventario.usarObjetoEn(2) })
+  keyboard.num1().onPressDo({ inventario.usarObjetoEn(15) })
+  keyboard.num2().onPressDo({ inventario.usarObjetoEn(16) })
+  keyboard.num3().onPressDo({ inventario.usarObjetoEn(17) })
+  keyboard.num4().onPressDo({ inventario.usarObjetoEn(18) })
+  keyboard.num5().onPressDo({ inventario.usarObjetoEn(19) })
+  keyboard.num6().onPressDo({ inventario.usarObjetoEn(20) })
+  keyboard.num7().onPressDo({ inventario.usarObjetoEn(21) })
+  keyboard.num8().onPressDo({ inventario.usarObjetoEn(22) })
+  keyboard.num9().onPressDo({ inventario.usarObjetoEn(23) })
+  keyboard.num0().onPressDo({ inventario.usarObjetoEn(24) })
 
   game.start()
 }
