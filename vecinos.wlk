@@ -29,6 +29,10 @@ class Vecino inherits Interactuable{
       return false
     }
 
+  method esInvisible(){
+    return false
+  }
+
     
 } 
 

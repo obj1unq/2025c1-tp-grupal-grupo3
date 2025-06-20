@@ -1,6 +1,7 @@
 import direcciones.*
 import cosas.*
 import vecinos.*
+import interactuable.*
 
 
 class Escenario {
@@ -21,7 +22,7 @@ class Escenario {
 		game.boardGround(map)
 	}
 
-    method existe(posicion)	{
+    method existePosicion(posicion)	{
 		return self.existeX(posicion.x()) && self.existeY(posicion.y())
 	}
 
@@ -39,6 +40,14 @@ class Escenario {
 		//y.between(0, game.height() - 1) 
 		// x >= 0 && x <= game.width() - 1
 	} 
+
+	method hayObstaculoEn(nuevaPos){
+		return self.hayObjetoInvisibleEn(nuevaPos)
+	}
+
+	method hayObjetoInvisibleEn(nuevaPos){
+		return game.getObjectsIn(nuevaPos).any({objeto => objeto.esInvisible()})
+	}
 
 	// method limpiarEscenario() {
 	// 	falta remover su propio visual de mapa 

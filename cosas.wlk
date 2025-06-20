@@ -13,6 +13,10 @@ class ItemEnMapa inherits Interactuable {
 
   method image() 
 
+  method esInvisible(){
+    return false
+  }
+
   override method interactuarCon(detective) {
     //self.validarSiSePuedeInteractuarCon(detective)
     game.say(detective, texto)

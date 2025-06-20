@@ -96,7 +96,7 @@ object detective {
 
   method puedeMover(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
-    return escenarioCentro.existe(nuevaPos)
+    return  escenarioCentro.existePosicion(nuevaPos) || (not escenarioCentro.hayObstaculoEn(nuevaPos))
   }
 
   method image() {
@@ -175,7 +175,7 @@ object detective {
 object inventario {
   const property objetos = []
   const property position = game.at(12, 0)
-  var posicionSlotDisponible = 15
+  var posicionSlotDisponible = 15 // AGREGAR COMO PAR ORDENADO 
 
   method agregar(item) {
     self.validarAgregar()
