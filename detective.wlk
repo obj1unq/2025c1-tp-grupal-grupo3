@@ -184,6 +184,10 @@ object inventario {
     self.incrementarPosicionSlotDisponible()
   }
 
+  method esInvisible(){
+    return false
+  }
+
   method agregarVisual(item) {
     item.setPosition(game.at(posicionSlotDisponible, 0))
     game.addVisual(item)

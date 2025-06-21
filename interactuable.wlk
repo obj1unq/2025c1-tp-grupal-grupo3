@@ -18,7 +18,6 @@ class ObjetoInvisible {
   method position() {
     return posicion
   }
-
 }
 
 const panaderiaCelda1 = new ObjetoInvisible(posicion = game.at(1,2))
