@@ -19,6 +19,8 @@ program detectiveDeMascotas{
   game.addVisual(detective)
   game.addVisual(lucia)
   game.addVisual(inventario)
+  panaderia.agregarVisual()
+  
 
   keyboard.w().onPressDo({ detective.mover(arriba) })   
   keyboard.a().onPressDo({ detective.mover(izquierda) }) 

@@ -96,7 +96,7 @@ object detective {
 
   method puedeMover(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
-    return  escenarioCentro.existePosicion(nuevaPos) || (not escenarioCentro.hayObstaculoEn(nuevaPos))
+    return  escenarioCentro.existePosicion(nuevaPos) && ( !escenarioCentro.hayObstaculoEn(nuevaPos))
   }
 
   method image() {
