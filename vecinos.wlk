@@ -70,4 +70,4 @@ const dialogosDeLucia = ["Hola, Necesito tu ayuda", "Se perdió MICHI, mi gatito
 const dialogo1 = new Dialogo (lineasDelVecino = dialogosDeLucia)
 
 //CREO A LUCIA COMO TAL LO QUE ES : UN VECINO 
-const lucia = new Vecino (posicionDelVecino = game.at(1, 2), imagenDelVecino = "lucia1.png", dialogo = dialogo1 )
+const lucia = new Vecino (posicionDelVecino = game.at(0, 2), imagenDelVecino = "lucia1.png", dialogo = dialogo1 )

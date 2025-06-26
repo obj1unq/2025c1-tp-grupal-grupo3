@@ -2,7 +2,8 @@ import direcciones.*
 import cosas.*
 import vecinos.*
 import escenarios.*
-//import obstaculo.*
+import interactuable.*
+import wollok.game.*
 
 //object nivel{
 	// const npcs = #{viudaNegra} 
@@ -96,7 +97,7 @@ object detective {
 
   method puedeMover(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
-    return  escenarioCentro.existePosicion(nuevaPos) && ( !escenarioCentro.hayObstaculoEn(nuevaPos))
+    return  escenarioCentro.existePosicion(nuevaPos) && ( !escenarioCentro.hayObstaculoEn(nuevaPos)) and ciudad.puedoIr(nuevaPos)
   }
 
   method image() {

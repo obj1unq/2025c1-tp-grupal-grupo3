@@ -19,7 +19,7 @@ program detectiveDeMascotas{
   game.addVisual(detective)
   game.addVisual(lucia)
   game.addVisual(inventario)
-  panaderia.agregarVisual()
+  
   
 
   keyboard.w().onPressDo({ detective.mover(arriba) })   
@@ -27,7 +27,6 @@ program detectiveDeMascotas{
   keyboard.s().onPressDo({ detective.mover(abajo) })     
   keyboard.d().onPressDo({ detective.mover(derecha) })   
   keyboard.f().onPressDo({ detective.interactuar() }) //Agarra un objeto en la posicion actual con la tecla 'F'
-  //keyboard.c().onPressDo({lucia.hablar()}) //         YA ES COMUN A TODOS LOS VECINOS QUE VAYAN A EXISTIR 
   keyboard.num1().onPressDo({ inventario.usarObjetoEn(15) })
   keyboard.num2().onPressDo({ inventario.usarObjetoEn(16) })
   keyboard.num3().onPressDo({ inventario.usarObjetoEn(17) })
