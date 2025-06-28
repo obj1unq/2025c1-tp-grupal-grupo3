@@ -2,8 +2,7 @@ import direcciones.*
 import cosas.*
 import vecinos.*
 import escenarios.*
-import interactuable.*
-import wollok.game.*
+//import obstaculo.*
 
 //object nivel{
 	// const npcs = #{viudaNegra} 
@@ -94,20 +93,45 @@ import wollok.game.*
 
 object detective {
   var property position = game.at(17, 9)  // El detective empieza en (3, 3)
+  var property escenarioActual = escenarioEscolar
 
-  method puedeMover(direccion) {
+  method puedeMoverHacia(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
-    return  escenarioCentro.existePosicion(nuevaPos) && ( !escenarioCentro.hayObstaculoEn(nuevaPos)) and ciudad.puedoIr(nuevaPos)
+    return !escenarioActual.hayObstaculoEn(nuevaPos)              
+  }
+
+  method estaEnBordeDeEscenario(posicion, escenario) {
+    return !escenario.esParteDeEscenario(posicion)
   }
 
   method image() {
     return "detective.png"
   }
 
-  method mover(direccion) {
-    if(self.puedeMover(direccion)) {
+  method moverHacia(direccion) {            
+    if (self.puedeMoverHacia(direccion)) {
       position = direccion.siguientePosicion(position)
     }
+  }
+
+  method mover(direccion) {
+    const nuevaPos = direccion.siguientePosicion(position)
+    return if (!self.estaEnBordeDeEscenario(nuevaPos, escenarioActual)) 
+              self.moverHacia(direccion)
+            else 
+              self.moverANuevoEscenarioEn(direccion)
+  }
+
+  method moverANuevoEscenarioEn(direccion){
+       if (escenarioActual.hayEscenarioHaciaDireccion(direccion))
+          // escenarioActual.limpiarEscenario()
+          // escenarioActual.agregarVisualesDeEscenarioVecinoEn(direccion)
+          self.actualizarPosicionANuevoEscenario(direccion)
+          escenarioActual.cargarEscenarioVecinoDeDireccion(direccion)
+  }
+
+  method  actualizarPosicionANuevoEscenario(direccion) {
+    
   }
 
 
@@ -244,7 +268,6 @@ object inventario {
 
 
 }
-
     
 
     
