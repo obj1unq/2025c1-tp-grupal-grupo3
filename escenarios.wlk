@@ -3,10 +3,11 @@ import cosas.*
 import vecinos.*
 import interactuable.*
 import edificios.*
+import detective.*
 
 
 class Escenario {
-	
+	const property protagonista 
     const property objetos = [] 
     const property vecinos = [] 
     const property escenariosVecinos
@@ -19,8 +20,50 @@ class Escenario {
 	    game.width(38)
         game.height(20)
         game.cellSize(60) 
-		game.addVisual(mapCubiertas) 
-		game.boardGround(map)
+		
+		self.agregarVisualesDeEscenario()
+		//game.addVisual(mapCubiertas)
+		//game.boardGround(map)
+	}
+
+	method agregarVisualesDeEscenario(){
+		game.addVisual(map)
+		self.agregarVisualesVecinos()
+		self.agregarVisualesCosas()
+		self.agregarVisualDetective()
+		game.addVisual(mapCubiertas)
+	}
+
+	method agregarVisualesVecinos() {
+		vecinos.forEach({vecino => game.addVisual(vecino)})
+	}
+
+	method agregarVisualesCosas() {
+		objetos.forEach({objeto => game.addVisual(objeto)})
+	}
+
+	method agregarVisualDetective(){
+		game.addVisual(protagonista)
+	}
+
+	method removerVisualesDeEscenario() {
+		game.removeVisual(map)
+		self.removerVisualesVecinos()
+		self.removerVisualesCosas()
+		self.removerVisualDetective()
+		game.removeVisual(mapCubiertas)
+	}
+
+	method removerVisualesVecinos() {
+		vecinos.forEach({vecino => game.removeVisual(vecino)})
+	}
+
+	method removerVisualesCosas() {
+		objetos.forEach({objeto => game.removeVisual(objeto)})
+	}
+
+	method removerVisualDetective(){
+		game.removeVisual(protagonista)
 	}
 
 
@@ -72,18 +115,14 @@ class Escenario {
 
 
 	method cargarEscenarioVecinoDeDireccion(direccion){
-		self.limpiarEscenario()
-		self.agregarVisualesDeEscenarioVecinoEn(direccion)
+		self.removerVisualesDeEscenario()
+		self.escenarioEnDireccion(direccion).configurar()
 	}
 
-	method limpiarEscenario() {
-		//falta remover su propio visual de mapa 
-	 //[objetos, vecinos].flatten().forEach({cosa => game.removeVisual(cosa)}) // esto hay que modificar
-	}
 
-	method agregarVisualesDeEscenarioVecinoEn(direccion) {
-		return self.escenarioEnDireccion(direccion).configurar()
-	}
+	// method agregarVisualesDeEscenarioVecinoEn(direccion) {
+	// 	return self.escenarioEnDireccion(direccion).configurar()
+	// }
 
 	method escenarioEnDireccion(direccion){
 		return escenariosVecinos.find({escenario => escenario.direccion() == direccion}).escenario()
@@ -101,7 +140,7 @@ class EscenarioVecino {
 }
 
 
-object escenarioEscolar inherits Escenario ( map = "EscenarioEscolar.png", mapCubiertas = escenarioEscolarCubiertas, edificios = [jardin, 
+object escenarioEscolar inherits Escenario (protagonista = detective, map = mapaEscenarioEscolar, mapCubiertas = escenarioEscolarCubiertas, edificios = [jardin, 
 						rejaIzquierdaJardin, rejaAbajoJardin, rejaDerechaJardin1, rejaDerechaJardin2, rejaArribaJardin, arbustoParque, arbustoParque2, 
 						casaAmarillaJardin, toboganParque1, toboganParque2, toboganParque3, toboganParque4, juegoParque, puenteParque, calesitaParque, 
 						autosJardin, autosJardin2, colectivoJardin, arbolJardin2, arbustoJardin, arbustoJardin2, asientoJardin, escalerasJardin, 
@@ -111,6 +150,14 @@ object escenarioEscolar inherits Escenario ( map = "EscenarioEscolar.png", mapCu
 						escenariosVecinos = [new EscenarioVecino(direccion = derecha, escenario = escenarioCentral) ]
 						) {} 
 
+object mapaEscenarioEscolar {
+	method position() {
+		return game.at(0,0)
+	}
+	method image() {
+		return "EscenarioEscolar.png"
+	}
+}
 object escenarioEscolarCubiertas {
 	method position() {
 		return game.at(0,0)
@@ -120,13 +167,22 @@ object escenarioEscolarCubiertas {
 	}
 }
 
-object escenarioCentral inherits Escenario ( map = "escenarioCentral.png", mapCubiertas = escenarioCentralCubiertas, edificios = [],
-						objetos = [lupa, blockNotas, collar],
+
+object escenarioCentral inherits Escenario (protagonista = detective, map = mapaEscenarioCentral, mapCubiertas = escenarioCentralCubiertas, edificios = [],
+						objetos = [],
 						vecinos = [lucia],
 						escenariosVecinos = [new EscenarioVecino(direccion = izquierda, escenario = escenarioEscolar)]						
 
 						) {}
 
+object mapaEscenarioCentral {
+	method position() {
+		return game.at(0,0)
+	}
+	method image() {
+		return "mapaCentralFINAL.png"
+	}
+}
 object escenarioCentralCubiertas {
 	method position() {
 		return game.at(0,0)
@@ -135,6 +191,7 @@ object escenarioCentralCubiertas {
 		return ".png"
 	}
 }
+
 
 
 
