@@ -43,7 +43,8 @@ class Escenario {
 	}
 
 	method agregarVisualDetective(){
-		game.addVisual(protagonista)
+		//game.addVisual(protagonista)
+		protagonista.actualizarVisual()
 	}
 
 	method removerVisualesDeEscenario() {
@@ -139,6 +140,11 @@ class EscenarioVecino {
 	const property escenario   
 }
 
+class Mapa {
+	const property position = game.at(0,0)
+	const property image 
+}
+
 
 object escenarioEscolar inherits Escenario (protagonista = detective, map = mapaEscenarioEscolar, mapCubiertas = escenarioEscolarCubiertas, edificios = [jardin, 
 						rejaIzquierdaJardin, rejaAbajoJardin, rejaDerechaJardin1, rejaDerechaJardin2, rejaArribaJardin, arbustoParque, arbustoParque2, 
@@ -150,47 +156,20 @@ object escenarioEscolar inherits Escenario (protagonista = detective, map = mapa
 						escenariosVecinos = [new EscenarioVecino(direccion = derecha, escenario = escenarioCentral) ]
 						) {} 
 
-object mapaEscenarioEscolar {
-	method position() {
-		return game.at(0,0)
-	}
-	method image() {
-		return "EscenarioEscolar.png"
-	}
-}
-object escenarioEscolarCubiertas {
-	method position() {
-		return game.at(0,0)
-	}
-	method image() {
-		return "EscenarioEscolarSombras.png"
-	}
-}
-
+const mapaEscenarioEscolar = new Mapa (image = "EscenarioEscolar.png")
+const escenarioEscolarCubiertas = new Mapa (image = "EscenarioEscolarSombras.png")
 
 object escenarioCentral inherits Escenario (protagonista = detective, map = mapaEscenarioCentral, mapCubiertas = escenarioCentralCubiertas, edificios = [],
 						objetos = [],
 						vecinos = [lucia],
 						escenariosVecinos = [new EscenarioVecino(direccion = izquierda, escenario = escenarioEscolar)]						
-
 						) {}
 
-object mapaEscenarioCentral {
-	method position() {
-		return game.at(0,0)
-	}
-	method image() {
-		return "mapaCentralFINAL.png"
-	}
-}
-object escenarioCentralCubiertas {
-	method position() {
-		return game.at(0,0)
-	}
-	method image() {
-		return ".png"
-	}
-}
+const mapaEscenarioCentral = new Mapa (image = "mapaCentralFINAL.png")
+const escenarioCentralCubiertas = new Mapa (image = ".png")
+
+
+
 
 
 

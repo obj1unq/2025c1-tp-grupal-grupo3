@@ -100,7 +100,7 @@ object detective {
     return !escenarioActual.hayObstaculoEn(nuevaPos)              
   }
 
-  method estaEnBordeDeEscenario(posicion, escenario) {
+  method saleDeEscenario(posicion, escenario) {
     return !escenario.esParteDeEscenario(posicion)
   }
 
@@ -116,7 +116,7 @@ object detective {
 
   method mover(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
-    return if (!self.estaEnBordeDeEscenario(nuevaPos, escenarioActual)) 
+    return if (!self.saleDeEscenario(nuevaPos, escenarioActual)) 
               self.moverHacia(direccion)
             else 
               self.moverANuevoEscenarioEn(direccion)
@@ -126,12 +126,23 @@ object detective {
        if (escenarioActual.hayEscenarioHaciaDireccion(direccion))
           // escenarioActual.limpiarEscenario()
           // escenarioActual.agregarVisualesDeEscenarioVecinoEn(direccion)
-          self.actualizarPosicionANuevoEscenario(direccion)
           escenarioActual.cargarEscenarioVecinoDeDireccion(direccion)
+          self.actualizarEscenario(escenarioActual.escenarioEnDireccion(direccion))
+          self.actualizarPosicionANuevoEscenario(direccion)
+          self.actualizarVisual()
+  }
+
+
+  method actualizarEscenario(escenario) {
+    escenarioActual = escenario
+  }
+
+  method actualizarVisual() {  
+    game.addVisual(self)
   }
 
   method  actualizarPosicionANuevoEscenario(direccion) {
-    
+    position = direccion.entradaAlEscenarioDesdeBorde(position)
   }
 
 
