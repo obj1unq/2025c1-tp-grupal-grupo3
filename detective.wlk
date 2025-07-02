@@ -2,6 +2,7 @@ import direcciones.*
 import cosas.*
 import vecinos.*
 import escenarios.*
+import inventario.*
 //import obstaculo.*
 
 //object nivel{
@@ -124,8 +125,6 @@ object detective {
 
   method moverANuevoEscenarioEn(direccion){
        if (escenarioActual.hayEscenarioHaciaDireccion(direccion))
-          // escenarioActual.limpiarEscenario()
-          // escenarioActual.agregarVisualesDeEscenarioVecinoEn(direccion)
           escenarioActual.cargarEscenarioVecinoDeDireccion(direccion)
           self.actualizarEscenario(escenarioActual.escenarioEnDireccion(direccion))
           self.actualizarPosicionANuevoEscenario(direccion)
@@ -144,41 +143,6 @@ object detective {
   method  actualizarPosicionANuevoEscenario(direccion) {
     position = direccion.entradaAlEscenarioDesdeBorde(position)
   }
-
-
-  // IMPLEMENTACION DE OBSTACULOS Y ESCENARIOS (
-  // method mover(direccion) {
-  //   if (not self.hayCondicionesParaCambiarEscenario(direccion)) {
-  //     const posicion = self.position()
-  //     nivel.cambiarEscenario(direccion)
-  //     self.ubicarADetectiveEnEscenario(posicion) //posicionar al detective en la entrada de dicho escenario 
-  //   } else {
-  //     self.validarMoverADireccion(direccion)
-  //   }
-  // }
-
-  // method ubicarADetectiveEnEscenario(posicion) {
-  //   position = nivel.bordeOpuestoDe(posicion)
-  // }
-
-  // method hayCondicionesParaCambiarEscenario(direccion) {
-  //   return self.estaEnElBorde(direccion) and nivel.hayEscenarioEnDireccion(direccion)
-  // }
-
-  // method estaEnElBorde(direccion) {
-  //   return not self.puedeMover(direccion)
-  // }
-
-  // method validarMoverADireccion(direccion) {
-  //   if (self.puedeMover(direccion)) {
-  //     position = direccion.siguientePosicion(position)
-  //   }
-  // }
-  
-  // method puedeMover(direccion) {
-  //   return nivel.hayCondicionesParaMover(self, direccion.siguientePosicion(position))
-  // }
-  // )
 
 
   method interactuar() {
@@ -206,79 +170,13 @@ object detective {
     return inventario.objetos.sum({ objeto => objeto.esPista()})
   }
 
+  method levantarObjeto(objeto) {
+    escenarioActual.eliminarObjeto(objeto)
+  }
+
 }
 
-object inventario {
-  const property objetos = []
-  const property position = game.at(12, 0)
-  var posicionSlotDisponible = 15 // AGREGAR COMO PAR ORDENADO 
 
-  method agregar(item) {
-    self.validarAgregar()
-    self.agregarVisual(item)
-    objetos.add(item)
-    self.incrementarPosicionSlotDisponible()
-  }
-
-  method esInvisible(){
-    return false
-  }
-
-  method agregarVisual(item) {
-    item.setPosition(game.at(posicionSlotDisponible, 0))
-    game.addVisual(item)
-  }
-
-  method validarAgregar() {
-    if (not self.haySlotDisponible())
-      self.error("No hay lugar en el inventario")
-  }
-
-  method haySlotDisponible() {
-    return posicionSlotDisponible <= 1000
-  }
-  method incrementarPosicionSlotDisponible() {
-    posicionSlotDisponible = posicionSlotDisponible + 1
-  }
-
-  method remover(item) {
-    objetos.remove(item)
-    game.removeVisual(item)
-    self.actualizarPosicionDisponible()
-  }
-
-  method actualizarPosicionDisponible() {
-    posicionSlotDisponible = posicionSlotDisponible - 1
-  }
-
-  method usarObjetoEn(_posicionSlotDisponible) {
-    self.validarSiHayObjetoEnPosicion(_posicionSlotDisponible)
-    self.interactuarConItemDeInventarioEn(self.itemDeInventarioEn(_posicionSlotDisponible))
-
-  }
-
-  method validarSiHayObjetoEnPosicion(_posicionSlotDisponible) {
-    if (not self.hayObjetoEn(_posicionSlotDisponible))
-      self.error("No tengo ningún objeto en ese slot")
-  }
-
-  method hayObjetoEn(_posicionSlotDisponible) {
-    return not game.getObjectsIn(game.at(_posicionSlotDisponible, 0)).isEmpty()
-  }
-
-  method interactuarConItemDeInventarioEn(item) {
-    item.usar()
-  }
-
-  method itemDeInventarioEn(_posicionSlotDisponible) {
-    return game.getObjectsIn(game.at(_posicionSlotDisponible, 0)).first()
-  }
-
-  
-
-
-
-}
     
 
     

@@ -4,6 +4,7 @@ import vecinos.*
 import interactuable.*
 import edificios.*
 import detective.*
+import inventario.*
 
 
 class Escenario {
@@ -131,6 +132,11 @@ class Escenario {
 
 	method hayEscenarioHaciaDireccion(direccion) {
 		return escenariosVecinos.any({escenario => escenario.direccion() == direccion})
+	}
+
+	method eliminarObjeto(objeto) {
+		game.removeVisual(objeto)
+		objetos.remove(objeto)
 	}
 
 }

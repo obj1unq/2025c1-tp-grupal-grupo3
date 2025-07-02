@@ -6,16 +6,12 @@ import cosas.*
 import vecinos.*
 import interactuable.*
 import escenarios.*
+import inventario.*
 
 
 program detectiveDeMascotas{
 
   game.title("Detective de mascotas")
-  // game.addVisual(lupa)
-  // game.addVisual(blockNotas)
-  // game.addVisual(collar)
-  // game.addVisual(detective)
-  // game.addVisual(lucia)
   game.addVisual(inventario)
   detective.escenarioActual().configurar()
   
