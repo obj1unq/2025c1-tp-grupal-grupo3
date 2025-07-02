@@ -166,7 +166,11 @@ const escenarioEscolarCubiertas = new Mapa (image = "EscenarioEscolarSombras.png
 const escenarioALaDerechaDeEscolar = new EscenarioVecino (direccion = derecha, escenario = escenarioCentral)
 
 
-const escenarioCentral = new Escenario (protagonista = detective, map = mapaEscenarioCentral, mapCubiertas = escenarioCentralCubiertas, edificios = [],
+const escenarioCentral = new Escenario (protagonista = detective, map = mapaEscenarioCentral, mapCubiertas = escenarioCentralCubiertas, 
+						edificios = [arbustoAbajoIzq, autosPolicia, estacionDePolicia, arbustoAbajoMedio, paradaDeColectivo, arbustoAbajoDerecho, colectivo, fuentePlaza, 
+						rejaPlazaAbajoIzq, rejaPlazaArribaIzq, rejaPlazaArribaDer, rejaPlazaAbajoDer, cocheCorreo, correo, arbolesCorreo, arbolCorreo, semaforoArribaDer, cocheNaranja, 
+						arbustosArribaMedioDer, cochesAmarilloVioleta, arbustoArribaMedioIzq, cochesArribaIzq, edificiosArribaIzq, heladeria, mesaHeladeria, 
+						panaderia, pescaderia, carniceria, edificio, muroArribaIzq, muroArribaDer],
 						objetos = [],
 						vecinos = [lucia],
 						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral]						
@@ -178,7 +182,13 @@ const escenarioANorteDeCentral = new EscenarioVecino (direccion = arriba, escena
 
 
 
-const escenarioCamping = new Escenario (protagonista = detective, map = mapaEscenarioCamping, mapCubiertas = escenarioCampingCubiertas, edificios = [jardin],
+const escenarioCamping = new Escenario (protagonista = detective, map = mapaEscenarioCamping, mapCubiertas = escenarioCampingCubiertas, 
+										edificios = [autosAbajoIzq, autosAbajoIzqMedio, autosAbajoDerMedio, autosAbajoRaro, autosAbajoDer, carritoAbajo, 
+						carritoMedio, carritoArriba, juegoEstacionamiento1, juegoEstacionamiento2, cartel, mesa, caldera /*, escalera*/, casa1, casa2, 
+						casa3, arbolesBarreraIzq, arbolesBarreraDer, mesa3, mesa4, mesa5, mesa6, mesa7, mesa8, cocheComida, puesto1, puesto2, puesto3, 
+						cocheComida2, mesa9, cocheComida3, mesa10, pizzeria, colectivosEstacionados, casitaPolicia, bañosPublicos, paradaColectivo, 
+						arbolesArribaIzq, arbolesArribaDer, tachosGasolinera, faroDeLuz, cartelGasolinera, gasolinera, repostarGasolinera, 
+						autoArribaDer, autoESquinaDer],
 										objetos = [],
 										vecinos = [],
 										escenariosVecinos = [escenarioAlSurDeCamping])

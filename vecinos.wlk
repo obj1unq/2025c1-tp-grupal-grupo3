@@ -25,9 +25,9 @@ class Vecino inherits Interactuable{
     self.hablar()
   }
   
-    override method sePuedeMostarEnInventario() {
-      return false
-    }
+    // override method sePuedeMostarEnInventario() {
+    //   return false
+    // }
 
   method esInvisible(){
     return false
