@@ -152,28 +152,39 @@ class Mapa {
 }
 
 
-object escenarioEscolar inherits Escenario (protagonista = detective, map = mapaEscenarioEscolar, mapCubiertas = escenarioEscolarCubiertas, edificios = [jardin, 
+const escenarioEscolar = new Escenario (protagonista = detective, map = mapaEscenarioEscolar, mapCubiertas = escenarioEscolarCubiertas, edificios = [jardin, 
 						rejaIzquierdaJardin, rejaAbajoJardin, rejaDerechaJardin1, rejaDerechaJardin2, rejaArribaJardin, arbustoParque, arbustoParque2, 
 						casaAmarillaJardin, toboganParque1, toboganParque2, toboganParque3, toboganParque4, juegoParque, puenteParque, calesitaParque, 
 						autosJardin, autosJardin2, colectivoJardin, arbolJardin2, arbustoJardin, arbustoJardin2, asientoJardin, escalerasJardin, 
 						escuelaParteIzq, escuelaParteMedio, escuelaParteDer, rejaIzquierda, rejaDerecha, bandera, arbustoAbajoEscuela],
 						objetos = [lupa, blockNotas, collar],
 						vecinos = [lucia],
-						escenariosVecinos = [new EscenarioVecino(direccion = derecha, escenario = escenarioCentral) ]
-						) {} 
-
+						escenariosVecinos = [escenarioALaDerechaDeEscolar]
+						) 
 const mapaEscenarioEscolar = new Mapa (image = "EscenarioEscolar.png")
 const escenarioEscolarCubiertas = new Mapa (image = "EscenarioEscolarSombras.png")
+const escenarioALaDerechaDeEscolar = new EscenarioVecino (direccion = derecha, escenario = escenarioCentral)
 
-object escenarioCentral inherits Escenario (protagonista = detective, map = mapaEscenarioCentral, mapCubiertas = escenarioCentralCubiertas, edificios = [],
+
+const escenarioCentral = new Escenario (protagonista = detective, map = mapaEscenarioCentral, mapCubiertas = escenarioCentralCubiertas, edificios = [],
 						objetos = [],
 						vecinos = [lucia],
-						escenariosVecinos = [new EscenarioVecino(direccion = izquierda, escenario = escenarioEscolar)]						
-						) {}
-
+						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral]						
+						) 
 const mapaEscenarioCentral = new Mapa (image = "mapaCentralFINAL.png")
 const escenarioCentralCubiertas = new Mapa (image = ".png")
+const escenarioAIzquierdaDeCentral = new EscenarioVecino (direccion = izquierda, escenario = escenarioEscolar)
+const escenarioANorteDeCentral = new EscenarioVecino (direccion = arriba, escenario = escenarioCamping)
 
+
+
+const escenarioCamping = new Escenario (protagonista = detective, map = mapaEscenarioCamping, mapCubiertas = escenarioCampingCubiertas, edificios = [jardin],
+										objetos = [],
+										vecinos = [],
+										escenariosVecinos = [escenarioAlSurDeCamping])
+const mapaEscenarioCamping = new Mapa (image = "escenarioCampingFINAL.png")
+const escenarioCampingCubiertas = new Mapa (image = ".png")
+const escenarioAlSurDeCamping = new EscenarioVecino (direccion = abajo, escenario = escenarioCentral)
 
 
 
