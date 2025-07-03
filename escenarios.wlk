@@ -5,6 +5,7 @@ import interactuable.*
 import edificios.*
 import detective.*
 import inventario.*
+import animalSalvaje.*
 
 
 class Escenario {
@@ -15,6 +16,7 @@ class Escenario {
 	const property map 
 	const property mapCubiertas 
 	const property edificios = []
+	const property iniciables = #{}
 
 	
     method configurar(){ 	
@@ -27,12 +29,23 @@ class Escenario {
 		//game.boardGround(map)
 	}
 
+
+	method iniciarIniciables() {
+		iniciables.forEach({iniciable => iniciable.iniciar()})
+	}
+
+	method finalizarIniciables() {
+		iniciables.forEach({iniciable => iniciable.finalizar()})
+	}
+
 	method agregarVisualesDeEscenario(){
 		game.addVisual(map)
 		self.agregarVisualesVecinos()
 		self.agregarVisualesCosas()
 		self.agregarVisualDetective()
 		game.addVisual(mapCubiertas)
+		inventario.refrescar()
+		self.iniciarIniciables()
 	}
 
 	method agregarVisualesVecinos() {
@@ -54,6 +67,7 @@ class Escenario {
 		self.removerVisualesCosas()
 		self.removerVisualDetective()
 		game.removeVisual(mapCubiertas)
+		self.finalizarIniciables()
 	}
 
 	method removerVisualesVecinos() {
@@ -191,10 +205,23 @@ const escenarioCamping = new Escenario (protagonista = detective, map = mapaEsce
 						autoArribaDer, autoESquinaDer],
 										objetos = [],
 										vecinos = [],
-										escenariosVecinos = [escenarioAlSurDeCamping])
+										escenariosVecinos = [escenarioAlSurDeCamping, escenarioAlNorteDeCamping])
 const mapaEscenarioCamping = new Mapa (image = "escenarioCampingFINAL.png")
 const escenarioCampingCubiertas = new Mapa (image = ".png")
 const escenarioAlSurDeCamping = new EscenarioVecino (direccion = abajo, escenario = escenarioCentral)
+const escenarioAlNorteDeCamping = new EscenarioVecino (direccion = arriba, escenario = escenarioBosque)
+
+
+const escenarioBosque = new Escenario (protagonista = detective, map = mapaEscenarioBosque, mapCubiertas = escenarioCampingCubiertas, 
+										edificios = [],
+										objetos = [oso],
+										vecinos = [],
+										escenariosVecinos = [escenarioAlSurDeBosque],
+										iniciables = #{oso})
+const mapaEscenarioBosque = new Mapa (image = "escenarioBosqueFINAL.png")
+const escenarioBosqueCubiertas = new Mapa (image = ".png")
+const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario = escenarioCamping)
+
 
 
 
