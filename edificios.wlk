@@ -137,3 +137,69 @@ object gasolinera inherits Edificio(vertice = game.at(22,16), alto = 2, ancho = 
 object repostarGasolinera inherits Edificio(vertice = game.at(24,14), alto = 1, ancho = 4) {}
 object autoArribaDer inherits Edificio(vertice = game.at(34,15), alto = 2, ancho = 2) {}
 object autoESquinaDer inherits Edificio(vertice = game.at(37,15), alto = 2, ancho = 1) {}
+
+//escenario bosque
+
+//arbolesParedAbajoIzq, arbolesParedAbajoDer, arbolesParedIzq, arbolesParedDer, arbolesParedArriba, arbolSolitario1, grupoArbolIzq,
+//montaña1, montaña2, filaArbolesAbajoIzq, filaArbolesAbajoDer, columnaArbolesAbajoIzq, columnaArbolesAbajoDer, arbolSolitario2
+//columnaArbolesAbajoDer,
+object arbolesParedAbajoIzq inherits Edificio(vertice = game.at(0,0), alto = 1, ancho = 15) {}
+object arbolesParedAbajoDer inherits Edificio(vertice = game.at(24,0), alto = 1, ancho = 14) {}
+object arbolesParedIzq inherits Edificio(vertice = game.at(0,1), alto = 19, ancho = 1) {}
+object arbolesParedDer inherits Edificio(vertice = game.at(37,1), alto = 19, ancho = 1) {}
+object arbolesParedArriba inherits Edificio(vertice = game.at(1,19), alto = 1, ancho = 36) {}
+object arbolSolitario1 inherits Edificio(vertice = game.at(30,18), alto = 1, ancho = 1) {}
+object grupoArbolIzq inherits Edificio(vertice = game.at(1,13), alto = 2, ancho = 6) {}
+object montaña1 inherits Edificio(vertice = game.at(7,15), alto = 1, ancho = 5) {}
+object montaña2 inherits Edificio(vertice = game.at(18,15), alto = 1, ancho = 6) {}
+object filaArbolesAbajoIzq inherits Edificio(vertice = game.at(6,3), alto = 1, ancho = 10) {}
+object filaArbolesAbajoDer inherits Edificio(vertice = game.at(21,3), alto = 1, ancho = 12) {}
+object columnaArbolesAbajoIzq inherits Edificio(vertice = game.at(6,4), alto = 6, ancho = 1) {}
+object arbolSolitario2 inherits Edificio(vertice = game.at(10,6), alto = 1, ancho = 1) {}
+object columnaArbolesAbajoDer inherits Edificio(vertice = game.at(32,4), alto = 3, ancho = 1) {}
+// sigo
+//desnivel1, desnivel2, arbolSolitario3, filaArbolMedioIzq, columnaArbolMedioIzq, columnaArbolMedioDer, filaArbolMedioDer, columnaArbolDer1,
+//filaArbolArribaDer, carpas1, columnaArbolDer, carpas2, denivel3, denivel4, camas, arboles
+object desnivel1 inherits Edificio(vertice = game.at(11,7), alto = 1, ancho = 18) {}
+object desnivel2 inherits Edificio(vertice = game.at(30,7), alto = 1, ancho = 7) {}
+object arbolSolitario3 inherits Edificio(vertice = game.at(15,8), alto = 1, ancho = 1) {}
+object filaArbolMedioIzq inherits Edificio(vertice = game.at(7,9), alto = 1, ancho = 5) {}
+object columnaArbolMedioIzq inherits Edificio(vertice = game.at(11,10), alto = 3, ancho = 1) {}
+object columnaArbolMedioDer inherits Edificio(vertice = game.at(18,10), alto = 3, ancho = 1) {}
+object filaArbolMedioDer inherits Edificio(vertice = game.at(19,9), alto = 1, ancho = 7) {}
+object columnaArbolDer1 inherits Edificio(vertice = game.at(25,10), alto = 4, ancho = 1) {}
+object filaArbolArribaDer inherits Edificio(vertice = game.at(26,13), alto = 1, ancho = 11) {}
+object carpas1 inherits Edificio(vertice = game.at(26,11), alto = 1, ancho = 4) {}
+object columnaArbolDer inherits Edificio(vertice = game.at(31,9), alto = 4, ancho = 1) {}
+object carpas2 inherits Edificio(vertice = game.at(32,11), alto = 1, ancho = 5) {}
+object denivel3 inherits Edificio(vertice = game.at(12,12), alto = 1, ancho = 3) {}
+object denivel4 inherits Edificio(vertice = game.at(16,12), alto = 1, ancho = 2) {}
+object camas inherits Edificio(vertice = game.at(23,11), alto = 2, ancho = 1) {}
+object arboles inherits Edificio(vertice = game.at(24,14), alto = 2, ancho = 1) {}
+object arboles1 inherits Edificio(vertice = game.at(30,14), alto = 1, ancho = 1) {}
+object carpas4 inherits Edificio(vertice = game.at(32,17), alto = 1, ancho = 4) {}
+object casaRodante inherits Edificio(vertice = game.at(1,17), alto = 1, ancho = 3) {}
+
+//escenarioSuper
+//arbustosAbajo1, maquina, paradaColectivo1, arbustosAbajo2, faro, pozo, floresAbajo, floresAbajo2, pozo2, hotel, hotelArriba, paredIzq
+//paredDer, edificio1, entradaEstacionamiento, carritos, supermercado, arbolSupermercado, basuraSupermercado, elevador
+object arbustosAbajo1 inherits Edificio(vertice = game.at(3,1), alto = 1, ancho = 3) {}
+object maquina inherits Edificio(vertice = game.at(8,1), alto = 1, ancho = 1) {}
+object paradaColectivo1 inherits Edificio(vertice = game.at(15,1), alto = 1, ancho = 2) {}
+object arbustosAbajo2 inherits Edificio(vertice = game.at(17,1), alto = 1, ancho = 4) {}
+object faro inherits Edificio(vertice = game.at(26,1), alto = 1, ancho = 1) {}
+object pozo inherits Edificio(vertice = game.at(27,2), alto = 1, ancho = 2) {}
+object floresAbajo inherits Edificio(vertice = game.at(27,1), alto = 1, ancho = 3) {}
+object floresAbajo2 inherits Edificio(vertice = game.at(34,1), alto = 1, ancho = 3) {}
+object pozo2 inherits Edificio(vertice = game.at(34,2), alto = 1, ancho = 2) {}
+object hotel inherits Edificio(vertice = game.at(27,4), alto = 4, ancho = 9) {}
+object hotelArriba inherits Edificio(vertice = game.at(27,14), alto = 3, ancho = 9) {}
+object paredIzq inherits Edificio(vertice = game.at(1,5), alto = 1, ancho = 9) {}
+object paredDer inherits Edificio(vertice = game.at(11,5), alto = 1, ancho = 10) {}
+object edificio1 inherits Edificio(vertice = game.at(2,4), alto = 1, ancho = 4) {}
+object entradaEstacionamiento inherits Edificio(vertice = game.at(15,13), alto = 2, ancho = 4) {}
+object carritos inherits Edificio(vertice = game.at(4,12), alto = 2, ancho = 2) {}
+object supermercado inherits Edificio(vertice = game.at(4,15), alto = 3, ancho = 8) {}
+object arbolSupermercado inherits Edificio(vertice = game.at(1,14), alto = 1, ancho = 1) {}
+object basuraSupermercado inherits Edificio(vertice = game.at(3,16), alto = 2, ancho = 1) {}
+object elevador inherits Edificio(vertice = game.at(12,17), alto = 1, ancho = 2) {}

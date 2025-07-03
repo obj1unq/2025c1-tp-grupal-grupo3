@@ -1,4 +1,5 @@
 import interactuable.*
+import edificios.*
 
 describe "test1" {
     test "colision panaderia1"{

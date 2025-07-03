@@ -187,13 +187,13 @@ const escenarioCentral = new Escenario (protagonista = detective, map = mapaEsce
 						panaderia, pescaderia, carniceria, edificio, muroArribaIzq, muroArribaDer],
 						objetos = [],
 						vecinos = [lucia],
-						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral]						
+						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral, escenarioDerechaDeCentral]						
 						) 
 const mapaEscenarioCentral = new Mapa (image = "mapaCentralFINAL.png")
 const escenarioCentralCubiertas = new Mapa (image = ".png")
 const escenarioAIzquierdaDeCentral = new EscenarioVecino (direccion = izquierda, escenario = escenarioEscolar)
 const escenarioANorteDeCentral = new EscenarioVecino (direccion = arriba, escenario = escenarioCamping)
-
+const escenarioDerechaDeCentral = new EscenarioVecino (direccion = derecha, escenario = escenarioMercado)
 
 
 const escenarioCamping = new Escenario (protagonista = detective, map = mapaEscenarioCamping, mapCubiertas = escenarioCampingCubiertas, 
@@ -213,7 +213,11 @@ const escenarioAlNorteDeCamping = new EscenarioVecino (direccion = arriba, escen
 
 
 const escenarioBosque = new Escenario (protagonista = detective, map = mapaEscenarioBosque, mapCubiertas = escenarioCampingCubiertas, 
-										edificios = [],
+										edificios = [arbolesParedAbajoIzq, arbolesParedAbajoDer, arbolesParedIzq, arbolesParedDer, arbolesParedArriba, arbolSolitario1, 
+						grupoArbolIzq, montaña1, montaña2, filaArbolesAbajoIzq, filaArbolesAbajoDer, columnaArbolesAbajoIzq, columnaArbolesAbajoDer, 
+						arbolSolitario2, columnaArbolesAbajoDer, desnivel1, desnivel2, arbolSolitario3, filaArbolMedioIzq, columnaArbolMedioIzq, 
+						columnaArbolMedioDer, filaArbolMedioDer, columnaArbolDer1, filaArbolArribaDer, carpas1, columnaArbolDer, carpas2, denivel3, 
+						denivel4, camas, arboles, arboles1, carpas4, casaRodante],
 										objetos = [oso],
 										vecinos = [],
 										escenariosVecinos = [escenarioAlSurDeBosque],
@@ -222,9 +226,16 @@ const mapaEscenarioBosque = new Mapa (image = "escenarioBosqueFINAL.png")
 const escenarioBosqueCubiertas = new Mapa (image = ".png")
 const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario = escenarioCamping)
 
+const escenarioMercado = new Escenario (protagonista = detective, map = mapaEscenarioMercado, mapCubiertas = escenarioMercadoCubiertas,
+										edificios = [arbustosAbajo1, maquina, paradaColectivo1, arbustosAbajo2, faro, pozo, floresAbajo, floresAbajo2, pozo2, hotel, hotelArriba, paredIzq,
+						paredDer, edificio1, entradaEstacionamiento, carritos, supermercado, arbolSupermercado, basuraSupermercado, elevador],
+										objetos = [],
+										vecinos = [],
+										escenariosVecinos = [escenarioAlOesteDeMercado])
 
-
-
+const mapaEscenarioMercado = new Mapa(image = "escenarioSuperFINAL.png")
+const escenarioMercadoCubiertas = new Mapa (image = ".png")
+const escenarioAlOesteDeMercado = new EscenarioVecino(direccion = izquierda, escenario = escenarioCentral)
 
 
 
