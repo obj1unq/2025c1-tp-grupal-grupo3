@@ -3,6 +3,8 @@ import cosas.*
 import vecinos.*
 import escenarios.*
 import inventario.*
+import animalSalvaje.*
+
 //import obstaculo.*
 
 //object nivel{
@@ -94,7 +96,7 @@ import inventario.*
 
 object detective {
   var property position = game.at(17, 9)  // El detective empieza en (3, 3)
-  var property escenarioActual = escenarioEscolar
+  var property escenarioActual = escenarioBosque
 
   method puedeMoverHacia(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
@@ -174,6 +176,9 @@ object detective {
     escenarioActual.eliminarObjeto(objeto)
   }
 
+  //method xPosicion() {
+  //  return  position.x()
+  //}
 }
 
 

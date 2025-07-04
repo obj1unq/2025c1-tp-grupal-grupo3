@@ -5,6 +5,7 @@ import interactuable.*
 import edificios.*
 import detective.*
 import inventario.*
+import animalSalvaje.*
 
 
 class Escenario {
@@ -15,6 +16,7 @@ class Escenario {
 	const property map 
 	const property mapCubiertas 
 	const property edificios = []
+	const property iniciables = #{}
 
 	
     method configurar(){ 	
@@ -27,12 +29,23 @@ class Escenario {
 		//game.boardGround(map)
 	}
 
+
+	method iniciarIniciables() {
+		iniciables.forEach({iniciable => iniciable.iniciar()})
+	}
+
+	method finalizarIniciables() {
+		iniciables.forEach({iniciable => iniciable.finalizar()})
+	}
+
 	method agregarVisualesDeEscenario(){
 		game.addVisual(map)
 		self.agregarVisualesVecinos()
 		self.agregarVisualesCosas()
 		self.agregarVisualDetective()
 		game.addVisual(mapCubiertas)
+		inventario.refrescar()
+		self.iniciarIniciables()
 	}
 
 	method agregarVisualesVecinos() {
@@ -54,6 +67,7 @@ class Escenario {
 		self.removerVisualesCosas()
 		self.removerVisualDetective()
 		game.removeVisual(mapCubiertas)
+		self.finalizarIniciables()
 	}
 
 	method removerVisualesVecinos() {
@@ -166,7 +180,11 @@ const escenarioEscolarCubiertas = new Mapa (image = "EscenarioEscolarSombras.png
 const escenarioALaDerechaDeEscolar = new EscenarioVecino (direccion = derecha, escenario = escenarioCentral)
 
 
-const escenarioCentral = new Escenario (protagonista = detective, map = mapaEscenarioCentral, mapCubiertas = escenarioCentralCubiertas, edificios = [],
+const escenarioCentral = new Escenario (protagonista = detective, map = mapaEscenarioCentral, mapCubiertas = escenarioCentralCubiertas, 
+						edificios = [arbustoAbajoIzq, autosPolicia, estacionDePolicia, arbustoAbajoMedio, paradaDeColectivo, arbustoAbajoDerecho, colectivo, fuentePlaza, 
+						rejaPlazaAbajoIzq, rejaPlazaArribaIzq, rejaPlazaArribaDer, rejaPlazaAbajoDer, cocheCorreo, correo, arbolesCorreo, arbolCorreo, semaforoArribaDer, cocheNaranja, 
+						arbustosArribaMedioDer, cochesAmarilloVioleta, arbustoArribaMedioIzq, cochesArribaIzq, edificiosArribaIzq, heladeria, mesaHeladeria, 
+						panaderia, pescaderia, carniceria, edificio, muroArribaIzq, muroArribaDer],
 						objetos = [],
 						vecinos = [rami,juan,doc,vane],
 						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral]						
@@ -175,19 +193,49 @@ const mapaEscenarioCentral = new Mapa (image = "mapaCentralFINAL.png")
 const escenarioCentralCubiertas = new Mapa (image = ".png")
 const escenarioAIzquierdaDeCentral = new EscenarioVecino (direccion = izquierda, escenario = escenarioEscolar)
 const escenarioANorteDeCentral = new EscenarioVecino (direccion = arriba, escenario = escenarioCamping)
+const escenarioDerechaDeCentral = new EscenarioVecino (direccion = derecha, escenario = escenarioMercado)
 
 
-
-const escenarioCamping = new Escenario (protagonista = detective, map = mapaEscenarioCamping, mapCubiertas = escenarioCampingCubiertas, edificios = [jardin],
+const escenarioCamping = new Escenario (protagonista = detective, map = mapaEscenarioCamping, mapCubiertas = escenarioCampingCubiertas, 
+										edificios = [autosAbajoIzq, autosAbajoIzqMedio, autosAbajoDerMedio, autosAbajoRaro, autosAbajoDer, carritoAbajo, 
+						carritoMedio, carritoArriba, juegoEstacionamiento1, juegoEstacionamiento2, cartel, mesa, caldera /*, escalera*/, casa1, casa2, 
+						casa3, arbolesBarreraIzq, arbolesBarreraDer, mesa3, mesa4, mesa5, mesa6, mesa7, mesa8, cocheComida, puesto1, puesto2, puesto3, 
+						cocheComida2, mesa9, cocheComida3, mesa10, pizzeria, colectivosEstacionados, casitaPolicia, bañosPublicos, paradaColectivo, 
+						arbolesArribaIzq, arbolesArribaDer, tachosGasolinera, faroDeLuz, cartelGasolinera, gasolinera, repostarGasolinera, 
+						autoArribaDer, autoESquinaDer],
 										objetos = [],
 										vecinos = [vete,meli,nino,vale,ivan],
-										escenariosVecinos = [escenarioAlSurDeCamping])
+										escenariosVecinos = [escenarioAlSurDeCamping,escenarioAlNorteDeCamping])
 const mapaEscenarioCamping = new Mapa (image = "escenarioCampingFINAL.png")
 const escenarioCampingCubiertas = new Mapa (image = ".png")
 const escenarioAlSurDeCamping = new EscenarioVecino (direccion = abajo, escenario = escenarioCentral)
+const escenarioAlNorteDeCamping = new EscenarioVecino (direccion = arriba, escenario = escenarioBosque)
 
 
+const escenarioBosque = new Escenario (protagonista = detective, map = mapaEscenarioBosque, mapCubiertas = escenarioCampingCubiertas, 
+										edificios = [arbolesParedAbajoIzq, arbolesParedAbajoDer, arbolesParedIzq, arbolesParedDer, arbolesParedArriba, arbolSolitario1, 
+						grupoArbolIzq, montaña1, montaña2, filaArbolesAbajoIzq, filaArbolesAbajoDer, columnaArbolesAbajoIzq, columnaArbolesAbajoDer, 
+						arbolSolitario2, columnaArbolesAbajoDer, desnivel1, desnivel2, arbolSolitario3, filaArbolMedioIzq, columnaArbolMedioIzq, 
+						columnaArbolMedioDer, filaArbolMedioDer, columnaArbolDer1, filaArbolArribaDer, carpas1, columnaArbolDer, carpas2, denivel3, 
+						denivel4, camas, arboles, arboles1, carpas4, casaRodante],
+										objetos = [oso],
+										vecinos = [],
+										escenariosVecinos = [escenarioAlSurDeBosque],
+										iniciables = #{oso})
+const mapaEscenarioBosque = new Mapa (image = "escenarioBosqueFINAL.png")
+const escenarioBosqueCubiertas = new Mapa (image = ".png")
+const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario = escenarioCamping)
 
+const escenarioMercado = new Escenario (protagonista = detective, map = mapaEscenarioMercado, mapCubiertas = escenarioMercadoCubiertas,
+										edificios = [arbustosAbajo1, maquina, paradaColectivo1, arbustosAbajo2, faro, pozo, floresAbajo, floresAbajo2, pozo2, hotel, hotelArriba, paredIzq,
+						paredDer, edificio1, entradaEstacionamiento, carritos, supermercado, arbolSupermercado, basuraSupermercado, elevador],
+										objetos = [],
+										vecinos = [],
+										escenariosVecinos = [escenarioAlOesteDeMercado])
+
+const mapaEscenarioMercado = new Mapa(image = "escenarioSuperFINAL.png")
+const escenarioMercadoCubiertas = new Mapa (image = ".png")
+const escenarioAlOesteDeMercado = new EscenarioVecino(direccion = izquierda, escenario = escenarioCentral)
 
 
 

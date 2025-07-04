@@ -13,6 +13,7 @@ program detectiveDeMascotas{
 
   game.title("Detective de mascotas")
   game.addVisual(inventario)
+  game.boardGround("fondo.png")
   detective.escenarioActual().configurar()
   
 

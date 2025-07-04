@@ -25,7 +25,9 @@ class Mascota inherits Interactuable{
     return comida
   }
 
-
+  method sePuedeMostarEnInventario() {
+    return false
+  }
 
 
 

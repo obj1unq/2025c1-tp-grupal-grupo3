@@ -71,4 +71,11 @@ object inventario {
     return game.getObjectsIn(game.at(_posicionSlotDisponible, 0)).first()
   }
 
+  method refrescar() {
+      objetos.forEach({ objeto =>
+        game.removeVisual(objeto)
+        game.addVisual(objeto)
+      })
+  }
+
 }
