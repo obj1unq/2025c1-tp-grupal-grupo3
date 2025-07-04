@@ -158,7 +158,7 @@ const escenarioEscolar = new Escenario (protagonista = detective, map = mapaEsce
 						autosJardin, autosJardin2, colectivoJardin, arbolJardin2, arbustoJardin, arbustoJardin2, asientoJardin, escalerasJardin, 
 						escuelaParteIzq, escuelaParteMedio, escuelaParteDer, rejaIzquierda, rejaDerecha, bandera, arbustoAbajoEscuela],
 						objetos = [lupa, blockNotas, collar],
-						vecinos = [lucia],
+						vecinos = [lucia,tomillo,juli],
 						escenariosVecinos = [escenarioALaDerechaDeEscolar]
 						) 
 const mapaEscenarioEscolar = new Mapa (image = "EscenarioEscolar.png")
@@ -168,7 +168,7 @@ const escenarioALaDerechaDeEscolar = new EscenarioVecino (direccion = derecha, e
 
 const escenarioCentral = new Escenario (protagonista = detective, map = mapaEscenarioCentral, mapCubiertas = escenarioCentralCubiertas, edificios = [],
 						objetos = [],
-						vecinos = [lucia],
+						vecinos = [rami,juan,doc,vane],
 						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral]						
 						) 
 const mapaEscenarioCentral = new Mapa (image = "mapaCentralFINAL.png")
@@ -180,7 +180,7 @@ const escenarioANorteDeCentral = new EscenarioVecino (direccion = arriba, escena
 
 const escenarioCamping = new Escenario (protagonista = detective, map = mapaEscenarioCamping, mapCubiertas = escenarioCampingCubiertas, edificios = [jardin],
 										objetos = [],
-										vecinos = [],
+										vecinos = [vete,meli,nino,vale,ivan],
 										escenariosVecinos = [escenarioAlSurDeCamping])
 const mapaEscenarioCamping = new Mapa (image = "escenarioCampingFINAL.png")
 const escenarioCampingCubiertas = new Mapa (image = ".png")

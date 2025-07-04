@@ -2,7 +2,7 @@
 import wollok.game.*
 import detective.*
 import direcciones.*
-import cosas.*
+import cosas.*  
 import vecinos.*
 import interactuable.*
 import escenarios.*

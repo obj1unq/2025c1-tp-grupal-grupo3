@@ -1,5 +1,8 @@
-import interactuable.*
 
+import edificios.*
+
+
+/*
 describe "test1" {
     test "colision panaderia1"{
         assert.that(panaderia.perteneceX(1))
@@ -31,5 +34,12 @@ describe "test1" {
     assert.that(panaderia.pertenece(game.at(4,2)))
     assert.that(panaderia.pertenece(game.at(4,3)))
     assert.that(panaderia.pertenece(game.at(4,4)))
+  }
+}
+*/
+
+describe "testGame" {
+  test "testeo del detective" {
+    
   }
 }

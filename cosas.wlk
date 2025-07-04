@@ -84,7 +84,7 @@ object lupaDeInventario inherits ItemEnInventario (durabilidad = 1,
                                                   position = game.at(10,10), 
                                                   itemDeMapa = lupa, 
                                                   texto = "lupa",
-                                                  imagen = "lupa2.png"){}
+                                                  imagen = "lupa.png"){}
     
 object blockNotas inherits ItemEnMapa (position = game.at(10,6), 
                                       itemParaInventario = blockDeInventario, 
@@ -95,7 +95,7 @@ object blockDeInventario inherits ItemEnInventario (durabilidad = 100,
                                                     position = game.at(10,10), 
                                                     itemDeMapa = blockNotas, 
                                                     texto = "block usado",
-                                                    imagen = "blockDeNotas2.png"){}
+                                                    imagen = "blockDeNotas.png"){}
       
 object collar inherits ItemEnMapa (position = game.at(7,8), 
                                   itemParaInventario = collarInventario,
@@ -106,7 +106,7 @@ object collarInventario inherits ItemEnInventario (durabilidad = 1,
                                                   position = game.at(10,10), 
                                                   itemDeMapa = collar, 
                                                   texto = "collar usado",
-                                                  imagen = "collar2.png"){}
+                                                  imagen = "collar.png"){}
     
 object bocadillo inherits ItemEnMapa (position = game.at(9,9), 
                                     itemParaInventario = bocadilloEnInventario, 
@@ -117,7 +117,7 @@ object bocadilloEnInventario inherits ItemEnInventario (durabilidad = 1,
                                                       position = game.at(10,10), 
                                                       itemDeMapa = bocadillo, 
                                                       texto = "bocadillo usado",
-                                                      imagen = "bocadillo2.png"){}
+                                                      imagen = "bocadillo.png"){}
       
 
 
