@@ -7,13 +7,14 @@ import vecinos.*
 import interactuable.*
 import escenarios.*
 import inventario.*
+import animalSalvaje.*
 
 
 program detectiveDeMascotas{
 
   game.title("Detective de mascotas")
   game.addVisual(inventario)
-  game.boardGround("fondo.png")
+  //game.boardGround("fondo.png")
   detective.escenarioActual().configurar()
   
 

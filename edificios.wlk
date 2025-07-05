@@ -19,7 +19,14 @@ class Edificio {
   method perteneceX(x){return x.between(vertice.x(), vertice.x() + (ancho -1))}
 
   method perteneceY(y){return y.between(vertice.y() , vertice.y() + (alto - 1))}
-}
+
+  method dependeDeEscenario() {
+    return true
+  }
+
+ }
+
+  
 
 //Escenario parque-jardin
 object jardin inherits Edificio(vertice = game.at(2, 16), alto = 3, ancho = 4) {}

@@ -8,9 +8,9 @@ class Interactuable {
 class ObjetoInvisible {
   const property posicion
   
-  method esInvisible(){
-    return true
-  }
+  // method esInvisible(){
+  //   return true
+  // }
 
   method image() {
     return "objetoinvisible.png"

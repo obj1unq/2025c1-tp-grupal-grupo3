@@ -73,6 +73,10 @@ class ItemEnInventario inherits Interactuable{
   method usoInfinito(){
     return true
   }
+
+  method dependeDeEscenario() {
+    return true
+  }
 }
  
 object lupa inherits ItemEnMapa (position = game.at(10,10), 
@@ -108,16 +112,16 @@ object collarInventario inherits ItemEnInventario (durabilidad = 1,
                                                   texto = "collar usado",
                                                   imagen = "collar.png"){}
     
-object bocadillo inherits ItemEnMapa (position = game.at(9,9), 
-                                    itemParaInventario = bocadilloEnInventario, 
-                                    texto = "Encontraste un bocadillo",
-                                    imagen = "bocadillo.png"){}
+object miel inherits ItemEnMapa (position = game.at(9,9), 
+                                    itemParaInventario = mielDeInventario, 
+                                    texto = "Encontraste miel",
+                                    imagen = "miel.png"){}
        
-object bocadilloEnInventario inherits ItemEnInventario (durabilidad = 1, 
+object mielDeInventario inherits ItemEnInventario (durabilidad = 1, 
                                                       position = game.at(10,10), 
-                                                      itemDeMapa = bocadillo, 
-                                                      texto = "bocadillo usado",
-                                                      imagen = "bocadillo.png"){}
+                                                      itemDeMapa = miel, 
+                                                      texto = "miel usada",
+                                                      imagen = "mielDeInventario.png"){}
       
 
 

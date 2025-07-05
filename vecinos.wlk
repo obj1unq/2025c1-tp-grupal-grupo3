@@ -33,6 +33,10 @@ class Vecino inherits Interactuable{
     return false
   }
 
+  method dependeDeEscenario() {
+    return true
+  }
+
     
 } 
 
