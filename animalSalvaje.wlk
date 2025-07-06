@@ -54,6 +54,7 @@ object oso {
     method atacar() {
         game.addVisual(gameOver)
         self.finalizar()
+        presa.gameOver()
     }
 
     method dormirse() {
@@ -82,6 +83,10 @@ object oso {
 
     method distanciaY() {
         return (self.position().y() - presa.position().y()).abs()
+    }
+
+    method esInvisible() {
+        return false
     }
 
     

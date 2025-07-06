@@ -9,10 +9,11 @@ import animalSalvaje.*
 object detective {
   var property position = game.at(16, 9)  
   var property escenarioActual = escenarioEscolar
+  var property estaVivo = true 
 
   method puedeMoverHacia(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
-    return !escenarioActual.hayObstaculoEn(nuevaPos)              
+    return estaVivo && !escenarioActual.hayObstaculoEn(nuevaPos)              
   }
 
   method saleDeEscenario(posicion, escenario) {
@@ -140,6 +141,12 @@ object detective {
   method descartarItem(item) {
       inventario.remover(item)
   }
+
+  method gameOver() {
+    game.removeVisual(self)
+    estaVivo = false
+  }
+
   //method xPosicion() {
   //  return  position.x()
   //}
