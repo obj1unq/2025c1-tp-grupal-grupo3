@@ -6,7 +6,7 @@ import mascota.*
 
 
 object inventario {
-  const property objetos = []
+  const property objetos = [mielDeInventario]
   const property position = game.at(12, 0)
   var posicionSlotDisponible = 15 
 

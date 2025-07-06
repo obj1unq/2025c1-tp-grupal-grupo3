@@ -123,7 +123,11 @@ object mielDeInventario inherits ItemEnInventario (durabilidad = 1,
                                                       texto = "miel usada",
                                                       imagen = "mielDeInventario.png"){}
       
-
+object dni inherits ItemEnInventario ( durabilidad = 1,
+                                       position = game.at(10,10),
+                                       itemDeMapa = miel,
+                                       texto = "dni usado",
+                                       imagen = "dniDeInventario.png") {}
 
 
 

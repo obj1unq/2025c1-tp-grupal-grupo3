@@ -1,11 +1,14 @@
 import detective.*
+import cosas.*
 
 object oso {
     const property presa = detective
     var  property position  = game.at(1, 1) 
+    const property debilidad = mielDeInventario
+    var property imagenActual =  "oso.gif"
 
     method image(){
-        return "oso.gif"
+        return imagenActual
     }
 
     method iniciar() {
@@ -14,7 +17,7 @@ object oso {
 
     method finalizar() {
         game.removeTickEvent("mover oso")
-        game.say(self, "Mmm... miel 😴")
+        //game.say(self, "el oso no se puede mover")
     }
     
     method nuevaPosicion(){
@@ -45,7 +48,7 @@ object oso {
     }
 
     method debeAtacar() {
-        return not presa.tieneMiel()
+        return not presa.tieneItem(debilidad)
     }
 
     method atacar() {
@@ -54,14 +57,15 @@ object oso {
     }
 
     method dormirse() {
-        game.say(self, "Mmm... miel 😴")
+        imagenActual = "osoDormido.gif"
+        game.say(self, "Mmm... miel")
         self.finalizar()
     }
 
     method estaAdyacenteAlDetective() {
         const dx = (self.position().x() - presa.position().x()).abs()
         const dy = (self.position().y() - presa.position().y()).abs()
-        return (dx + dy) == 1
+        return (dx + dy) == 0 || (dx + dy) == 1
     }
 
     method estaAlLadoEnX() {
@@ -124,6 +128,6 @@ object oso {
 }
 
 object gameOver {
-        const property image = ".png" 
-        const property position = game.at(0, 0) 
+        const property image = "gameover.png" 
+        const property position = game.at(5, 0) 
     }

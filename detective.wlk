@@ -99,11 +99,16 @@ object detective {
     escenarioActual.eliminarObjeto(objeto)
   }
 
-  method tieneMiel() {
-    //return inventario.objetos().contains(miel)
-    return false
+  method tieneItem(item) {
+    return inventario.objetos().contains(item)
 }
+  method recibirRecompensa(item) {
+      inventario.agregar(item)
+  }
 
+  method descartarItem(item) {
+      inventario.remover(item)
+  }
   //method xPosicion() {
   //  return  position.x()
   //}
