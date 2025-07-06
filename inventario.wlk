@@ -83,17 +83,14 @@ import mascota.*
 
 object inventario {
   const property objetos = []
-  var indice = 15 
 
   
-
   method agregar(item) {
-    
     objetos.add(item)
     item.cambiarImagenParaInventario()
-    item.setPosition(game.at(indice, 0))
-
-    indice = indice + 1
+    item.setPosition(game.at(self.indiceDe(item) + 15, 0))
+  
+    game.addVisual(item)
     self.refrescar()
   }
 
@@ -101,115 +98,58 @@ object inventario {
     return false
   }
 
-  // method usarObjetoEn(posicionSlot) {
-  //   self.validarSiHayObjetoEnPosicion(posicionSlot)
-  //   self.interactuarConItemDeInventarioEn(self.objetoEn(posicionSlot))
-  // }
-
-  method usarObjetoEn(_posicionSlotDisponible) {
-    self.validarSiHayObjetoEnPosicion(_posicionSlotDisponible)
-    self.interactuarConItemDeInventarioEn(self.itemDeInventarioEn(_posicionSlotDisponible))
+  method indiceDe(objetoBuscado) {
+    return   (0..objetos.size() - 1).find({objeto => objetos.get(objeto) == objetoBuscado})  
   }
 
+ 
 
+  method usarObjetoEn(slot) {
+    self.validarSiHayObjetoEnPosicion(slot)
+  
+    self.interactuarConItem(self.objetoEn(slot))
+  }
 
   method refrescar() {
       objetos.forEach({objeto =>
         game.removeVisual(objeto)
         game.addVisual(objeto)
+        objeto.setPosition(game.at(self.indiceDe(objeto) + 15, 0))
       })
   }
 
-  method validarSiHayObjetoEnPosicion(posicionSlot) {
-    if (not self.hayObjetoEn(posicionSlot))
-      //self.error("No tengo ningún objeto en ese slot")
-      game.say(detective, "No tengo ningún objeto en ese slot")
+  method validarSiHayObjetoEnPosicion(posicion) {
+    if (not self.hayObjetoEn(posicion))
+      self.error("No tengo ningún objeto en ese slot")
+      //game.say(detective, "No tengo ningún objeto en ese slot")
   }
 
-  method hayObjetoEn(posicionSlot) {
-    return not game.getObjectsIn(game.at(posicionSlot, 0)).isEmpty()
-    
+  method hayObjetoEn(slot) {
+    return objetos.size()  > slot
   }
 
-
-  method objetoEn(posicionSlot) {
-    return objetos.get(posicionSlot)
+  method objetoEn(indice) {
+    return objetos.get(indice)
   }
 
-  method interactuarConItemDeInventarioEn(item) {
+  method interactuarConItem(item) {
     item.usar()
-    self.remover(item)
-    
+    self.remover(item) 
+    self.refrescar()
   }
 
-  
 
-  method actualizarPosicionDisponible() {
-    indice = indice - 1
-  }
-
-  method itemDeInventarioEn(_posicionSlotDisponible) {
-    return game.getObjectsIn(game.at(_posicionSlotDisponible, 0)).first()
+  method itemDeInventarioEn(posicion) {
+    return game.getObjectsIn(game.at(posicion, 0))//.first()
   }
 
   method remover(item) {
     objetos.remove(item)
     game.removeVisual(item)
-    
-    self.refrescar()
+   
   }
 
 
-  // method agregarVisual(item) {
-  //   item.setPosition(game.at(posicionSlotDisponible, 0))
-  //   game.addVisual(item)
-  // }
 
-  // method validarAgregar() {
-  //   if (not self.haySlotDisponible())
-  //     self.error("No hay lugar en el inventario")
-  // }
-
-  // method haySlotDisponible() {
-  //   return posicionSlotDisponible <= 10
-  // }
-  // method incrementarPosicionSlotDisponible() {
-  //   posicionSlotDisponible = posicionSlotDisponible + 1
-  // }
-
-  // method remover(item) {
-  //   objetos.remove(item)
-  //   game.removeVisual(item)
-  //   self.actualizarPosicionDisponible()
-  // }
-
-  // method actualizarPosicionDisponible() {
-  //   posicionSlotDisponible = posicionSlotDisponible - 1
-  // }
-
-  // method usarObjetoEn(_posicionSlotDisponible) {
-  //   self.validarSiHayObjetoEnPosicion(_posicionSlotDisponible)
-  //   self.interactuarConItemDeInventarioEn(self.itemDeInventarioEn(_posicionSlotDisponible))
-
-  // }
-
-  // method validarSiHayObjetoEnPosicion(_posicionSlotDisponible) {
-  //   if (not self.hayObjetoEn(_posicionSlotDisponible))
-  //     self.error("No tengo ningún objeto en ese slot")
-  // }
-
-  // method hayObjetoEn(_posicionSlotDisponible) {
-  //   return not game.getObjectsIn(game.at(_posicionSlotDisponible, 0)).isEmpty()
-  // }
-
-  // method interactuarConItemDeInventarioEn(item) {
-  //   item.usar()
-  // }
-
-  // method itemDeInventarioEn(_posicionSlotDisponible) {
-  //   return game.getObjectsIn(game.at(_posicionSlotDisponible, 0)).first()
-  // }
-
-  
 
 }

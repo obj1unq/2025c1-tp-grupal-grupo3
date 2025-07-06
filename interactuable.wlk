@@ -1,8 +1,15 @@
 import detective.*
 class Interactuable {
+  var property esIntearactuable = true
   method interactuarCon(detective) 
  
-  
+method cambiarEstado() {
+    esIntearactuable = false
+}
+
+
+
+
 }
 
 class ObjetoInvisible {

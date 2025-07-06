@@ -66,24 +66,58 @@ object detective {
   }
 
 
-  method interactuar() {
-    if (not self.hayInteractuable())
-        game.say(self, "No hay nada acá")
-      else
-       self.objetoEnPosicion().interactuarCon(self)
-  }
- 
-  // method validarSiHayInteractuable() {
-  //   if(not self.hayInteractuable()) {
-  //     game.say(self, "No hay nada acá")
-  //   }
+  // method interactuar() {
+  //   if (not self.hayInteractuable())
+  //       game.say(self, "No hay nada acá")
+  //     else
+  //      self.objetoEnPosicion().interactuarCon(self)
   // }
 
-  method hayInteractuable() {
-    return game.getObjectsIn(self.position()).any({element => element != self})
+  // method hayInteractuable() {
+  //   return game.getObjectsIn(self.position()).any({element => element != self})
+  // }
+
+  method interactuar() {
+    if (not self.hayInteractuableCercano())
+        game.say(self, "No hay nada acá")
+      else
+       self.objetoInteractuableCercano().interactuarCon(self)
   }
 
+  method objetoInteractuableCercano() {
+    const objetosEnCelda = game.getObjectsIn(self.position()).filter({obj => obj != self && obj.esIntearactuable()})
+    if (!objetosEnCelda.isEmpty())
+        return objetosEnCelda.first()
+
+    return self.objetoInteractuableLindante()
+  }
   
+  method objetoInteractuableLindante() {
+    return [arriba, derecha, abajo, izquierda]
+        .map({d => game.getObjectsIn(d.siguientePosicion(position))})
+        .flatten()
+        .find({obj => obj.esIntearactuable()})
+  }
+
+ 
+
+
+ 
+  method hayInteractuableCercano() {
+    return game.getObjectsIn(self.position()).any({element => element != self})
+            ||
+          self.hayInteractuableLindante()
+  }
+
+  method hayInteractuableLindante() {
+    return self.hayInteractuableHacia(arriba) || self.hayInteractuableHacia(derecha) || self.hayInteractuableHacia(abajo) || self.hayInteractuableHacia(izquierda)
+  }
+
+  method hayInteractuableHacia(direccion) {
+    const newPos = direccion.siguientePosicion(position)
+    return game.getObjectsIn(newPos).any({objeto => objeto.esIntearactuable()})
+  }
+
   method objetoEnPosicion() {
     return game.uniqueCollider(self)
   }

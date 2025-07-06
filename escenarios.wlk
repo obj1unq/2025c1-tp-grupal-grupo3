@@ -171,7 +171,7 @@ const escenarioEscolar = new Escenario (protagonista = detective, map = mapaEsce
 						casaAmarillaJardin, toboganParque1, toboganParque2, toboganParque3, toboganParque4, juegoParque, puenteParque, calesitaParque, 
 						autosJardin, autosJardin2, colectivoJardin, arbolJardin2, arbustoJardin, arbustoJardin2, asientoJardin, escalerasJardin, 
 						escuelaParteIzq, escuelaParteMedio, escuelaParteDer, rejaIzquierda, rejaDerecha, bandera, arbustoAbajoEscuela],
-						objetos = [lupa, blockNotas, collar],
+						objetos = [lupa, blockNotas, collar, puaGuitarra, burbujero],
 						vecinos = [lucia,tomillo,juli],
 						escenariosVecinos = [escenarioALaDerechaDeEscolar]
 						) 
@@ -186,7 +186,7 @@ const escenarioCentral = new Escenario (protagonista = detective, map = mapaEsce
 						arbustosArribaMedioDer, cochesAmarilloVioleta, arbustoArribaMedioIzq, cochesArribaIzq, edificiosArribaIzq, heladeria, mesaHeladeria, 
 						panaderia, pescaderia, carniceria, edificio, muroArribaIzq, muroArribaDer],
 						objetos = [],
-						vecinos = [rami,juan,doc],
+						vecinos = [juan,doc, poliMujer],
 						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral, escenarioDerechaDeCentral]						
 						) 
 const mapaEscenarioCentral = new Mapa (image = "mapaCentralFINAL.png")
@@ -204,7 +204,7 @@ const escenarioCamping = new Escenario (protagonista = detective, map = mapaEsce
 						arbolesArribaIzq, arbolesArribaDer, tachosGasolinera, faroDeLuz, cartelGasolinera, gasolinera, repostarGasolinera, 
 						autoArribaDer, autoESquinaDer],
 										objetos = [],
-										vecinos = [vete,meli,nino,vale,ivan],
+										vecinos = [meli,nino,vale,ivan, poliHombre],
 										escenariosVecinos = [escenarioAlSurDeCamping,escenarioAlNorteDeCamping])
 const mapaEscenarioCamping = new Mapa (image = "escenarioCampingFINAL.png")
 const escenarioCampingCubiertas = new Mapa (image = "escenarioCampingFINALCubiertas.png")
@@ -230,7 +230,7 @@ const escenarioMercado = new Escenario (protagonista = detective, map = mapaEsce
 										edificios = [arbustosAbajo1, maquina, paradaColectivo1, arbustosAbajo2, faro, pozo, floresAbajo, floresAbajo2, pozo2, hotel, hotelArriba, paredIzq,
 						paredDer, edificio1, entradaEstacionamiento, carritos, supermercado, arbolSupermercado, basuraSupermercado, elevador],
 										objetos = [],
-										vecinos = [vane],
+										vecinos = [vane, rami, vete],
 										escenariosVecinos = [escenarioAlOesteDeMercado])
 
 const mapaEscenarioMercado = new Mapa(image = "escenarioSuperFINAL.png")
