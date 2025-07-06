@@ -134,7 +134,8 @@ class Item inherits Interactuable {
   var property position 
   const property imagenParaInventario
   var property imagen
-  const texto = "¡Encontré"  + "!"
+  const texto  
+  //const textoParaInventario = "zzzzzz!"
   var property durabilidad 
   //var estaEnElMapa = true
  
@@ -150,13 +151,17 @@ class Item inherits Interactuable {
     imagen = imagenParaInventario
   }
 
+  // method cambiarATextoParaInventario() {
+  //   texto = textoParaInventario
+  // }
+
 
   method esInvisible(){
     return false
   }
 
   override method interactuarCon(detective) {
-    game.say(detective, texto)
+    game.say(detective, "Encontré " + texto)
     detective.levantarObjeto(self)
     inventario.agregar(self)
     
@@ -166,7 +171,7 @@ class Item inherits Interactuable {
   method usar() {
     self.actualizarDurabilidad()
     self.actualizarEstadoDe()
-    game.say(detective, "Usaste " + texto)
+    game.say(detective, "Usé " + texto)
   }
 
   method actualizarEstadoDe() {
@@ -191,32 +196,32 @@ class Item inherits Interactuable {
 
 const lupa = new Item (position = game.at(10,10), 
                           imagenParaInventario = "lupa.png",
-                          texto = "Encontraste una lupa",
+                          texto = "una lupa",
                           imagen = "lupa.png",
                           durabilidad = 1)
 
 const blockNotas = new Item (position = game.at(10,6), 
                             imagenParaInventario = "blockDeNotas.png", 
-                            texto = "Encontraste un block de notas",
+                            texto = "un block de notas",
                             imagen = "blockDeNotas.png",
                             durabilidad = 10)
  
 const collar = new Item (position = game.at(7,8), 
                         imagenParaInventario = "collar.png",
-                        texto = "Encontraste un collar",
+                        texto = "un collar",
                         imagen = "collar.png",
                         durabilidad = 1)
 
     
 const miel = new Item (position = game.at(9,9), 
                       imagenParaInventario = "Encontraste miel", 
-                      texto = "Encontraste miel",
+                      texto = "miel",
                       imagen = "miel.png",
                       durabilidad = 1)
          
 const dni = new Item (position = game.at(10,10),
                       imagenParaInventario = "dni.png",
-                      texto = "dni usado",
+                      texto = "un dni usado",
                       imagen = "dni.png",
                       durabilidad = 1)
 

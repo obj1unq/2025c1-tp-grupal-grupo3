@@ -28,11 +28,11 @@ program detectiveDeMascotas{
   keyboard.num3().onPressDo({ inventario.usarObjetoEn(17) })
   keyboard.num4().onPressDo({ inventario.usarObjetoEn(18) })
   keyboard.num5().onPressDo({ inventario.usarObjetoEn(19) })
-  keyboard.num6().onPressDo({ inventario.usarObjetoEn(5) })
-  keyboard.num7().onPressDo({ inventario.usarObjetoEn(6) })
-  keyboard.num8().onPressDo({ inventario.usarObjetoEn(7) })
-  keyboard.num9().onPressDo({ inventario.usarObjetoEn(8) })
-  keyboard.num0().onPressDo({ inventario.usarObjetoEn(9) })
+  keyboard.num6().onPressDo({ inventario.usarObjetoEn(20) })
+  keyboard.num7().onPressDo({ inventario.usarObjetoEn(21) })
+  keyboard.num8().onPressDo({ inventario.usarObjetoEn(22) })
+  keyboard.num9().onPressDo({ inventario.usarObjetoEn(23) })
+  keyboard.num0().onPressDo({ inventario.usarObjetoEn(24) })
 
   game.start()
 }

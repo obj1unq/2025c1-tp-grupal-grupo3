@@ -186,7 +186,7 @@ const escenarioCentral = new Escenario (protagonista = detective, map = mapaEsce
 						arbustosArribaMedioDer, cochesAmarilloVioleta, arbustoArribaMedioIzq, cochesArribaIzq, edificiosArribaIzq, heladeria, mesaHeladeria, 
 						panaderia, pescaderia, carniceria, edificio, muroArribaIzq, muroArribaDer],
 						objetos = [],
-						vecinos = [rami,juan,doc,vane],
+						vecinos = [rami,juan,doc],
 						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral, escenarioDerechaDeCentral]						
 						) 
 const mapaEscenarioCentral = new Mapa (image = "mapaCentralFINAL.png")
@@ -230,7 +230,7 @@ const escenarioMercado = new Escenario (protagonista = detective, map = mapaEsce
 										edificios = [arbustosAbajo1, maquina, paradaColectivo1, arbustosAbajo2, faro, pozo, floresAbajo, floresAbajo2, pozo2, hotel, hotelArriba, paredIzq,
 						paredDer, edificio1, entradaEstacionamiento, carritos, supermercado, arbolSupermercado, basuraSupermercado, elevador],
 										objetos = [],
-										vecinos = [],
+										vecinos = [vane],
 										escenariosVecinos = [escenarioAlOesteDeMercado])
 
 const mapaEscenarioMercado = new Mapa(image = "escenarioSuperFINAL.png")

@@ -99,7 +99,7 @@ object detective {
   method tieneItem(item) {
     return inventario.objetos().contains(item)
 }
-  method recibirRecompensa(item) {
+  method recibirItem(item) {
       inventario.agregar(item)
   }
 
