@@ -4,7 +4,7 @@ import cosas.*
 object oso {
     const property presa = detective
     var  property position  = game.at(1, 1) 
-    const property debilidad = mielDeInventario
+    const property debilidad = miel
     var property imagenActual =  "oso.gif"
 
     method image(){

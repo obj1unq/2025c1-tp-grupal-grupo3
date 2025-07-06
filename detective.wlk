@@ -7,8 +7,8 @@ import animalSalvaje.*
 
 
 object detective {
-  var property position = game.at(17, 9)  
-  var property escenarioActual = escenarioBosque
+  var property position = game.at(16, 9)  
+  var property escenarioActual = escenarioEscolar
 
   method puedeMoverHacia(direccion) {
     const nuevaPos = direccion.siguientePosicion(position)
@@ -67,9 +67,6 @@ object detective {
 
 
   method interactuar() {
-    //const objetoEnPosicion = self.objetoEnPosicion()
-    // self.validarSiHayInteractuable()
-    // self.objetoEnPosicion().interactuarCon(self)
     if (not self.hayInteractuable())
         game.say(self, "No hay nada acá")
       else
