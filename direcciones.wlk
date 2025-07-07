@@ -15,7 +15,7 @@ object abajo {
   }
 
   method entradaAlEscenarioDesdeBorde(pos) {
-    return game.at(pos.x(), game.height() - 1)
+    return game.at(pos.x() + 3, game.height() - 1)
   }
 }
 

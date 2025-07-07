@@ -241,14 +241,14 @@ const morena = new ItemEspecial(position = posibleAparicion.randomized().first()
                       durabilidad = 100000,
                       esPista = false)
 
-const flores = new Item(position = null,
+const flores = new Item(position = game.at(10,10),
                         imagenParaInventario = "floresFINAL.png",
                         texto = "unas flores muy lindas",
                         imagen = "floresFINAL.png",
                         durabilidad = 11110,
                         esPista = false)
 
-const arnes = new Item( position = null,
+const arnes = new Item( position = game.at(10,10),
                         imagenParaInventario = "arnesFINAL.png",
                         texto = "un arnes azul",
                         imagen = "arnesFINAL.png",
@@ -259,8 +259,13 @@ const posibleAparicion = [game.at(1,17), game.at(32,17), game.at(26,11)]
 
 const grafitiEscenarioEscolar = new Grafiti (position = game.at(3,6), texto = "Parece que hay huellas que van hacia el este")
 const grafitiEscenarioCentral1 = new Grafiti (position = game.at(13,17), texto = "Las huellas parecen ir hacia el tacho de basura")
-const grafitiEscenarioCentral2 = new Grafiti (position = game.at(35,7), texto = "Parece que hay huellas que van hacia el norte")
-const basureroEscenarioCentral = new Basurero (position = game.at(28,17), texto = "Hay algo dentro del tacho de basura")
-
+const grafitiEscenarioCentral2 = new Grafiti (position = game.at(35,7), texto = "Parece que hay huellas que van cruzando la calle")
+const grafitiEscenarioCamping = new Grafiti (position = game.at(13,21), texto = "Parece que hay huellas que van hacia el norte")
+const basureroEscenarioCentral = new Basurero (position = game.at(28,17), texto = "Hay algo dentro del tacho de basura, parece ser pelos de gato",
+                                              itemAEntregar = pelos)
+const basureroEscenarioMercado = new Basurero (position = game.at(3,16), texto = "Hay algo dentro del tacho de basura, parece ser un arnes azul",
+                                              itemAEntregar = arnes)
+const basureroEscenarioCamping= new Basurero (position = game.at(20,17), texto = "Hay algo dentro del tacho de basura, parece ser un collar azul",
+                                              itemAEntregar = collar)
 
 

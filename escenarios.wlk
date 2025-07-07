@@ -188,7 +188,7 @@ const escenarioEscolar = new Escenario (protagonista = detective, map = mapaEsce
 						casaAmarillaJardin, toboganParque1, toboganParque2, toboganParque3, toboganParque4, juegoParque, puenteParque, calesitaParque, 
 						autosJardin, autosJardin2, colectivoJardin, arbolJardin2, arbustoJardin, arbustoJardin2, asientoJardin, escalerasJardin, 
 						escuelaParteIzq, escuelaParteMedio, escuelaParteDer, rejaIzquierda, rejaDerecha, bandera, arbustoAbajoEscuela],
-						objetos = [lupa, blockNotas, collar, puaGuitarra, burbujero, grafitiEscenarioEscolar],
+						objetos = [lupa, blockNotas, puaGuitarra, burbujero, grafitiEscenarioEscolar],
 						vecinos = [fernanda,tomillo,juli, nene, maestra],
 						escenariosVecinos = [escenarioALaDerechaDeEscolar]
 						) 
@@ -220,7 +220,7 @@ const escenarioCamping = new Escenario (protagonista = detective, map = mapaEsce
 						cocheComida2, mesa9, cocheComida3, mesa10, pizzeria, colectivosEstacionados, casitaPolicia, bañosPublicos, paradaColectivo, 
 						arbolesArribaIzq, arbolesArribaDer, tachosGasolinera, faroDeLuz, cartelGasolinera, gasolinera, repostarGasolinera, 
 						autoArribaDer, autoESquinaDer],
-										objetos = [],
+										objetos = [basureroEscenarioCamping, grafitiEscenarioCamping],
 										vecinos = [meli,nino,vale,ivan, poliHombre, guardaBosque],
 										escenariosVecinos = [escenarioAlSurDeCamping,escenarioAlNorteDeCamping])
 const mapaEscenarioCamping = new Mapa (image = "escenarioCampingFINAL1.png")
@@ -246,7 +246,7 @@ const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario
 const escenarioMercado = new Escenario (protagonista = detective, map = mapaEscenarioMercado, mapCubiertas = escenarioMercadoCubiertas,
 										edificios = [arbustosAbajo1, maquina, paradaColectivo1, arbustosAbajo2, faro, pozo, floresAbajo, floresAbajo2, pozo2, hotel, hotelArriba, paredIzq,
 						paredDer, edificio1, entradaEstacionamiento, carritos, supermercado, arbolSupermercado, basuraSupermercado, elevador],
-										objetos = [],
+										objetos = [basureroEscenarioMercado],
 										vecinos = [vane, rami, vete, ana, azula, abuelo, metalero],
 										escenariosVecinos = [escenarioAlOesteDeMercado])
 
