@@ -157,7 +157,7 @@ const dni = new Item (position = game.at(10,10),
 
 const llave = new Item (position = game.at(10,10),
                       imagenParaInventario = "llaveFINAL.png",
-                      texto = "un dni usado",
+                      texto = "una llave",
                       imagen = "llaveFINAL.png",
                       durabilidad = 1,
                       esPista = false)
@@ -178,7 +178,7 @@ const puaGuitarra = new Item (position = game.at(8,6),
 
 const transportadora = new Item (position = game.at(10,10),
                       imagenParaInventario = "transportadoraVaciaFINAL.png",
-                      texto = "un dni usado",
+                      texto = "una transportadora",
                       imagen = "transportadoraVaciaFINAL.png",
                       durabilidad = 1,
                       esPista = true)
@@ -192,28 +192,28 @@ const burbujero = new Item (position = game.at(23,16),
 
 const hoja = new Item (position = game.at(10,10),
                       imagenParaInventario = "hojaFINAL.png",
-                      texto = "un dni usado",
+                      texto = "una hoja dibujada",
                       imagen = "hojaFINAL.png",
                       durabilidad = 1,
                       esPista = true)
 
 const caramelos = new Item (position = game.at(10,10),
                       imagenParaInventario = "caramelosFINAL.png",
-                      texto = "un dni usado",
+                      texto = "unos caramelos",
                       imagen = "caramelosFINAL.png",
                       durabilidad = 1,
                       esPista = false)
 
 const moneda = new Item (position = game.at(10,10),
                       imagenParaInventario = "monedaFINAL.png",
-                      texto = "un dni usado",
+                      texto = "una moneda",
                       imagen = "monedaFINAL.png",
                       durabilidad = 1,
                       esPista = false)
 
 const bocadillos = new Item (position = game.at(10,10),
                       imagenParaInventario = "bocadilloFINAL.png",
-                      texto = "un dni usado",
+                      texto = "un paquete de bocadillos",
                       imagen = "bocadilloFINAL.png",
                       durabilidad = 1,
                       esPista = true)

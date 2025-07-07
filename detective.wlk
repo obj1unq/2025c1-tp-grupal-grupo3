@@ -128,8 +128,9 @@ object detective {
   }
 
   method cantPistas() {
-    return inventario.objetos.sum({ objeto => objeto.esPista()})
+    return inventario.cantObjetoPistaDelInventario()
   }
+
 
   method levantarObjeto(objeto) {
     escenarioActual.eliminarObjeto(objeto)
