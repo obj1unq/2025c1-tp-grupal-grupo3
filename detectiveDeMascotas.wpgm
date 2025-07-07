@@ -1,0 +1,35 @@
+//import escenarios.*
+import wollok.game.*
+import detective.*
+import direcciones.*
+import cosas.*  
+import vecinos.*
+import interactuable.*
+import escenarios.*
+import inventario.*
+import animalSalvaje.*
+
+
+program detectiveDeMascotas{
+  game.title("Detective de mascotas")
+  detective.escenarioActual().configurar()
+  
+  
+  keyboard.w().onPressDo({ detective.mover(arriba) })   
+  keyboard.a().onPressDo({ detective.mover(izquierda) }) 
+  keyboard.s().onPressDo({ detective.mover(abajo) })     
+  keyboard.d().onPressDo({ detective.mover(derecha) })   
+  keyboard.f().onPressDo({ detective.interactuar() }) 
+  keyboard.num1().onPressDo({ inventario.usarObjetoEn(0) })
+  keyboard.num2().onPressDo({ inventario.usarObjetoEn(1) })
+  keyboard.num3().onPressDo({ inventario.usarObjetoEn(2) })
+  keyboard.num4().onPressDo({ inventario.usarObjetoEn(3) })
+  keyboard.num5().onPressDo({ inventario.usarObjetoEn(4) })
+  keyboard.num6().onPressDo({ inventario.usarObjetoEn(5) })
+  keyboard.num7().onPressDo({ inventario.usarObjetoEn(6) })
+  keyboard.num8().onPressDo({ inventario.usarObjetoEn(7) })
+  keyboard.num9().onPressDo({ inventario.usarObjetoEn(8) })
+  keyboard.num0().onPressDo({ inventario.usarObjetoEn(9) })
+
+  game.start()
+}
