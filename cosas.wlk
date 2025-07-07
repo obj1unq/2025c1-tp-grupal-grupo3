@@ -159,11 +159,7 @@ const dni = new Item (position = game.at(10,10),
 
 const llave = new Item (position = game.at(10,10),
                       imagenParaInventario = "llaveFINAL.png",
-<<<<<<< HEAD
-                      texto = "una llave",
-=======
                       texto = "la llave del casillero de la policia",
->>>>>>> 853cdd398fd738f1f549b4e879ce002d3bce79a7
                       imagen = "llaveFINAL.png",
                       durabilidad = 10000,
                       esPista = false)
@@ -184,11 +180,7 @@ const puaGuitarra = new Item (position = game.at(8,6),
 
 const transportadoraVacia = new Item (position = game.at(10,10),
                       imagenParaInventario = "transportadoraVaciaFINAL.png",
-<<<<<<< HEAD
-                      texto = "una transportadora",
-=======
                       texto = "la transportadora vacía me puede servir",
->>>>>>> 853cdd398fd738f1f549b4e879ce002d3bce79a7
                       imagen = "transportadoraVaciaFINAL.png",
                       durabilidad = 10000,
                       esPista = true)
@@ -202,11 +194,7 @@ const burbujero = new Item (position = game.at(23,16),
 
 const hoja = new ItemConInformacion (position = game.at(10,10),
                       imagenParaInventario = "hojaFINAL.png",
-<<<<<<< HEAD
-                      texto = "una hoja dibujada",
-=======
                       texto = "el dibujo",
->>>>>>> 853cdd398fd738f1f549b4e879ce002d3bce79a7
                       imagen = "hojaFINAL.png",
                       durabilidad = 10000,
                       esPista = true,
@@ -215,33 +203,21 @@ const fotoGrande = new ImagenAMostrar (image = "fotoGrande.png", position = game
 
 const caramelos = new Item (position = game.at(10,10),
                       imagenParaInventario = "caramelosFINAL.png",
-<<<<<<< HEAD
-                      texto = "unos caramelos",
-=======
                       texto = "debo entregar los caramelos al niño",
->>>>>>> 853cdd398fd738f1f549b4e879ce002d3bce79a7
                       imagen = "caramelosFINAL.png",
                       durabilidad = 10000,
                       esPista = false)
 
 const moneda = new Item (position = game.at(10,10),
                       imagenParaInventario = "monedaFINAL.png",
-<<<<<<< HEAD
-                      texto = "una moneda",
-=======
                       texto = "puedo usarla para comprar algo",
->>>>>>> 853cdd398fd738f1f549b4e879ce002d3bce79a7
                       imagen = "monedaFINAL.png",
                       durabilidad = 100000,
                       esPista = false)
 
 const bocadillos = new Item (position = game.at(10,10),
                       imagenParaInventario = "bocadilloFINAL.png",
-<<<<<<< HEAD
-                      texto = "un paquete de bocadillos",
-=======
                       texto = "pueden servir para Morena",
->>>>>>> 853cdd398fd738f1f549b4e879ce002d3bce79a7
                       imagen = "bocadilloFINAL.png",
                       durabilidad = 100000,
                       esPista = true)

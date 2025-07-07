@@ -1,58 +1,9 @@
-import inventario.*
-import interactuable.*
-import edificios.*
-<<<<<<< HEAD
-import vecinos.*
-import cosas.*
-import detective.*
-
-describe "testGame"{
-
-  test "El vecino recibe su asset correspondiente"{
-
-    assert.equals("maestraFINAL.png", maestra.image())
-    assert.equals("neneJugandoFINAL.png", nene.image())
-    assert.equals("grudaFINAL.png", gruda.image())
-    assert.equals("abuelitoFinal.png", abuelo.image())
-    assert.equals("azulaFINAL.png", azula.image())
-    assert.equals("AnaFINAL.png", ana.image())
-    assert.equals("abuelitaFINAL.png", abuela.image())
-    assert.equals("ivan.png", ivan.image())
-    assert.equals("vale.png", vale.image())
-    assert.equals("meli.png", meli.image())
-    assert.equals("juan.png", juan.image())
-    assert.equals("luciaRed.png", fernanda.image())
-    assert.equals("guardaBosqueFINAL.png", guardaBosque.image())
-    assert.equals("luciaRed.png", lucia.image())
-    assert.equals("juliRed.png", juli.image())
-    assert.equals("rami.png", rami.image())
-    assert.equals("scoutRed.png", tomillo.image())
-    assert.equals("docRed.png", doc.image())
-    assert.equals("policiaMujerFINAL.png", poliMujer.image())
-    assert.equals("nino.png", nino.image())
-    assert.equals("veteRed.png", vete.image())
-    assert.equals("vane.png", vane.image())
-    assert.equals("policiaHombreFINAL.png", poliHombre.image())
-
-  }
-
-  test"Finalizacion de mision para el Vecino Especial con mision"{
-    //Son pistas: El block de notas, una hoja, los pelos del gato
-    // el collar del gato, unos bocadillos para el gato y una transportadora para gatos
-    detective.recibirItem(hoja)
-    detective.recibirItem(blockNotas)
-    detective.recibirItem(transportadoraVacia)
-    detective.recibirItem(bocadillos)
-    detective.recibirItem(pelos)
-    detective.recibirItem(collar)
-
-    assert.equals(6,detective.cantPistas())
-=======
 import escenarios.*
 import cosas.*
 import detective.*
 import direcciones.*
 import inventario.*
+import vecinos.*
 
 
 describe "testGame" {
@@ -204,26 +155,48 @@ describe "testGame" {
     assert.notThat(detective.tieneItem(bocadillos))
     //verificar que en el inventario de detective ya no tiene mas la transportadora vacia
     assert.notThat(detective.tieneItem(transportadoraVacia))
->>>>>>> 853cdd398fd738f1f549b4e879ce002d3bce79a7
-  }
-
-  test "Finalizacion de mision para el Vecino Solitario con mision"{
-
-    //Los vecinos solitarios con mision son: Lucia,Juli, Rami y Tomillo
-    //Lucia necesita a Morena
-    //Julia necesita su burbujero
-    //Rami necesita su pua de guitarra
-    //Tomillo necesita una moneda
-
-    detective.recibirItem(morena)
-    detective.recibirItem(burbujero)
-    detective.recibirItem(puaGuitarra)
-    detective.recibirItem(moneda)
-
-    //assert.that({inventario.tieneObjeto(moneda)}) //ROMPE 
-    
 
   }
 
+   test "El vecino recibe su asset correspondiente"{
 
+    assert.equals("maestraFINAL.png", maestra.image())
+    assert.equals("neneJugandoFINAL.png", nene.image())
+    assert.equals("grudaFINAL.png", gruda.image())
+    assert.equals("abuelitoFinal.png", abuelo.image())
+    assert.equals("azulaFINAL.png", azula.image())
+    assert.equals("AnaFINAL.png", ana.image())
+    assert.equals("abuelitaFINAL.png", abuela.image())
+    assert.equals("ivan.png", ivan.image())
+    assert.equals("vale.png", vale.image())
+    assert.equals("meli.png", meli.image())
+    assert.equals("juan.png", juan.image())
+    assert.equals("luciaRed.png", fernanda.image())
+    assert.equals("guardaBosqueFINAL.png", guardaBosque.image())
+    assert.equals("luciaRed.png", lucia.image())
+    assert.equals("juliRed.png", juli.image())
+    assert.equals("rami.png", rami.image())
+    assert.equals("scoutRed.png", tomillo.image())
+    assert.equals("docRed.png", doc.image())
+    assert.equals("policiaMujerFINAL.png", poliMujer.image())
+    assert.equals("nino.png", nino.image())
+    assert.equals("veteRed.png", vete.image())
+    assert.equals("vane.png", vane.image())
+    assert.equals("policiaHombreFINAL.png", poliHombre.image())
+
+  }
+
+  test"Finalizacion de mision para el Vecino Especial con mision"{
+    //Son pistas: El block de notas, una hoja, los pelos del gato
+    // el collar del gato, unos bocadillos para el gato y una transportadora para gatos
+    detective.recibirItem(hoja)
+    detective.recibirItem(blockNotas)
+    detective.recibirItem(transportadoraVacia)
+    detective.recibirItem(bocadillos)
+    detective.recibirItem(pelos)
+    detective.recibirItem(collar)
+
+    assert.equals(6,detective.cantPistas())
+
+  }
 }
