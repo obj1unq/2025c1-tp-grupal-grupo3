@@ -165,10 +165,15 @@ class Escenario {
 }
 
 class EscenarioConRestriccion inherits Escenario {
-	const property animalSalvaje
+	//const property animalSalvaje
 	override method puedeCambiarse() {
 		return inventario.tieneObjeto(credencial)
 	}
+
+	// override method agregarVisualesDeEscenario() {
+	// 	super()
+	// 	game.addVisual(animalSalvaje)
+	// }
 }
 
 class EscenarioVecino {
@@ -257,6 +262,28 @@ const escenarioMercadoCubiertas = new Mapa (image = "escenarioSuperFINALCubierta
 const escenarioAlOesteDeMercado = new EscenarioVecino(direccion = izquierda, escenario = escenarioCentral)
 
 
+
+// object pantallaDeInicio inherits Interactuable {
+
+// 	method image() {
+// 		return "inicioJuegoO.png"
+// 	}
+// 	method position() {
+// 		return game.at(0, 0)
+// 	}
+
+// 	method iniciar() {
+// 		game.addVisual(self)
+// 	}
+
+// 	override method sePuedeInteractuar() {
+// 		return true
+// 	}
+
+// 	override method interactuarCon(detective) {
+// 		game.removeVisual(self)
+// 	} 
+// }
 
 
 // 	override method hayEscenarioLindanteEn(posicion) {
