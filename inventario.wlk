@@ -71,5 +71,8 @@ object inventario {
     return objetos.contains(objeto)
   }
 
+  method cantObjetoPistaDelInventario() {
+    return objetos.count({objeto => objeto.esPista()})
+  }
 
 }

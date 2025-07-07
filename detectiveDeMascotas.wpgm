@@ -11,15 +11,10 @@ import animalSalvaje.*
 
 
 program detectiveDeMascotas{
-
-
-
   game.title("Detective de mascotas")
-  
   detective.escenarioActual().configurar()
   
   
-
   keyboard.w().onPressDo({ detective.mover(arriba) })   
   keyboard.a().onPressDo({ detective.mover(izquierda) }) 
   keyboard.s().onPressDo({ detective.mover(abajo) })     
