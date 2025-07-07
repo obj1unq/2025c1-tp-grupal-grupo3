@@ -63,6 +63,7 @@ object inventario {
   method remover(item) {
     objetos.remove(item)
     game.removeVisual(item)
+    self.refrescar()
    
   }
 

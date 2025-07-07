@@ -1,3 +1,4 @@
+import inventario.*
 import detective.*
 import wollok.game.*
 import interactuable.*
@@ -96,6 +97,7 @@ class VecinoConMision inherits Vecino{
 
   method darItem(detective) {
       detective.recibirItem(itemAEntregar)
+      
     }
 
   method decirIntermedio() {
@@ -206,6 +208,8 @@ const dialogoDeNene = ["No hablo con extraños"]
 
 const dialogoDeMaestra = ["Hoy fue un día agotador de trabajo", "Los niños prestaron atencion a mi clase"]
 
+const dialogoDeMetalero = ["Viva RAMMSTEIN carajo"]
+
 const dialogosDeLucia        = ["Hola, Necesito tu ayuda", "Se perdió Morena, mi gatita", "No puedo estar sin Morena", 
                                 "Morena tiene un collar celeste", "Ella es blanquita", "Te agradeceria que la encuentres"] 
 const dialogoFinalLucia      = ["AAAAA Morena!!!", "Muchas gracias por encontrarla!!", "La extrañaba mucho"]
@@ -308,12 +312,13 @@ const dialogo43 = new Dialogo( lineasDelVecino = dialogoDeAbuelita)
 const dialogo44 = new Dialogo( lineasDelVecino = dialogoDeGruda)
 const dialogo45 = new Dialogo( lineasDelVecino = dialogoDeNene)
 const dialogo46 = new Dialogo( lineasDelVecino = dialogoDeMaestra)
+const dialogo47 = new Dialogo( lineasDelVecino = dialogoDeMetalero)
 
 
 
 
 //CREO A LUCIA COMO TAL LO QUE ES : UN VECINO 
-const fernanda = new Vecino( posicionDelVecino = game.at(2, 4), imagenDelVecino = "luciaRed.png", dialogo = dialogo1)
+const fernanda = new Vecino( posicionDelVecino = game.at(2, 4), imagenDelVecino = "luciaRed.png", dialogo = dialogo36)
 const juan     = new Vecino( posicionDelVecino = game.at(11,15),imagenDelVecino ="juan.png", dialogo = dialogo5)
 const meli     = new Vecino( posicionDelVecino = game.at(29,8),imagenDelVecino = "meli.png", dialogo = dialogo8)
 const vale     = new Vecino( posicionDelVecino = game.at(7,14),imagenDelVecino = "vale.png", dialogo = dialogo10)
@@ -325,6 +330,8 @@ const abuelo   = new Vecino( posicionDelVecino = game.at(23, 18), imagenDelVecin
 const gruda    = new Vecino( posicionDelVecino = game.at(26, 14), imagenDelVecino = "grudaFINAL.png", dialogo = dialogo44)
 const nene     = new Vecino( posicionDelVecino = game.at(6, 8), imagenDelVecino = "neneJugandoFINAL.png", dialogo = dialogo45)
 const maestra  = new Vecino( posicionDelVecino = game.at(29, 11), imagenDelVecino = "maestraFINAL.png", dialogo = dialogo46)
+const metalero  = new Vecino( posicionDelVecino = game.at(29, 11), imagenDelVecino = "metaleroFINAL.png", dialogo = dialogo47)
+
 
 
 
@@ -333,8 +340,8 @@ const guardaBosque = new VecinoEspecialConMision( posicionDelVecino = game.at(18
                                                   dialogo = dialogo37, itemAEntregar = credencial, 
                                                   lineaFinal = dialogo38, lineaIntermedio = dialogo39)
 
-const lucia = new VecinoSolitarioConMision ( posicionDelVecino = game.at(20, 10), imagenDelVecino = "luciaRed.png", dialogo = dialogo1,
-                                             itemQueNecesita = morena, itemAEntregar = hoja, 
+const lucia = new VecinoSolitarioConMision ( posicionDelVecino = game.at(20, 10), imagenDelVecino = "luciaFINAL.png", dialogo = dialogo1,
+                                             itemQueNecesita = morena, itemAEntregar = flores, 
                                              lineaFinal = dialogo34, lineaIntermedio = dialogo35)
 
 const juli = new VecinoSolitarioConMision( posicionDelVecino = game.at(27, 7), imagenDelVecino = "juliRed.png", dialogo = dialogo3,
@@ -342,7 +349,7 @@ const juli = new VecinoSolitarioConMision( posicionDelVecino = game.at(27, 7), i
                                            lineaFinal = dialogo26, lineaIntermedio = dialogo27)
 
 const rami = new VecinoSolitarioConMision( posicionDelVecino = game.at(16,4), imagenDelVecino ="rami.png", dialogo = dialogo4, 
-                                           itemQueNecesita = puaGuitarra, itemAEntregar = transportadora, 
+                                           itemQueNecesita = puaGuitarra, itemAEntregar = transportadoraVacia, 
                                            lineaFinal = dialogo24, lineaIntermedio = dialogo25)
 
 const tomillo = new VecinoSolitarioConMision( posicionDelVecino = game.at(10,16), imagenDelVecino = "scoutRed.png", dialogo = dialogo2,

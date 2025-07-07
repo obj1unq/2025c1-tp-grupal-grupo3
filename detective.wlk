@@ -144,6 +144,7 @@ object detective {
 
   method descartarItem(item) {
       inventario.remover(item)
+
   }
 
   method gameOver() {

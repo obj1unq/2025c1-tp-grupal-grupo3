@@ -247,7 +247,7 @@ const escenarioMercado = new Escenario (protagonista = detective, map = mapaEsce
 										edificios = [arbustosAbajo1, maquina, paradaColectivo1, arbustosAbajo2, faro, pozo, floresAbajo, floresAbajo2, pozo2, hotel, hotelArriba, paredIzq,
 						paredDer, edificio1, entradaEstacionamiento, carritos, supermercado, arbolSupermercado, basuraSupermercado, elevador],
 										objetos = [],
-										vecinos = [vane, rami, vete, ana, azula, abuelo],
+										vecinos = [vane, rami, vete, ana, azula, abuelo, metalero],
 										escenariosVecinos = [escenarioAlOesteDeMercado])
 
 const mapaEscenarioMercado = new Mapa(image = "escenarioMercadoFINAL1.png")
