@@ -1,3 +1,5 @@
+import interactuable.*
+import edificios.*
 import escenarios.*
 import cosas.*
 import detective.*
@@ -149,7 +151,6 @@ describe "testGame" {
     assert.notThat(detective.tieneItem(bocadillos))
     //verificar que en el inventario de detective ya no tiene mas la transportadora vacia
     assert.notThat(detective.tieneItem(transportadoraVacia))
-
   }
 
    test "El vecino recibe su asset correspondiente"{
@@ -167,7 +168,7 @@ describe "testGame" {
     assert.equals("juan.png", juan.image())
     assert.equals("luciaRed.png", fernanda.image())
     assert.equals("guardaBosqueFINAL.png", guardaBosque.image())
-    assert.equals("luciaRed.png", lucia.image())
+    assert.equals("luciaFINAL.png", lucia.image())
     assert.equals("juliRed.png", juli.image())
     assert.equals("rami.png", rami.image())
     assert.equals("scoutRed.png", tomillo.image())
