@@ -240,11 +240,10 @@ const escenarioBosque = new EscenarioConRestriccion (protagonista = detective, m
 						arbolSolitario2, columnaArbolesAbajoDer, desnivel1, desnivel2, arbolSolitario3, filaArbolMedioIzq, columnaArbolMedioIzq, 
 						columnaArbolMedioDer, filaArbolMedioDer, columnaArbolDer1, filaArbolArribaDer, carpas1, columnaArbolDer, carpas2, denivel3, 
 						denivel4, camas, arboles, arboles1, carpas4, casaRodante],
-										objetos = [morena, oso],
+										objetos = [oso, morena],
 										vecinos = [],
 										escenariosVecinos = [escenarioAlSurDeBosque],
 										iniciables = #{oso})
-										
 const mapaEscenarioBosque = new Mapa (image = "escenarioBosqueFINAL1.png")
 const escenarioBosqueCubiertas = new Mapa (image = "escenarioBosqueFINALcubiertas.png")
 const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario = escenarioCamping)

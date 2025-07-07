@@ -12,6 +12,8 @@ import animalSalvaje.*
 
 program detectiveDeMascotas{
 
+
+
   game.title("Detective de mascotas")
   
   detective.escenarioActual().configurar()

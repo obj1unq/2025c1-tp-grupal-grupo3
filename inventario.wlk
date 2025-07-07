@@ -4,7 +4,7 @@ import cosas.*
 import mascota.*
 
 object inventario {
-  const property objetos = [lupa, credencial]
+  const property objetos = [lupa]
 
   
   method agregar(item) {
@@ -71,8 +71,5 @@ object inventario {
     return objetos.contains(objeto)
   }
 
-  method cantObjetoPistaDelInventario(){
-    return objetos.count({objeto => objeto.esPista()})
-  }
 
 }

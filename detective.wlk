@@ -135,6 +135,7 @@ object detective {
     return inventario.cantObjetoPistaDelInventario()
   }
 
+
   method levantarObjeto(objeto) {
     escenarioActual.eliminarObjeto(objeto)
   }
