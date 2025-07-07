@@ -2,143 +2,15 @@ import interactuable.*
 import detective.*
 import inventario.*
 
-// class ItemEnMapa inherits Interactuable {
-//   var property position 
-//   const property itemParaInventario 
-//   const property imagen
-//   const texto = "¡Encontré"  + "!"
-//   //var estaEnElMapa = true
- 
-//   method setPosition(pos) {
-//     position = pos
-//   }
-
-//   method image() {
-//     return imagen
-//   }
-
-//   method esInvisible(){
-//     return false
-//   }
-
-//   override method interactuarCon(detective) {
-//     //self.validarSiSePuedeInteractuarCon(detective)
-//     game.say(detective, texto)
-//     inventario.agregar(itemParaInventario)
-//     detective.levantarObjeto(self)
-    
-//   }
-
-
-// }
-
-// class ItemEnInventario inherits Interactuable{
-//   var property durabilidad 
-//   var property position 
-//   const property itemDeMapa
-//   const property imagen  
-//   const texto = "¡Encontré"  + "!"
-  
-//   method setPosition(pos) {
-//     position = pos
-//   }
-
-//   method image() {
-//     return imagen
-//   }
-
-//   override method interactuarCon(detective) {
-//     game.say(detective, texto)
-//     inventario.agregar(self)
-//     game.removeVisual(self)
-   
-//   }
-
-//   method usar() {
-//     self.actualizarDurabilidad()
-//     self.actualizarEstadoDe()
-//     game.say(detective, "Usaste " + texto)
-//   }
-
-//   method actualizarEstadoDe() {
-//     if (durabilidad == 0)
-//       inventario.remover(self) 
-//   }
-
-//   method actualizarDurabilidad() {
-//     durabilidad = durabilidad - 1
-//   }
-
-
-//   method usoInfinito(){
-//     return true
-//   }
-
-//   method dependeDeEscenario() {
-//     return true
-//   }
-// }
- 
-// object lupa inherits ItemEnMapa (position = game.at(10,10), 
-//                                 itemParaInventario = lupaDeInventario,
-//                                 texto = "Encontraste una lupa",
-//                                 imagen = "lupa.png"){}  
-
-// object lupaDeInventario inherits ItemEnInventario (durabilidad = 1, 
-//                                                   position = game.at(10,10), 
-//                                                   itemDeMapa = lupa, 
-//                                                   texto = "lupa",
-//                                                   imagen = "lupa.png"){}
-    
-// object blockNotas inherits ItemEnMapa (position = game.at(10,6), 
-//                                       itemParaInventario = blockDeInventario, 
-//                                       texto = "Encontraste un block de notas",
-//                                       imagen = "blockDeNotas.png"){}
-
-// object blockDeInventario inherits ItemEnInventario (durabilidad = 100, 
-//                                                     position = game.at(10,10), 
-//                                                     itemDeMapa = blockNotas, 
-//                                                     texto = "block usado",
-//                                                     imagen = "blockDeNotas.png"){}
-      
-// object collar inherits ItemEnMapa (position = game.at(7,8), 
-//                                   itemParaInventario = collarInventario,
-//                                   texto = "Encontraste un collar",
-//                                   imagen = "collar.png"){}
-
-// object collarInventario inherits ItemEnInventario (durabilidad = 1, 
-//                                                   position = game.at(10,10), 
-//                                                   itemDeMapa = collar, 
-//                                                   texto = "collar usado",
-//                                                   imagen = "collar.png"){}
-    
-// object miel inherits ItemEnMapa (position = game.at(9,9), 
-//                                     itemParaInventario = mielDeInventario, 
-//                                     texto = "Encontraste miel",
-//                                     imagen = "miel.png"){}
-       
-// object mielDeInventario inherits ItemEnInventario (durabilidad = 1, 
-//                                                       position = game.at(10,10), 
-//                                                       itemDeMapa = miel, 
-//                                                       texto = "miel usada",
-//                                                       imagen = "mielDeInventario.png"){}
-      
-// object dni inherits ItemEnInventario ( durabilidad = 1,
-//                                        position = game.at(10,10),
-//                                        itemDeMapa = miel,
-//                                        texto = "dni usado",
-//                                        imagen = "dniDeInventario.png") {}
-
 
 class Item inherits Interactuable {
   var property position 
   const property imagenParaInventario
   var property imagen
   const texto  
-  //const textoParaInventario = "zzzzzz!"
   var property durabilidad 
-  //var estaEnElMapa = true
- 
+  var property enInventario 
+  
   method setPosition(pos) {
     position = pos
   }
@@ -152,11 +24,6 @@ class Item inherits Interactuable {
   }
 
 
-  // method cambiarATextoParaInventario() {
-  //   texto = textoParaInventario
-  // }
-
-
   method esInvisible(){
     return false
   }
@@ -165,7 +32,11 @@ class Item inherits Interactuable {
     game.say(detective, "Encontré " + texto)
     detective.levantarObjeto(self)
     inventario.agregar(self)
-    
+    self.marcarComoEnInventario()
+  }
+
+  method marcarComoEnInventario() {
+    enInventario = true
   }
 
 
@@ -192,6 +63,10 @@ class Item inherits Interactuable {
   method dependeDeEscenario() {
     return true
   }
+
+  override method puedeInteractuar() {
+    return not enInventario
+  }
 }
 
 
@@ -199,80 +74,98 @@ const lupa = new Item (position = game.at(10,10),
                           imagenParaInventario = "lupa.png",
                           texto = "una lupa",
                           imagen = "lupa.png",
-                          durabilidad = 1)
+                          durabilidad = 1,
+                      enInventario = false)
 
 const blockNotas = new Item (position = game.at(15,6), 
                             imagenParaInventario = "blockDeNotas.png", 
                             texto = "un block de notas",
                             imagen = "blockDeNotas.png",
-                            durabilidad = 10)
+                            durabilidad = 10,
+                      enInventario = false)
  
 const collar = new Item (position = game.at(7,8), 
                         imagenParaInventario = "collar.png",
                         texto = "un collar",
                         imagen = "collar.png",
-                        durabilidad = 1)
+                        durabilidad = 1,
+                      enInventario = false)
 
     
 const miel = new Item (position = game.at(9,9), 
                       imagenParaInventario = "mielFINAL.png", 
                       texto = "miel",
                       imagen = "mielFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
          
 const dni = new Item (position = game.at(10,10),
                       imagenParaInventario = "dniFINAL.png",
                       texto = "un dni usado",
                       imagen = "dniFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
 
 const llave = new Item (position = game.at(10,10),
                       imagenParaInventario = "llaveFINAL.png",
                       texto = "un dni usado",
                       imagen = "llaveFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
 
 const linterna = new Item (position = game.at(10,10),
                       imagenParaInventario = "linternaFINAL.png",
                       texto = "un dni usado",
                       imagen = "linternaFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
 
 const puaGuitarra = new Item (position = game.at(8,6),
                       imagenParaInventario = "puaInventarioFINAL.png",
                       texto = "la pua de Rami",
                       imagen = "puaFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
 
 const transportadora = new Item (position = game.at(10,10),
                       imagenParaInventario = "transportadoraVaciaFINAL.png",
                       texto = "un dni usado",
                       imagen = "transportadoraVaciaFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
 
 const burbujero = new Item (position = game.at(23,16),
                       imagenParaInventario = "burbujeroInventarioFINAL.png",
                       texto = "el burbujero de juli",
                       imagen = "burbujeroFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
 
 const hoja = new Item (position = game.at(10,10),
                       imagenParaInventario = "hojaFINAL.png",
                       texto = "un dni usado",
                       imagen = "hojaFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
 
 const caramelos = new Item (position = game.at(10,10),
                       imagenParaInventario = "caramelosFINAL.png",
                       texto = "un dni usado",
                       imagen = "caramelosFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
 
 const moneda = new Item (position = game.at(10,10),
                       imagenParaInventario = "monedaFINAL.png",
                       texto = "un dni usado",
                       imagen = "monedaFINAL.png",
-                      durabilidad = 1)
+                      durabilidad = 1,
+                      enInventario = false)
 
-
+const credencial = new Item (position = game.at(10,10),
+                      imagenParaInventario = "credencial.png",
+                      texto = "una credencial",
+                      imagen = "credencial.png",
+                      durabilidad = 100000,
+                      enInventario = true)
 

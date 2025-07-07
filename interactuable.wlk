@@ -3,12 +3,15 @@ class Interactuable {
   var property esIntearactuable = true
   method interactuarCon(detective) 
  
-method cambiarEstado() {
+  method cambiarANoInteractuable() {
     esIntearactuable = false
-}
+  }
 
+  method cambiarAInteractuable() {
+    esIntearactuable = true
+  }
 
-
+  method puedeInteractuar
 
 }
 

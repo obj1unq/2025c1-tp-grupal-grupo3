@@ -8,7 +8,7 @@ import animalSalvaje.*
 
 object detective {
   var property position = game.at(16, 9)  
-  var property escenarioActual = escenarioEscolar
+  var property escenarioActual = escenarioCamping
   var property estaVivo = true 
 
   method puedeMoverHacia(direccion) {
@@ -39,7 +39,7 @@ object detective {
   }
 
   method moverANuevoEscenarioEn(direccion){
-       if (not escenarioActual.hayEscenarioHaciaDireccion(direccion)){
+       if (not escenarioActual.puedeCambiarseDeEscenario(direccion)){
           game.say(self, "No hay nada en esa direccion")
        }else{
             self.cargarNuevoEscenarioEn(direccion)
@@ -79,10 +79,14 @@ object detective {
   // }
 
   method interactuar() {
-    if (not self.hayInteractuableCercano())
+    if (not self.puedeInteractuar())
         game.say(self, "No hay nada acá")
       else
        self.objetoInteractuableCercano().interactuarCon(self)
+  }
+
+  method puedeInteractuar() {
+    return self.hayInteractuableCercano() and self.objetoInteractuableCercano().puedeInteractuar()
   }
 
   method objetoInteractuableCercano() {

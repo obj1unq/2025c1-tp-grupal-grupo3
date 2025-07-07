@@ -26,10 +26,6 @@ class Vecino inherits Interactuable{
     override method interactuarCon(detective) {
     self.hablar()
   }
-  
-    // override method sePuedeMostarEnInventario() {
-    //   return false
-    // }
 
   method esInvisible(){
     return false
@@ -39,146 +35,118 @@ class Vecino inherits Interactuable{
     return true
   }
 
+  override method puedeInteractuar() {
+    return true
+  }
+    
 } 
-class VecinoConMision inherits Vecino {
-    var  puedeDarMision = true
-    const property itemAEntregar
-    const lineaIntermedio
+
+class VecinoConMision inherits Vecino{
+    const property itemAEntregar 
     const lineaFinal
+    const lineaIntermedio
+    var property tieneMisionDisponible =  true
 
-    // override method interactuarCon(detective){ 
-    //    if(not detective.tieneItem(itemAEntregar)) {
-    //        self.comenzarMision(detective)
-    //      } else {
-    //        self.cerrarMision(detective)
-    //    }
-    // }
 
-    method puedeDarMision() {
-      return puedeDarMision
-    }
-    override method interactuarCon(detective) {
-        if(self.puedeDarMision()) {
-            self.comenzarMision(detective)
+  override method interactuarCon(detective) {
+    self.validarSiPuedeInteractuarCon(detective)
+    self.empezarInteraccion(detective)
+  }
+
+  method validarSiPuedeInteractuarCon(detective) {
+    return if (not self.esIntearactuable())
+              self.error("No hay nada interactuable acá")
+  }
+
+  method empezarInteraccion(detective) {
+    if(self.tieneMisionSinIniciar(detective)) {
+           self.comenzarMision(detective)
         } else {
-            self.cerrarMision(detective)
+          self.cerrarMision(detective)
         }
-    }
+  }
 
-    method comenzarMision(detective) {
-        self.hablar()
-        self.dejarSinMisionesDisponibles()
-    }
+  method tieneMisionSinIniciar(detective) {
+    return  tieneMisionDisponible
+  }
 
-    method dejarSinMisionesDisponibles() {
-        puedeDarMision = false
-    }
+  method comenzarMision(detective) {
+    self.hablar()
+    tieneMisionDisponible = false
+  }
 
-    method cerrarMision(detective) {
-        if( self.seCumpleMision(detective) ) {
-            self.finalizarMision(detective)
-        } else {
-            self.decirIntermedio()
-        }
+  method cerrarMision(detective) {
+    if (self.sePuedeFinalizarMision(detective)) {
+       self.finalizarMision(detective)
+    } else {
+        self.decirIntermedio()
     }
+  }
 
-    method finalizarMision(detective) {
-          self.decirFinal()
-    }
+  method sePuedeFinalizarMision(detective) 
 
-    method seCumpleMision(detective) {
-        return true
-    }
+  method finalizarMision(detective) {
+    self.decirFinal()
+    self.darItem(detective)
+    self.cambiarANoInteractuable()
+  }
 
-    method decirIntermedio() {
-       lineaIntermedio.hablar(self)
-    }
-
-    method decirFinal() {
+  method decirFinal() {
       lineaFinal.hablar(self)
     }
 
-    method darItem(detective) {
+  method darItem(detective) {
       detective.recibirItem(itemAEntregar)
     }
-}
-class VecinoPrincialMision inherits VecinoConMision {
-    const property itemQueNecesita
-    //var property tieneMisionCompletada 
-    //const lineaMisionCompleta
-    //const property recompensa 
-    //const lineaAgradecimiento  
 
-    override method seCumpleMision(detective) {
-      return detective.tieneItem(itemQueNecesita)
+  method decirIntermedio() {
+       lineaIntermedio.hablar(self)
     }
-    // override method dejarSinMisionesDisponibles() {
-    //     tieneMisionCompletada = true
-    // }
+
+}
+
+class VecinoSolitarioConMision inherits VecinoConMision {
+    const property itemQueNecesita
+
+    override method sePuedeFinalizarMision(detective) {
+        return detective.tieneItem(itemQueNecesita)
+    }
 
     override method finalizarMision(detective) {
-        // if(self.tieneMisionCompletada()) {
-        //     self.decirMisionCompleta()
-        // } else {
-            super(detective)
-            detective.descartarItem(itemQueNecesita)
-            self.darItem(detective)
-            //self.dejarSinMisionesDisponibles()
-        
-    }  
-
-    // method decirMisionCompleta() {
-    //     lineaMisionCompleta.hablar(self)
-    // }
-  
-    // override method interactuarCon(detective) {
-    //   if(not detective.tieneItem(itemQueNecesita)) {
-    //     self.hablar()
-    //   } else {
-    //       detective.descartarItem(itemQueNecesita)
-    //       self.decirFinDeMision()
-    //       self.darRecompensa(detective)
-
-    //   }
-    // }
-
-
-    // method decirFinDeMision() {
-    //   lineaAgradecimiento.hablar(self)
-    // }
-
-    // method darRecompensa(detective) {
-    //     detective.recibirItem(recompensa)
-    // }
+      super(detective)
+      detective.descartarItem(itemQueNecesita)
+    }
 }
 
-class VecinoSecundarioMision inherits VecinoConMision {
-    //const property itemAEntregar
-    //const lineaFinDeEntrega
+class VecinoPrincipalConMision inherits VecinoSolitarioConMision {
+  const property vecinoSecundario
 
-    override method comenzarMision(detective) {
-        super(detective)
-        self.darItem(detective)
-    }
+  override method comenzarMision(detective) {
+    super(detective)
+    vecinoSecundario.cambiarAInteractuable()
+  }
+  
+  override method finalizarMision(detective) {
+      super(detective)
+      vecinoSecundario.cambiarANoInteractuable()
+  }
 
-    override method seCumpleMision(detective) {
-      return true
-    }
-    // override method interactuarCon(detective) {
-    //   if(not detective.tieneItem(itemAEntregar)) {
-    //       self.hablar()
-    //       self.darItem(detective)
-    //   } else {
-    //       self.decirFinDeEntrega()
-    //   }
-    // }
+}
 
-    // method darItem(detective) {
-    //   detective.recibirItem(itemAEntregar)
-    // }
-    // method decirFinDeEntrega() {
-    //   lineaFinDeEntrega.hablar(self)
-    // }
+class VecinoSecundarioConMision inherits VecinoConMision {
+
+  override method comenzarMision(detective) {
+    super(detective)
+    self.darItem(detective)
+  }
+
+  override method finalizarMision(detective) {
+    self.decirFinal()
+  }
+
+  override method sePuedeFinalizarMision(detective) {
+    return not detective.tieneItem(itemAEntregar)
+  }
 }
 
 class Dialogo {
@@ -297,35 +265,35 @@ const dialogo31 = new Dialogo( lineasDelVecino = dialogoIntermedioVete)
 const lucia = new Vecino (posicionDelVecino = game.at(2, 4), imagenDelVecino = "luciaRed.png", dialogo = dialogo1 )
 const tomillo = new Vecino(posicionDelVecino = game.at(10,16), imagenDelVecino = "scoutRed.png", dialogo = dialogo2)
 
-const juli = new VecinoPrincialMision(posicionDelVecino = game.at(27, 7), imagenDelVecino = "juliRed.png", dialogo = dialogo3,
+const juli = new VecinoSolitarioConMision(posicionDelVecino = game.at(27, 7), imagenDelVecino = "juliRed.png", dialogo = dialogo3,
                                       itemQueNecesita = burbujero, itemAEntregar = hoja, 
                                       lineaFinal = dialogo26, lineaIntermedio = dialogo27)
 
-const rami = new VecinoPrincialMision( posicionDelVecino = game.at(16,4), imagenDelVecino ="rami.png", dialogo = dialogo4, 
+const rami = new VecinoSolitarioConMision( posicionDelVecino = game.at(16,4), imagenDelVecino ="rami.png", dialogo = dialogo4, 
                                        itemQueNecesita = puaGuitarra, itemAEntregar = transportadora, 
                                        lineaFinal = dialogo24, lineaIntermedio = dialogo25)
 
 const juan = new Vecino( posicionDelVecino = game.at(11,15),imagenDelVecino ="juan.png", dialogo = dialogo5)
 
-const doc = new VecinoPrincialMision( posicionDelVecino = game.at(30,3), imagenDelVecino="docRed.png" ,
+const doc = new VecinoPrincipalConMision(vecinoSecundario = vane , posicionDelVecino = game.at(30,3), imagenDelVecino="docRed.png" ,
                                       dialogo = dialogo6, itemQueNecesita = dni, itemAEntregar = miel, 
                                       lineaFinal = dialogo13, lineaIntermedio = dialogo14)
 
-const poliHombre = new VecinoSecundarioMision( posicionDelVecino = game.at(2,15), imagenDelVecino = "policiaHombreFINAL.png",
+const poliHombre = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(2,15), imagenDelVecino = "policiaHombreFINAL.png",
                                                dialogo = dialogo18, itemAEntregar = llave, 
                                                lineaFinal= dialogo19, lineaIntermedio = dialogo20)
 
-const poliMujer = new VecinoPrincialMision(posicionDelVecino = game.at(4,4), imagenDelVecino="policiaMujerFINAL.png" ,dialogo = dialogo21, 
+const poliMujer = new VecinoPrincipalConMision(vecinoSecundario = poliHombre, posicionDelVecino = game.at(4,4), imagenDelVecino="policiaMujerFINAL.png" ,dialogo = dialogo21, 
                                            itemQueNecesita = llave, itemAEntregar = linterna, 
                                            lineaFinal = dialogo22, lineaIntermedio = dialogo23)
 
-const vete = new VecinoSecundarioMision( posicionDelVecino = game.at(11,14), imagenDelVecino = "veteRed.png", 
+const vete = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(11,14), imagenDelVecino = "veteRed.png", 
                                          dialogo = dialogo7, itemAEntregar = caramelos,
                                          lineaFinal = dialogo30, lineaIntermedio = dialogo31)
 
 const meli = new Vecino( posicionDelVecino = game.at(29,8),imagenDelVecino = "meli.png", dialogo = dialogo8)
 
-const nino = new VecinoPrincialMision( posicionDelVecino = game.at(25,6),imagenDelVecino = "nino.png", dialogo = dialogo9,
+const nino = new VecinoPrincipalConMision(vecinoSecundario = vete,  posicionDelVecino = game.at(25,6),imagenDelVecino = "nino.png", dialogo = dialogo9,
                                        itemQueNecesita = caramelos, itemAEntregar = moneda,
                                        lineaFinal = dialogo28, lineaIntermedio = dialogo29)
 
@@ -333,7 +301,6 @@ const vale = new Vecino( posicionDelVecino = game.at(7,14),imagenDelVecino = "va
 
 const ivan = new Vecino( posicionDelVecino = game.at(7, 5), imagenDelVecino ="ivan.png", dialogo = dialogo11)
 
-const vane = new VecinoSecundarioMision( posicionDelVecino = game.at(30,3), imagenDelVecino ="vane.png", 
+const vane = new VecinoSecundarioConMision(esIntearactuable = false, posicionDelVecino = game.at(30,3), imagenDelVecino ="vane.png", 
                                         dialogo = dialogo12, itemAEntregar = dni, 
                                         lineaFinal = dialogo17, lineaIntermedio = dialogo16)
-//VecinoSecundarioMision( posicionDelVecino = game.at(30,3), imagenDelVecino ="vane.png", dialogo = dialogo12, itemAEntregar = dni, lineaFinDeEntrega = dialogo15)

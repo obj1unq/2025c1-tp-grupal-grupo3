@@ -5,7 +5,7 @@ object arriba {
   }
 
   method entradaAlEscenarioDesdeBorde(pos) {
-    return game.at(pos.x(), 0)
+    return game.at(pos.x(), 1)
   }
 }
 

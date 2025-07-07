@@ -1,12 +1,14 @@
 import detective.*
 import cosas.*
 import interactuable.*
+import escenarios.*
 
 class Mascota inherits Interactuable{
   const position = game.at(10,10)
   const image = "mascota1.png"
   const texto = "¡!"
   const comida
+  const property escenarioActual = escenarioBosque
 
   method position() {
     return position
@@ -29,6 +31,9 @@ class Mascota inherits Interactuable{
     return false
   }
 
-
-
+  override method puedeInteractuar() {
+    return true
+  }
 }
+
+//const morena = new Mascota( )

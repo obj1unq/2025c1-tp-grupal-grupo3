@@ -17,7 +17,6 @@ object oso {
 
     method finalizar() {
         game.removeTickEvent("mover oso")
-        //game.say(self, "el oso no se puede mover")
     }
     
     method nuevaPosicion(){
@@ -25,15 +24,10 @@ object oso {
     }
 
     method mover() {
-        // if (not self.hayDetectiveEnNuevaPosicion())
-        //         position = self.nuevaPosicion()
-        //     else 
-        //         game.addVisual(gameOver)
-        
-    if (self.estaAdyacenteAlDetective())
-        self.responderADetectiveAdyacente()
-      else
-        self.avanzar()
+        if (self.estaAdyacenteAlDetective())
+                self.responderADetectiveAdyacente()
+            else
+                self.avanzar()
     }
 
     method avanzar() {

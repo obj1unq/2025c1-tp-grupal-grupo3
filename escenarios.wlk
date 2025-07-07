@@ -153,6 +153,20 @@ class Escenario {
 		objetos.remove(objeto)
 	}
 
+	method puedeCambiarseDeEscenario(direccion) {
+  	  return  self.hayEscenarioHaciaDireccion(direccion) && self.escenarioEnDireccion(direccion).puedeCambiarse()
+ 	}
+
+	method puedeCambiarse() {
+		return true
+	}
+
+}
+
+class EscenarioConRestriccion inherits Escenario {
+	override method puedeCambiarse() {
+		return inventario.tieneObjeto(credencial)
+	}
 }
 
 class EscenarioVecino {
@@ -212,7 +226,7 @@ const escenarioAlSurDeCamping = new EscenarioVecino (direccion = abajo, escenari
 const escenarioAlNorteDeCamping = new EscenarioVecino (direccion = arriba, escenario = escenarioBosque)
 
 
-const escenarioBosque = new Escenario (protagonista = detective, map = mapaEscenarioBosque, mapCubiertas = escenarioBosqueCubiertas, 
+const escenarioBosque = new EscenarioConRestriccion (protagonista = detective, map = mapaEscenarioBosque, mapCubiertas = escenarioBosqueCubiertas, 
 										edificios = [arbolesParedAbajoIzq, arbolesParedAbajoDer, arbolesParedIzq, arbolesParedDer, arbolesParedArriba, arbolSolitario1, 
 						grupoArbolIzq, montaña1, montaña2, filaArbolesAbajoIzq, filaArbolesAbajoDer, columnaArbolesAbajoIzq, columnaArbolesAbajoDer, 
 						arbolSolitario2, columnaArbolesAbajoDer, desnivel1, desnivel2, arbolSolitario3, filaArbolMedioIzq, columnaArbolMedioIzq, 
