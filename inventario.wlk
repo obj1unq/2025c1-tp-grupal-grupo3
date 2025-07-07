@@ -4,7 +4,7 @@ import cosas.*
 import mascota.*
 
 object inventario {
-  const property objetos = [credencial]
+  const property objetos = [lupa]
 
   
   method agregar(item) {

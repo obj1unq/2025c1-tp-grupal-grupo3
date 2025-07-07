@@ -126,6 +126,16 @@ class VecinoSolitarioConMision inherits VecinoConMision {
     }
 }
 
+class VecinoPrincipal inherits VecinoSolitarioConMision {
+  const property item = blockNotas 
+
+  override method comenzarMision(detective) {
+    self.hablar()
+    detective.recibirItem(item)
+    tieneMisionDisponible = false
+  }
+}
+
 class VecinoPrincipalConMision inherits VecinoSolitarioConMision {
   const property vecinoSecundario
 
@@ -256,7 +266,8 @@ const dialogoIntermedioDePoliHombre = ["¿Le diste la llave?"]
 const dialogoDePoliMujer           = ["Buenos dias detective", "Preciso su ayuda", "Mi compañero que esta en el camping", 
                                       "Se olvido de darme la llave de mi casillero","¿Podrias alcanzarme la llave?"]
 const dialogoFinalDePoliMujer      = ["Muchas gracias detective", "Tome esta linterna, puede servirle", "No se olvide que con la linterna y la lupa", 
-                                      "Puede encontrar pistas", "En lugares donde hayan GRAFITIS", "Debe buscar bien los GRAFITIS, estan ESCONDIDOS"]
+                                      "Puede encontrar pistas", "En lugares donde hayan GRAFITIS", "Debe buscar bien los GRAFITIS, estan ESCONDIDOS", 
+                                      "Creo que no todos te van a dar PISTAS", "Preste ATENCION a las PISTAS"]
 const dialogoIntermedioDePoliMujer = ["¿Conseguiste la llave?"]
 
 const dialogoDeGuardaBosque = ["No te puedo dejar pasar", "Si no tenes una CREDENCIAL",
@@ -330,7 +341,7 @@ const abuelo   = new Vecino( posicionDelVecino = game.at(23, 18), imagenDelVecin
 const gruda    = new Vecino( posicionDelVecino = game.at(26, 14), imagenDelVecino = "grudaFINAL.png", dialogo = dialogo44)
 const nene     = new Vecino( posicionDelVecino = game.at(6, 8), imagenDelVecino = "neneJugandoFINAL.png", dialogo = dialogo45)
 const maestra  = new Vecino( posicionDelVecino = game.at(29, 11), imagenDelVecino = "maestraFINAL.png", dialogo = dialogo46)
-const metalero  = new Vecino( posicionDelVecino = game.at(29, 11), imagenDelVecino = "metaleroFINAL.png", dialogo = dialogo47)
+const metalero  = new Vecino( posicionDelVecino = game.at(7, 4), imagenDelVecino = "metaleroFINAL.png", dialogo = dialogo47)
 
 
 
@@ -340,7 +351,7 @@ const guardaBosque = new VecinoEspecialConMision( posicionDelVecino = game.at(18
                                                   dialogo = dialogo37, itemAEntregar = credencial, 
                                                   lineaFinal = dialogo38, lineaIntermedio = dialogo39)
 
-const lucia = new VecinoSolitarioConMision ( posicionDelVecino = game.at(20, 10), imagenDelVecino = "luciaFINAL.png", dialogo = dialogo1,
+const lucia = new VecinoPrincipal ( posicionDelVecino = game.at(19, 10), imagenDelVecino = "luciaFINAL.png", dialogo = dialogo1,
                                              itemQueNecesita = morena, itemAEntregar = flores, 
                                              lineaFinal = dialogo34, lineaIntermedio = dialogo35)
 
