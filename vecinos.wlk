@@ -109,7 +109,13 @@ class VecinoConMision inherits Vecino{
 class VecinoEspecialConMision inherits VecinoConMision {
 
   override method sePuedeFinalizarMision(detective) {
-      return detective.cantPistas() >= 6
+      return detective.cantPistas() >= 5
+  }
+
+  override method finalizarMision(detective) {
+      super(detective)
+      detective.descartarItem(lupa)
+
   }
 }
 
@@ -134,7 +140,14 @@ class VecinoPrincipal inherits VecinoSolitarioConMision {
     detective.recibirItem(item)
     tieneMisionDisponible = false
   }
+
+  override method finalizarMision(detective) {
+    super(detective)
+    game.addVisual(misionCompletada)
+    detective.gameOver()
+  }
 }
+
 
 class VecinoPrincipalConMision inherits VecinoSolitarioConMision {
   const property vecinoSecundario
@@ -191,6 +204,11 @@ class Dialogo {
         }      
     }
 }
+
+object misionCompletada {
+        const property image = "misionCumplida.png" 
+        const property position = game.at(10, 0) 
+    }
 
 
 //DEFINICION DEL DIALOGO EN LUCIA:
@@ -272,7 +290,7 @@ const dialogoIntermedioDePoliMujer = ["¿Conseguiste la llave?"]
 
 const dialogoDeGuardaBosque = ["No te puedo dejar pasar", "Si no tenes una CREDENCIAL",
                                "Yo te puedo dar la CREDENCIAL", "Pero debes demostrar si sos un buen detective", 
-                               "Si encontraste 6 PISTAS o más", "Te daré la credencial"]
+                               "Si encontraste 5 PISTAS o más", "Te daré la credencial"]
 const dialogoFinalDeGuardaBosque = ["Eres un buen detective", "Toma la credencial", "Mucha suerte"]
 const dialogoIntermedioDeGuardaBosque = ["Te aconsejo que entres preparado", "Esta peligroso el bosque"]
 

@@ -1,3 +1,4 @@
+import edificios.*
 import direcciones.*
 import cosas.*
 import vecinos.*
@@ -40,7 +41,7 @@ object detective {
 
   method moverANuevoEscenarioEn(direccion){
        if (not escenarioActual.puedeCambiarseDeEscenario(direccion)){
-          game.say(self, "No hay nada en esa direccion")
+          self.error("No hay nada en esa direccion")
        }else{
             self.cargarNuevoEscenarioEn(direccion)
        }
@@ -80,7 +81,7 @@ object detective {
 
   method interactuar() {
     if (not self.puedeInteractuar())
-        game.say(self, "No hay nada acá")
+        self.error("No hay nada acá")
       else
        self.objetoInteractuableCercano().interactuarCon(self)
   }
@@ -127,8 +128,11 @@ object detective {
     return game.uniqueCollider(self)
   }
 
+  // method cantPistas() {
+  //   return inventario.objetos.count({ objeto => objeto.esPista()})
+  // }
   method cantPistas() {
-    return inventario.objetos.sum({ objeto => objeto.esPista()})
+    return inventario.cantObjetoPistaDelInventario()
   }
 
   method levantarObjeto(objeto) {
@@ -144,6 +148,7 @@ object detective {
 
   method descartarItem(item) {
       inventario.remover(item)
+      inventario.refrescar()
 
   }
 
