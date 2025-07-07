@@ -31,7 +31,7 @@ class Mascota inherits Interactuable{
     return false
   }
 
-  override method puedeInteractuar() {
+  method puedeInteractuar() {
     return true
   }
 }

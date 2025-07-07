@@ -84,16 +84,6 @@ object oso {
     }
 
     
-
-
-
-    
-
-
-    
-    
-    
-
     method xAMover() {
         return if(self.xDistancia() > 0) {
                  -1

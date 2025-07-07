@@ -86,7 +86,7 @@ object detective {
   }
 
   method puedeInteractuar() {
-    return self.hayInteractuableCercano() and self.objetoInteractuableCercano().puedeInteractuar()
+    return self.hayInteractuableCercano() and self.objetoInteractuableCercano().sePuedeInteractuar()
   }
 
   method objetoInteractuableCercano() {
@@ -136,7 +136,7 @@ object detective {
   }
 
   method tieneItem(item) {
-    return inventario.objetos().contains(item)
+    return inventario.tieneObjeto(item)
 }
   method recibirItem(item) {
       inventario.agregar(item)

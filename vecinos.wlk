@@ -34,11 +34,10 @@ class Vecino inherits Interactuable{
   method dependeDeEscenario() {
     return true
   }
-
-  override method puedeInteractuar() {
+  
+  override method sePuedeInteractuar() {
     return true
   }
-    
 } 
 
 class VecinoConMision inherits Vecino{
@@ -103,6 +102,13 @@ class VecinoConMision inherits Vecino{
        lineaIntermedio.hablar(self)
     }
 
+}
+
+class VecinoEspecialConMision inherits VecinoConMision {
+
+  override method sePuedeFinalizarMision(detective) {
+      return detective.cantPistas() >= 6
+  }
 }
 
 class VecinoSolitarioConMision inherits VecinoConMision {
@@ -176,8 +182,39 @@ class Dialogo {
 
 
 //DEFINICION DEL DIALOGO EN LUCIA:
-const dialogosDeLucia = ["Hola, Necesito tu ayuda", "Se perdió MICHI, mi gatito", "No puedo estar sin Michi", "Michi tiene un collar celeste", "Te agradeceria que lo encuentres"] 
-const dialogoDeTomillo = ["Hola,soy Tomillo", "Pero me dice Tomi", "¿Estas buscando una mascota?", "Podrias ir al Camping para ver", "Capaz encontras algo"] 
+const dialogoDeFernanda = ["Necesitaba salir a tomar aire fresco", "El día esta muy lindo"]
+
+const dialogoDeJuan = ["Rami te dijo de ir a la policia","Eso es bueno", "Pero si vas al camping","andá con cuidado","Es temporada de osos"]
+
+const dialogoDeMeli = ["Estaba acariciando un gatito blanco", "Pero luego se fue corriendo al bosque", "Voy por un helado"]
+
+const dialogoDeVale = ["Buena suerte en el bosque, Detective"]
+
+const dialogoDeIvan = ["jmm","Los animales son dificiles", "¿tenés comida?","Eso puede ayudar"]
+
+const dialogoDeAna = ["Ultimamente la gente pierde sus cosas"]
+
+const dialogoDeAzula = ["Yo perdi mi cabeza", "Mis pensamientos estan en cualquier lado"]
+
+const dialogoDeAbuelito = ["Estoy cansado", "Quiero llegar a mi casa"]
+
+const dialogoDeAbuelita = ["Pobre Lucia", "Escuche que perdio a Morena", "Ojala la encuentre"]
+
+const dialogoDeGruda = ["Vivan las ofertas!!", "Pude comprar muchas cosas"]
+
+const dialogoDeNene = ["No hablo con extraños"]
+
+const dialogoDeMaestra = ["Hoy fue un día agotador de trabajo", "Los niños prestaron atencion a mi clase"]
+
+const dialogosDeLucia        = ["Hola, Necesito tu ayuda", "Se perdió Morena, mi gatita", "No puedo estar sin Morena", 
+                                "Morena tiene un collar celeste", "Ella es blanquita", "Te agradeceria que la encuentres"] 
+const dialogoFinalLucia      = ["AAAAA Morena!!!", "Muchas gracias por encontrarla!!", "La extrañaba mucho"]
+const dialogoIntermedioLucia = ["Espero que Morena este bien", "¿Encontraste alguna pista?"]
+
+const dialogoDeTomillo         = ["Hola, soy Tomillo", "¿Te gustaria comprarme unos bocadillos?", "Son para gato", 
+                                  "Si los queres necesito que me des una moneda"] 
+const dialogoFinalTomillo      = ["Gracias por tu compra", "Espero que te sirvan los bocadillos"]
+const dialogoIntermedioTomillo = ["¿Conseguiste la moneda?", "Quizas si ayudas a alguien", "Te de una monda como recompensa"]
 
 const dialogoDeJuli         = ["Podria darte una pista", "Pero solo te ayudare","Si me traes mi burbujero perdido", 
                                "No me movi de esta zona", "Asi que tiene que estar por aca"]
@@ -190,26 +227,19 @@ const dialogoFinalRami      = ["Muchisimas gracias!", "Sé que estas buscando un
                                "La usaba para TRANSPORTAR a mi gata","¿Pediste ayuda en la policia?", "Escuché que son buenos ayudando"]
 const dialogoIntermedioRami = ["Todavia no encontre mi pua :("]
 
-const dialogoDeJuan = ["Rami te dijo de ir a la policia","Eso es bueno", "Pero si vas al camping","andá con cuidado","Es temporada de osos"]
-
 const dialogoDelDoc              = ["Vine al correo para enviar algo","Pero tengo un problema, olvide mi DNI","Podrias traerme mi DNI?",
                                     "Lo tiene mi esposa","Ella esta en el hotel"]
-const dialogoAgradecimientoDeDoc = ["Muchas gracias por traerme el dni", "Te doy esto por tu ayuda"] 
+const dialogoAgradecimientoDeDoc = ["Muchas gracias por traerme el dni", "Te doy esto por tu ayuda", "Dicen que la miel es buena para los OSOS"] 
 const dialogoIntermedioDeDoc     = ["¿No pudiste encontrar a mi esposa?"] 
 
 
 const dialogoDeLaVete       = ["Hola Detective","¿Podrias llevarle los caramelos a mi hijo?", "Me olvide por completo"]
 const dialogoFinalVete      = ["Gracias por ayudarnos", "Espero que te sirva la moneda"]
-const dialogoIntermedioVete = ["¿Ya comio los caramelos mi hijo?"]
-
-const dialogoDeMeli = ["Estaba acariciando un gatito blanco", "Pero luego se fue corriendo al bosque", "Voy por un helado"] 
+const dialogoIntermedioVete = ["¿Ya comio los caramelos mi hijo?"] 
 
 const dialogoNino           = ["Mi mamá se olvidó de darme mis caramelos","Los compro en el SUPERMERCADO"]
 const dialogoFinalNino      = ["Gracias!! Ya queria comerlos", "Me encontre una moneda", "Te la regalo, quizas puedas comprar algo"]
 const dialogoIntermedioNino = ["Quiero comer mis caramelos :("]
-
-const dialogoDeVale = ["Buena suerte en el bosque, Detective"]
-const dialogoDeIvan = ["jmm","Los animales son dificiles", "¿tenés comida?","Eso puede ayudar"]
 
 const dialogoDeVane           = ["Hola, ¿mi marido se olvido algo?", "Dile que no lo pierda"]
 const dialogoIntermedioDeVane = ["¿Le entregaste el dni a mi marido?"]
@@ -225,6 +255,11 @@ const dialogoFinalDePoliMujer      = ["Muchas gracias detective", "Tome esta lin
                                       "Puede encontrar pistas", "En lugares donde hayan GRAFITIS", "Debe buscar bien los GRAFITIS, estan ESCONDIDOS"]
 const dialogoIntermedioDePoliMujer = ["¿Conseguiste la llave?"]
 
+const dialogoDeGuardaBosque = ["No te puedo dejar pasar", "Si no tenes una CREDENCIAL",
+                               "Yo te puedo dar la CREDENCIAL", "Pero debes demostrar si sos un buen detective", 
+                               "Si encontraste 6 PISTAS o más", "Te daré la credencial"]
+const dialogoFinalDeGuardaBosque = ["Eres un buen detective", "Toma la credencial", "Mucha suerte"]
+const dialogoIntermedioDeGuardaBosque = ["Te aconsejo que entres preparado", "Esta peligroso el bosque"]
 
 
 //CREO EL DIALOGO COMO INSTANCIA DE LA CLASE A LA QUE PERTENECE
@@ -258,49 +293,86 @@ const dialogo28 = new Dialogo( lineasDelVecino = dialogoFinalNino)
 const dialogo29 = new Dialogo( lineasDelVecino = dialogoIntermedioNino)
 const dialogo30 = new Dialogo( lineasDelVecino = dialogoFinalVete)
 const dialogo31 = new Dialogo( lineasDelVecino = dialogoIntermedioVete)
+const dialogo32 = new Dialogo( lineasDelVecino = dialogoFinalTomillo)
+const dialogo33 = new Dialogo( lineasDelVecino = dialogoIntermedioTomillo)
+const dialogo34 = new Dialogo( lineasDelVecino = dialogoFinalLucia)
+const dialogo35 = new Dialogo( lineasDelVecino = dialogoIntermedioLucia)
+const dialogo36 = new Dialogo( lineasDelVecino = dialogoDeFernanda)
+const dialogo37 = new Dialogo( lineasDelVecino = dialogoDeGuardaBosque)
+const dialogo38 = new Dialogo( lineasDelVecino = dialogoFinalDeGuardaBosque)
+const dialogo39 = new Dialogo( lineasDelVecino = dialogoIntermedioDeGuardaBosque)
+const dialogo40 = new Dialogo( lineasDelVecino = dialogoDeAna)
+const dialogo41 = new Dialogo( lineasDelVecino = dialogoDeAzula)
+const dialogo42 = new Dialogo( lineasDelVecino = dialogoDeAbuelito)
+const dialogo43 = new Dialogo( lineasDelVecino = dialogoDeAbuelita)
+const dialogo44 = new Dialogo( lineasDelVecino = dialogoDeGruda)
+const dialogo45 = new Dialogo( lineasDelVecino = dialogoDeNene)
+const dialogo46 = new Dialogo( lineasDelVecino = dialogoDeMaestra)
+
 
 
 
 //CREO A LUCIA COMO TAL LO QUE ES : UN VECINO 
-const lucia = new Vecino (posicionDelVecino = game.at(2, 4), imagenDelVecino = "luciaRed.png", dialogo = dialogo1 )
-const tomillo = new Vecino(posicionDelVecino = game.at(10,16), imagenDelVecino = "scoutRed.png", dialogo = dialogo2)
+const fernanda = new Vecino( posicionDelVecino = game.at(2, 4), imagenDelVecino = "luciaRed.png", dialogo = dialogo1)
+const juan     = new Vecino( posicionDelVecino = game.at(11,15),imagenDelVecino ="juan.png", dialogo = dialogo5)
+const meli     = new Vecino( posicionDelVecino = game.at(29,8),imagenDelVecino = "meli.png", dialogo = dialogo8)
+const vale     = new Vecino( posicionDelVecino = game.at(7,14),imagenDelVecino = "vale.png", dialogo = dialogo10)
+const ivan     = new Vecino( posicionDelVecino = game.at(7, 5), imagenDelVecino ="ivan.png", dialogo = dialogo11)
+const abuela   = new Vecino( posicionDelVecino = game.at(22, 4), imagenDelVecino = "abuelitaFINAL.png", dialogo = dialogo43)
+const ana      = new Vecino( posicionDelVecino = game.at(16, 17), imagenDelVecino = "AnaFINAL.png", dialogo = dialogo40)
+const azula    = new Vecino( posicionDelVecino = game.at(17, 17), imagenDelVecino = "azulaFINAL.png", dialogo = dialogo41)
+const abuelo   = new Vecino( posicionDelVecino = game.at(23, 18), imagenDelVecino = "abuelitoFinal.png", dialogo = dialogo42)
+const gruda    = new Vecino( posicionDelVecino = game.at(26, 14), imagenDelVecino = "grudaFINAL.png", dialogo = dialogo44)
+const nene     = new Vecino( posicionDelVecino = game.at(6, 8), imagenDelVecino = "neneJugandoFINAL.png", dialogo = dialogo45)
+const maestra  = new Vecino( posicionDelVecino = game.at(29, 11), imagenDelVecino = "maestraFINAL.png", dialogo = dialogo46)
 
-const juli = new VecinoSolitarioConMision(posicionDelVecino = game.at(27, 7), imagenDelVecino = "juliRed.png", dialogo = dialogo3,
-                                      itemQueNecesita = burbujero, itemAEntregar = hoja, 
-                                      lineaFinal = dialogo26, lineaIntermedio = dialogo27)
+
+
+
+const guardaBosque = new VecinoEspecialConMision( posicionDelVecino = game.at(18, 17), imagenDelVecino = "guardaBosqueFINAL.png", 
+                                                  dialogo = dialogo37, itemAEntregar = credencial, 
+                                                  lineaFinal = dialogo38, lineaIntermedio = dialogo39)
+
+const lucia = new VecinoSolitarioConMision ( posicionDelVecino = game.at(20, 10), imagenDelVecino = "luciaRed.png", dialogo = dialogo1,
+                                             itemQueNecesita = morena, itemAEntregar = hoja, 
+                                             lineaFinal = dialogo34, lineaIntermedio = dialogo35)
+
+const juli = new VecinoSolitarioConMision( posicionDelVecino = game.at(27, 7), imagenDelVecino = "juliRed.png", dialogo = dialogo3,
+                                           itemQueNecesita = burbujero, itemAEntregar = hoja, 
+                                           lineaFinal = dialogo26, lineaIntermedio = dialogo27)
 
 const rami = new VecinoSolitarioConMision( posicionDelVecino = game.at(16,4), imagenDelVecino ="rami.png", dialogo = dialogo4, 
-                                       itemQueNecesita = puaGuitarra, itemAEntregar = transportadora, 
-                                       lineaFinal = dialogo24, lineaIntermedio = dialogo25)
+                                           itemQueNecesita = puaGuitarra, itemAEntregar = transportadora, 
+                                           lineaFinal = dialogo24, lineaIntermedio = dialogo25)
 
-const juan = new Vecino( posicionDelVecino = game.at(11,15),imagenDelVecino ="juan.png", dialogo = dialogo5)
+const tomillo = new VecinoSolitarioConMision( posicionDelVecino = game.at(10,16), imagenDelVecino = "scoutRed.png", dialogo = dialogo2,
+                                              itemQueNecesita = moneda, itemAEntregar = bocadillos, 
+                                              lineaFinal = dialogo32, lineaIntermedio = dialogo33)
 
-const doc = new VecinoPrincipalConMision(vecinoSecundario = vane , posicionDelVecino = game.at(30,3), imagenDelVecino="docRed.png" ,
-                                      dialogo = dialogo6, itemQueNecesita = dni, itemAEntregar = miel, 
-                                      lineaFinal = dialogo13, lineaIntermedio = dialogo14)
+
+
+const doc = new VecinoPrincipalConMision( vecinoSecundario = vane , posicionDelVecino = game.at(30,3), imagenDelVecino="docRed.png" ,
+                                          dialogo = dialogo6, itemQueNecesita = dni, itemAEntregar = miel, 
+                                          lineaFinal = dialogo13, lineaIntermedio = dialogo14)
+
+const poliMujer = new VecinoPrincipalConMision( vecinoSecundario = poliHombre, posicionDelVecino = game.at(4,4), imagenDelVecino="policiaMujerFINAL.png",
+                                                dialogo = dialogo21, itemQueNecesita = llave, itemAEntregar = linterna, 
+                                                lineaFinal = dialogo22, lineaIntermedio = dialogo23)
+
+const nino = new VecinoPrincipalConMision( vecinoSecundario = vete,  posicionDelVecino = game.at(25,6),imagenDelVecino = "nino.png", 
+                                           dialogo = dialogo9, itemQueNecesita = caramelos, itemAEntregar = moneda,
+                                           lineaFinal = dialogo28, lineaIntermedio = dialogo29)
+
+
 
 const poliHombre = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(2,15), imagenDelVecino = "policiaHombreFINAL.png",
-                                               dialogo = dialogo18, itemAEntregar = llave, 
-                                               lineaFinal= dialogo19, lineaIntermedio = dialogo20)
-
-const poliMujer = new VecinoPrincipalConMision(vecinoSecundario = poliHombre, posicionDelVecino = game.at(4,4), imagenDelVecino="policiaMujerFINAL.png" ,dialogo = dialogo21, 
-                                           itemQueNecesita = llave, itemAEntregar = linterna, 
-                                           lineaFinal = dialogo22, lineaIntermedio = dialogo23)
+                                                  dialogo = dialogo18, itemAEntregar = llave, 
+                                                  lineaFinal= dialogo19, lineaIntermedio = dialogo20)
 
 const vete = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(11,14), imagenDelVecino = "veteRed.png", 
-                                         dialogo = dialogo7, itemAEntregar = caramelos,
-                                         lineaFinal = dialogo30, lineaIntermedio = dialogo31)
+                                            dialogo = dialogo7, itemAEntregar = caramelos,
+                                            lineaFinal = dialogo30, lineaIntermedio = dialogo31)
 
-const meli = new Vecino( posicionDelVecino = game.at(29,8),imagenDelVecino = "meli.png", dialogo = dialogo8)
-
-const nino = new VecinoPrincipalConMision(vecinoSecundario = vete,  posicionDelVecino = game.at(25,6),imagenDelVecino = "nino.png", dialogo = dialogo9,
-                                       itemQueNecesita = caramelos, itemAEntregar = moneda,
-                                       lineaFinal = dialogo28, lineaIntermedio = dialogo29)
-
-const vale = new Vecino( posicionDelVecino = game.at(7,14),imagenDelVecino = "vale.png", dialogo = dialogo10)
-
-const ivan = new Vecino( posicionDelVecino = game.at(7, 5), imagenDelVecino ="ivan.png", dialogo = dialogo11)
-
-const vane = new VecinoSecundarioConMision(esIntearactuable = false, posicionDelVecino = game.at(30,3), imagenDelVecino ="vane.png", 
-                                        dialogo = dialogo12, itemAEntregar = dni, 
-                                        lineaFinal = dialogo17, lineaIntermedio = dialogo16)
+const vane = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(30,3), imagenDelVecino ="vane.png", 
+                                            dialogo = dialogo12, itemAEntregar = dni, 
+                                            lineaFinal = dialogo17, lineaIntermedio = dialogo16)

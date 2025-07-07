@@ -11,7 +11,6 @@ object inventario {
     objetos.add(item)
     item.cambiarImagenParaInventario()
     item.setPosition(game.at(self.indiceDe(item) + 15, 0))
-  
     game.addVisual(item)
     self.refrescar()
   }
@@ -26,7 +25,6 @@ object inventario {
 
   method usarObjetoEn(slot) {
     self.validarSiHayObjetoEnPosicion(slot)
-  
     self.interactuarConItem(self.objetoEn(slot))
   }
 
@@ -54,7 +52,7 @@ object inventario {
 
   method interactuarConItem(item) {
     item.usar()
-    self.remover(item) 
+    //self.remover(item) 
     self.refrescar()
   }
 
