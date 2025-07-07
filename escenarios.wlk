@@ -188,7 +188,7 @@ const escenarioEscolar = new Escenario (protagonista = detective, map = mapaEsce
 						casaAmarillaJardin, toboganParque1, toboganParque2, toboganParque3, toboganParque4, juegoParque, puenteParque, calesitaParque, 
 						autosJardin, autosJardin2, colectivoJardin, arbolJardin2, arbustoJardin, arbustoJardin2, asientoJardin, escalerasJardin, 
 						escuelaParteIzq, escuelaParteMedio, escuelaParteDer, rejaIzquierda, rejaDerecha, bandera, arbustoAbajoEscuela],
-						objetos = [lupa, blockNotas, puaGuitarra, burbujero, grafitiEscenarioEscolar],
+						objetos = [puaGuitarra, burbujero, grafitiEscenarioEscolar],
 						vecinos = [fernanda,tomillo,juli, nene, maestra],
 						escenariosVecinos = [escenarioALaDerechaDeEscolar]
 						) 
@@ -203,7 +203,7 @@ const escenarioCentral = new Escenario (protagonista = detective, map = mapaEsce
 						arbustosArribaMedioDer, cochesAmarilloVioleta, arbustoArribaMedioIzq, cochesArribaIzq, edificiosArribaIzq, heladeria, mesaHeladeria, 
 						panaderia, pescaderia, carniceria, edificio, muroArribaIzq, muroArribaDer],
 						objetos = [grafitiEscenarioCentral1, grafitiEscenarioCentral2,basureroEscenarioCentral],
-						vecinos = [juan,doc, poliMujer, abuela, gruda],
+						vecinos = [juan,doc, poliMujer, abuela, gruda, lucia],
 						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral, escenarioDerechaDeCentral]						
 						) 
 const mapaEscenarioCentral = new Mapa (image = "escenarioCentroFINAL1.png") 
@@ -229,16 +229,18 @@ const escenarioAlSurDeCamping = new EscenarioVecino (direccion = abajo, escenari
 const escenarioAlNorteDeCamping = new EscenarioVecino (direccion = arriba, escenario = escenarioBosque)
 
 
-const escenarioBosque = new Escenario (protagonista = detective, map = mapaEscenarioBosque, mapCubiertas = escenarioBosqueCubiertas, 
+const escenarioBosque = new EscenarioConRestriccion (protagonista = detective, map = mapaEscenarioBosque, mapCubiertas = escenarioBosqueCubiertas, 
 										edificios = [arbolesParedAbajoIzq, arbolesParedAbajoDer, arbolesParedIzq, arbolesParedDer, arbolesParedArriba, arbolSolitario1, 
 						grupoArbolIzq, montaña1, montaña2, filaArbolesAbajoIzq, filaArbolesAbajoDer, columnaArbolesAbajoIzq, columnaArbolesAbajoDer, 
 						arbolSolitario2, columnaArbolesAbajoDer, desnivel1, desnivel2, arbolSolitario3, filaArbolMedioIzq, columnaArbolMedioIzq, 
 						columnaArbolMedioDer, filaArbolMedioDer, columnaArbolDer1, filaArbolArribaDer, carpas1, columnaArbolDer, carpas2, denivel3, 
 						denivel4, camas, arboles, arboles1, carpas4, casaRodante],
-										objetos = [oso, morena],
+										objetos = [morena],
 										vecinos = [],
-										escenariosVecinos = [escenarioAlSurDeBosque],
-										iniciables = #{oso})
+										animalSalvaje = oso,
+										escenariosVecinos = [escenarioAlSurDeBosque])
+										//iniciables = #{oso}
+										
 const mapaEscenarioBosque = new Mapa (image = "escenarioBosqueFINAL1.png")
 const escenarioBosqueCubiertas = new Mapa (image = "escenarioBosqueFINALcubiertas.png")
 const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario = escenarioCamping)

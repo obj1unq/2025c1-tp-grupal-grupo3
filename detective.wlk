@@ -7,7 +7,7 @@ import animalSalvaje.*
 
 
 object detective {
-  var property position = game.at(16, 9)  
+  var property position = game.at(20, 8)  
   var property escenarioActual = escenarioCentral
   var property estaVivo = true 
 
