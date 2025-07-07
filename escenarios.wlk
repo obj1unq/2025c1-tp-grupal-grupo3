@@ -188,7 +188,7 @@ const escenarioEscolar = new Escenario (protagonista = detective, map = mapaEsce
 						casaAmarillaJardin, toboganParque1, toboganParque2, toboganParque3, toboganParque4, juegoParque, puenteParque, calesitaParque, 
 						autosJardin, autosJardin2, colectivoJardin, arbolJardin2, arbustoJardin, arbustoJardin2, asientoJardin, escalerasJardin, 
 						escuelaParteIzq, escuelaParteMedio, escuelaParteDer, rejaIzquierda, rejaDerecha, bandera, arbustoAbajoEscuela],
-						objetos = [lupa, blockNotas, collar, puaGuitarra, burbujero, grafitiEscenarioEscolar],
+						objetos = [puaGuitarra, burbujero, grafitiEscenarioEscolar],
 						vecinos = [fernanda,tomillo,juli, nene, maestra],
 						escenariosVecinos = [escenarioALaDerechaDeEscolar]
 						) 
@@ -203,7 +203,7 @@ const escenarioCentral = new Escenario (protagonista = detective, map = mapaEsce
 						arbustosArribaMedioDer, cochesAmarilloVioleta, arbustoArribaMedioIzq, cochesArribaIzq, edificiosArribaIzq, heladeria, mesaHeladeria, 
 						panaderia, pescaderia, carniceria, edificio, muroArribaIzq, muroArribaDer],
 						objetos = [grafitiEscenarioCentral1, grafitiEscenarioCentral2,basureroEscenarioCentral],
-						vecinos = [juan,doc, poliMujer, abuela, gruda],
+						vecinos = [juan,doc, poliMujer, abuela, gruda, lucia],
 						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral, escenarioDerechaDeCentral]						
 						) 
 const mapaEscenarioCentral = new Mapa (image = "escenarioCentroFINAL1.png") 
@@ -220,7 +220,7 @@ const escenarioCamping = new Escenario (protagonista = detective, map = mapaEsce
 						cocheComida2, mesa9, cocheComida3, mesa10, pizzeria, colectivosEstacionados, casitaPolicia, bañosPublicos, paradaColectivo, 
 						arbolesArribaIzq, arbolesArribaDer, tachosGasolinera, faroDeLuz, cartelGasolinera, gasolinera, repostarGasolinera, 
 						autoArribaDer, autoESquinaDer],
-										objetos = [],
+										objetos = [basureroEscenarioCamping, grafitiEscenarioCamping],
 										vecinos = [meli,nino,vale,ivan, poliHombre, guardaBosque],
 										escenariosVecinos = [escenarioAlSurDeCamping,escenarioAlNorteDeCamping])
 const mapaEscenarioCamping = new Mapa (image = "escenarioCampingFINAL1.png")
@@ -229,16 +229,18 @@ const escenarioAlSurDeCamping = new EscenarioVecino (direccion = abajo, escenari
 const escenarioAlNorteDeCamping = new EscenarioVecino (direccion = arriba, escenario = escenarioBosque)
 
 
-const escenarioBosque = new Escenario (protagonista = detective, map = mapaEscenarioBosque, mapCubiertas = escenarioBosqueCubiertas, 
+const escenarioBosque = new EscenarioConRestriccion (protagonista = detective, map = mapaEscenarioBosque, mapCubiertas = escenarioBosqueCubiertas, 
 										edificios = [arbolesParedAbajoIzq, arbolesParedAbajoDer, arbolesParedIzq, arbolesParedDer, arbolesParedArriba, arbolSolitario1, 
 						grupoArbolIzq, montaña1, montaña2, filaArbolesAbajoIzq, filaArbolesAbajoDer, columnaArbolesAbajoIzq, columnaArbolesAbajoDer, 
 						arbolSolitario2, columnaArbolesAbajoDer, desnivel1, desnivel2, arbolSolitario3, filaArbolMedioIzq, columnaArbolMedioIzq, 
 						columnaArbolMedioDer, filaArbolMedioDer, columnaArbolDer1, filaArbolArribaDer, carpas1, columnaArbolDer, carpas2, denivel3, 
 						denivel4, camas, arboles, arboles1, carpas4, casaRodante],
-										objetos = [oso, morena],
+										objetos = [morena],
 										vecinos = [],
-										escenariosVecinos = [escenarioAlSurDeBosque],
-										iniciables = #{oso})
+										animalSalvaje = oso,
+										escenariosVecinos = [escenarioAlSurDeBosque])
+										//iniciables = #{oso}
+										
 const mapaEscenarioBosque = new Mapa (image = "escenarioBosqueFINAL1.png")
 const escenarioBosqueCubiertas = new Mapa (image = "escenarioBosqueFINALcubiertas.png")
 const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario = escenarioCamping)
@@ -246,8 +248,8 @@ const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario
 const escenarioMercado = new Escenario (protagonista = detective, map = mapaEscenarioMercado, mapCubiertas = escenarioMercadoCubiertas,
 										edificios = [arbustosAbajo1, maquina, paradaColectivo1, arbustosAbajo2, faro, pozo, floresAbajo, floresAbajo2, pozo2, hotel, hotelArriba, paredIzq,
 						paredDer, edificio1, entradaEstacionamiento, carritos, supermercado, arbolSupermercado, basuraSupermercado, elevador],
-										objetos = [],
-										vecinos = [vane, rami, vete, ana, azula, abuelo],
+										objetos = [basureroEscenarioMercado],
+										vecinos = [vane, rami, vete, ana, azula, abuelo, metalero],
 										escenariosVecinos = [escenarioAlOesteDeMercado])
 
 const mapaEscenarioMercado = new Mapa(image = "escenarioMercadoFINAL1.png")

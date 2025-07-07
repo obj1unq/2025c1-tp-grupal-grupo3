@@ -7,8 +7,8 @@ import animalSalvaje.*
 
 
 object detective {
-  var property position = game.at(16, 9)  
-  var property escenarioActual = escenarioCamping
+  var property position = game.at(20, 8)  
+  var property escenarioActual = escenarioCentral
   var property estaVivo = true 
 
   method puedeMoverHacia(direccion) {
@@ -145,6 +145,7 @@ object detective {
 
   method descartarItem(item) {
       inventario.remover(item)
+
   }
 
   method gameOver() {

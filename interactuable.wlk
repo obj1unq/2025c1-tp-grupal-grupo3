@@ -63,13 +63,15 @@ class Grafiti inherits ObjetoInvisible {
 }
 
 class Basurero inherits ObjetoInvisible {
+  const property itemAEntregar  
   override method puedeInteractuarObjetoInvisibleCon(detective) {
-    return detective.tieneItem(linterna)
+    return detective.tieneItem(linterna) && not detective.tieneItem(itemAEntregar)
   }
 
   override method interactuarConObjetoInvisibleCon(detective){
     game.say(self, texto)
-    inventario.agregar(pelos)
+    inventario.agregar(itemAEntregar)
+    inventario.refrescar()
   }
 
   

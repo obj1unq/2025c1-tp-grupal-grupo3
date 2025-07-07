@@ -4,7 +4,7 @@ import cosas.*
 import mascota.*
 
 object inventario {
-  const property objetos = [credencial]
+  const property objetos = [lupa]
 
   
   method agregar(item) {
@@ -63,6 +63,7 @@ object inventario {
   method remover(item) {
     objetos.remove(item)
     game.removeVisual(item)
+    self.refrescar()
    
   }
 
