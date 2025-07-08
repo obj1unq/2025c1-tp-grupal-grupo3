@@ -1,3 +1,5 @@
+import interactuable.*
+import edificios.*
 import escenarios.*
 import cosas.*
 import detective.*
@@ -15,37 +17,32 @@ describe "testGame" {
   }
   test "testeo del detective" {
     
-    //configurar al detective en la posicion (38, 20)
-    detective.position(game.at(16,9)) 
+    //configurar al detective en la posicion (20, 19)
+    detective.position(game.at(20, 19)) 
     //verificar que el detective se puede mover hacia abajo
     assert.that(detective.puedeMoverHacia(abajo))
     //mover al detective abajo
     detective.mover(abajo)
-    //verificar que el detective se encuentra en la posicion (37,20)
-    assert.equals(game.at(16,8), detective.position())
-
-    //configurar al detective en el escenario escolar
-    detective.escenarioActual(escenarioEscolar)
-
-    //verificar que el detective de escenario escolar puede cambiar de escenario yendo a la derecha 
-    assert.that(detective.escenarioActual().puedeCambiarseDeEscenario(derecha))
+    //verificar que el detective se encuentra en la posicion (20, 18)
+    assert.equals(game.at(20, 18), detective.position())
+    //mover al detective arriba
+    detective.mover(arriba)
+    //verificar que el detective de escenario central puede cambiar de escenario yendo arriba 
+    assert.that(detective.escenarioActual().puedeCambiarseDeEscenario(arriba))
     
     //mover al detective arriba
     detective.mover(arriba)
+    //verificar que el detective cambio de escenario central al escenario camping
+    assert.equals(escenarioCamping, detective.escenarioActual())
 
-    //verificar que el detective de escenario escolar no puede cambiar de escenario yendo a la 
-    assert.notThat(detective.escenarioActual().puedeCambiarseDeEscenario(arriba))
+    //configurar al detective en la posicion (37, 0)
+    detective.position(game.at(37, 0)) 
 
-    //configuar al detective en la posicion (37,15)
-    detective.position(game.at(37,15))
-    //mover al detective a la derecha
-    detective.mover(derecha)
+    //verificar que el detective de escenario camping no puede cambiar de escenario yendo a la derecha
+    assert.notThat(detective.escenarioActual().puedeCambiarseDeEscenario(derecha))
 
-    //verificar que el detective cambio de escenario escolar al escenarioCentral
-    assert.equals(escenarioCentral, detective.escenarioActual())
-
-    //verificar que la posicion del detective cambio a (0,19)
-    assert.equals(game.at(0,15), detective.position())
+    //verificar que la posicion del detective cambio a (37, 0)
+    assert.equals(game.at(37, 0), detective.position())
   }
 
   test "test del inventario" {
@@ -57,24 +54,23 @@ describe "testGame" {
     //agrego las visuals
     detective.escenarioActual().agregarVisualesDeEscenario()
 
-    
-    //configurar al detective en la posicion(10,10)
-    detective.position(game.at(10,10))
+    //configurar al detective en la posicion(23,16)
+    detective.position(game.at(23,16))
 
-    //verificar que el inventario esta vacio
-    assert.equals([], inventario.objetos())
+    //verificar que el inventario solo tiene la lupa
+    assert.equals([lupa], inventario.objetos())
 
     //verificar que hay un interactuable en el lugar del detective
     assert.that(detective.puedeInteractuar())
 
-    //verificar si el objeto interactuable en posicion es una lupa
-    assert.equals(lupa, detective.objetoEnPosicion())
+    //verificar si el objeto interactuable en posicion es una burbujero
+    assert.equals(burbujero, detective.objetoEnPosicion())
 
     //configurar para que detective interactue
     detective.interactuar()
 
     //verificar si detective tiene la lupa en el inventario
-    assert.that(detective.tieneItem(lupa))
+    assert.that(detective.tieneItem(burbujero))
 
     //verificar que ya no hay un objeto interactuable en el lugar del detective
     assert.notThat(detective.puedeInteractuar())
@@ -155,7 +151,6 @@ describe "testGame" {
     assert.notThat(detective.tieneItem(bocadillos))
     //verificar que en el inventario de detective ya no tiene mas la transportadora vacia
     assert.notThat(detective.tieneItem(transportadoraVacia))
-
   }
 
    test "El vecino recibe su asset correspondiente"{
@@ -173,7 +168,7 @@ describe "testGame" {
     assert.equals("juan.png", juan.image())
     assert.equals("luciaRed.png", fernanda.image())
     assert.equals("guardaBosqueFINAL.png", guardaBosque.image())
-    assert.equals("luciaRed.png", lucia.image())
+    assert.equals("luciaFINAL.png", lucia.image())
     assert.equals("juliRed.png", juli.image())
     assert.equals("rami.png", rami.image())
     assert.equals("scoutRed.png", tomillo.image())

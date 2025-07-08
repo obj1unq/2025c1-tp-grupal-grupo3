@@ -165,10 +165,15 @@ class Escenario {
 }
 
 class EscenarioConRestriccion inherits Escenario {
-	const property animalSalvaje
+	//const property animalSalvaje
 	override method puedeCambiarse() {
 		return inventario.tieneObjeto(credencial)
 	}
+
+	// override method agregarVisualesDeEscenario() {
+	// 	super()
+	// 	game.addVisual(animalSalvaje)
+	// }
 }
 
 class EscenarioVecino {
@@ -235,12 +240,10 @@ const escenarioBosque = new EscenarioConRestriccion (protagonista = detective, m
 						arbolSolitario2, columnaArbolesAbajoDer, desnivel1, desnivel2, arbolSolitario3, filaArbolMedioIzq, columnaArbolMedioIzq, 
 						columnaArbolMedioDer, filaArbolMedioDer, columnaArbolDer1, filaArbolArribaDer, carpas1, columnaArbolDer, carpas2, denivel3, 
 						denivel4, camas, arboles, arboles1, carpas4, casaRodante],
-										objetos = [morena],
+										objetos = [oso, morena],
 										vecinos = [],
-										animalSalvaje = oso,
-										escenariosVecinos = [escenarioAlSurDeBosque])
-										//iniciables = #{oso}
-										
+										escenariosVecinos = [escenarioAlSurDeBosque],
+										iniciables = #{oso})
 const mapaEscenarioBosque = new Mapa (image = "escenarioBosqueFINAL1.png")
 const escenarioBosqueCubiertas = new Mapa (image = "escenarioBosqueFINALcubiertas.png")
 const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario = escenarioCamping)
@@ -257,6 +260,28 @@ const escenarioMercadoCubiertas = new Mapa (image = "escenarioSuperFINALCubierta
 const escenarioAlOesteDeMercado = new EscenarioVecino(direccion = izquierda, escenario = escenarioCentral)
 
 
+
+// object pantallaDeInicio inherits Interactuable {
+
+// 	method image() {
+// 		return "inicioJuegoO.png"
+// 	}
+// 	method position() {
+// 		return game.at(0, 0)
+// 	}
+
+// 	method iniciar() {
+// 		game.addVisual(self)
+// 	}
+
+// 	override method sePuedeInteractuar() {
+// 		return true
+// 	}
+
+// 	override method interactuarCon(detective) {
+// 		game.removeVisual(self)
+// 	} 
+// }
 
 
 // 	override method hayEscenarioLindanteEn(posicion) {

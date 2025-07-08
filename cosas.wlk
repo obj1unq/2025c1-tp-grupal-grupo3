@@ -269,5 +269,3 @@ const basureroEscenarioMercado = new Basurero (position = game.at(3,16), texto =
                                               itemAEntregar = arnes)
 const basureroEscenarioCamping= new Basurero (position = game.at(20,17), texto = "Hay algo dentro del tacho de basura, parece ser un collar azul",
                                               itemAEntregar = collar)
-
-

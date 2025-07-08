@@ -136,7 +136,7 @@ object casitaPolicia inherits Edificio(vertice = game.at(0,16), alto = 2, ancho 
 object bañosPublicos inherits Edificio(vertice = game.at(3,17), alto = 1, ancho = 2) {}
 object paradaColectivo inherits Edificio(vertice = game.at(9,17), alto = 1, ancho = 2) {}
 object arbolesArribaIzq inherits Edificio(vertice = game.at(0,18), alto = 2, ancho = 16) {}
-object arbolesArribaDer inherits Edificio(vertice = game.at(19,18), alto = 2, ancho = 19) {}
+object arbolesArribaDer inherits Edificio(vertice = game.at(19,18), alto = 1, ancho = 19) {}
 object tachosGasolinera inherits Edificio(vertice = game.at(20,17), alto = 1, ancho = 2) {}
 object faroDeLuz inherits Edificio(vertice = game.at(20,13), alto = 1, ancho = 1) {}
 object cartelGasolinera inherits Edificio(vertice = game.at(21,13), alto = 1, ancho = 1) {}
