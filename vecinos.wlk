@@ -204,41 +204,7 @@ class Dialogo {
         }      
   }
 }
-  
-// class ChatBox inherits ImagenAMostrar {
-  
-//   method hablar(vecino) {
-//     game.addVisual(self)
-//     game.onTick(6000, "ocultarChatBox", {game.removeVisual(self)})
-//   }
 
-// }
-
-// class ChatBox inherits ImagenAMostrar {
-
-//   var property visible = false         // ¿está mostrada?
-//   var property tokenActual = ""        // id del último onTick válido
-
-//   method hablar(vecino) {
-//     // 1. Mostramos la imagen (solo la primera vez)
-//     if (not visible) {
-//       visible = true
-//       game.addVisual(self)
-//     }
-
-//     // 2. Generamos un token único y lo guardamos
-//     const nuevoToken = "cb" + game.currentTime()
-//     tokenActual = nuevoToken
-
-//     // 3. Programamos el ocultar, validando el token antes de ejecutar
-//     game.onTick(7000, nuevoToken, {
-//       if (tokenActual == nuevoToken) {     // ← solo el más reciente cierra
-//         game.removeVisual(self)
-//         visible = false
-//       }
-//     })
-//   }
-// }
 
 class ChatBox inherits ImagenAMostrar {
 
