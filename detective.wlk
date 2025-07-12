@@ -138,6 +138,7 @@ object detective {
 
   method levantarObjeto(objeto) {
     escenarioActual.eliminarObjeto(objeto)
+    inventario.refrescar()
   }
 
   method tieneItem(item) {
@@ -157,6 +158,12 @@ object detective {
     game.removeVisual(self)
     estaVivo = false
   }
+
+  method objetosDeEscenarioActual() {
+    return escenarioActual.objetos()
+  }
+
+  
 
   //method xPosicion() {
   //  return  position.x()

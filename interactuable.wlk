@@ -2,6 +2,7 @@ import inventario.*
 import edificios.*
 import detective.*
 import cosas.*
+import escenarios.*
 class Interactuable {
   var property esIntearactuable = true
 
@@ -74,6 +75,20 @@ class Basurero inherits ObjetoInvisible {
     inventario.refrescar()
   }
 
+}
+
+class Imagen {
+  const property image
+  
+  method mostrar() {
+    game.addVisual(image)
+  }
+
+  method ocultar() {
+    game.removeVisual(image)
+  }
   
 }
+const pantallaInicio = new Imagen(image = imageDeInicio)
+const imageDeInicio = new Mapa (image = "inicioJuegoO.png")
 

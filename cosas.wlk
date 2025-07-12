@@ -28,12 +28,22 @@ class Item inherits Interactuable {
     return false
   }
 
-  override method interactuarCon(detective) {
-    game.say(detective, "Encontré " + texto)
-    detective.levantarObjeto(self)
-    inventario.agregar(self)
-  }
+  // override method interactuarCon(detective) {
+  //   detective.levantarObjeto(self)
+  //   inventario.agregar(self)
+  //   game.say(detective, "Encontré " + texto)
+    
+  // }
 
+  override method interactuarCon(detective) {
+    if (inventario.haySlotDisponible()) {
+      inventario.agregar(self)
+      detective.levantarObjeto(self)
+      game.say(detective, "Encontré " + texto)
+    } else {
+      game.say(detective, "No puedo llevar más objetos")
+    }
+  }
 
   method usar() {
     self.actualizarDurabilidad()
@@ -60,6 +70,11 @@ class Item inherits Interactuable {
 
   override method sePuedeInteractuar() {
     return not detective.tieneItem(self)
+  }
+
+  method iniciar() {
+
+    game.addVisual(self)
   }
 }
 
