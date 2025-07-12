@@ -89,6 +89,6 @@ class Imagen {
 }
 
 const pantallaInicio = new Imagen(image = imageDeInicio)
-const imageDeInicio = new Mapa (image = "inicioJuegoO.png")
+const imageDeInicio = new Mapa (image = "PantallaInicial.png")
 
 
