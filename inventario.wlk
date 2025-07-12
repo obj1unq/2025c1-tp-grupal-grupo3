@@ -4,17 +4,11 @@ import cosas.*
 import mascota.*
 
 object inventario {
-  const property objetos = [lupa,collar,miel,dni,llave,linterna,puaGuitarra,transportadoraVacia,burbujero]
+  const property objetos = [lupa]
 
-  
   method agregar(item) {
     self.validarSiSePuedeAgregarAlInventario(item)
     self.agregarAInventarioConSlotDisponibles(item)
-    // objetos.add(item)
-    // item.cambiarImagenParaInventario()
-    // item.setPosition(game.at(self.indiceDe(item) + 15, 0))
-    // game.addVisual(item)
-    // self.refrescar()
   }
 
   method validarSiSePuedeAgregarAlInventario(item) {
@@ -34,7 +28,6 @@ object inventario {
     objetos.add(item)
     item.cambiarImagenParaInventario()
     item.setPosition(game.at(self.indiceDe(item) + 15, 0))
-    // item.setPosition(game.at(objetos.size() - 1 + 15, 0))
     game.addVisual(item)
     self.refrescar()
   }
@@ -45,6 +38,28 @@ object inventario {
 
   method indiceDe(objetoBuscado) {
     return   (0..objetos.size() - 1).find({objeto => objetos.get(objeto) == objetoBuscado})  
+  }
+
+  method abrir() {
+    objetos.forEach({item => item.prepararParaSoltar()})
+    game.say(detective, "El inventario está abierto")
+  }
+
+  method cerrar() {
+    return objetos.forEach({item => item.fijarAInventario()})
+  }
+
+  method interactuarEnPosicion(slot) {
+    if (self.itemEn(slot).estaPreparadoParaSoltar()){
+        self.soltarObjetoEn(slot)
+        self.cerrar()
+    }else{
+      self.usarObjetoEn(slot)
+    }   
+  }
+
+  method itemEn(slot) {
+    return self.objetoEn(slot)
   }
 
   method usarObjetoEn(slot) {
@@ -96,8 +111,6 @@ object inventario {
     return objetos.contains(objeto)
   }
 
-  
-
   method cantObjetoPistaDelInventario() {
     return objetos.count({objeto => objeto.esPista()})
   }
@@ -108,15 +121,11 @@ object inventario {
   }
 
   method tirar(item) {
-    
     self.remover(item)
     item.setPosition(detective.position())
     detective.objetosDeEscenarioActual().add(item)
     game.addVisual(item)
     self.refrescar()
-    
-    
-    
   }
 
 }

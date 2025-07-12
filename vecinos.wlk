@@ -6,25 +6,25 @@ import cosas.*
 
 
 class Vecino inherits Interactuable{
-    const posicionDelVecino
-    const  imagenDelVecino 
-    const dialogo 
-    var property text = ""
+  const posicionDelVecino
+  const  imagenDelVecino 
+  const dialogo 
+  var property text = ""
 
 
-    method position() {
+  method position() {
       return posicionDelVecino
-    } 
+  } 
 
-    method image() {
+  method image() {
       return imagenDelVecino
-    }
+  }
 
-    method hablar() {
+  method hablar() {
       dialogo.hablar(self)
-    }
+  }
 
-    override method interactuarCon(detective) {
+  override method interactuarCon(detective) {
     self.hablar()
   }
 
@@ -202,7 +202,81 @@ class Dialogo {
          vecino.text("")
          game.removeTickEvent("hablar")
         }      
+  }
+}
+  
+// class ChatBox inherits ImagenAMostrar {
+  
+//   method hablar(vecino) {
+//     game.addVisual(self)
+//     game.onTick(6000, "ocultarChatBox", {game.removeVisual(self)})
+//   }
+
+// }
+
+// class ChatBox inherits ImagenAMostrar {
+
+//   var property visible = false         // ¿está mostrada?
+//   var property tokenActual = ""        // id del último onTick válido
+
+//   method hablar(vecino) {
+//     // 1. Mostramos la imagen (solo la primera vez)
+//     if (not visible) {
+//       visible = true
+//       game.addVisual(self)
+//     }
+
+//     // 2. Generamos un token único y lo guardamos
+//     const nuevoToken = "cb" + game.currentTime()
+//     tokenActual = nuevoToken
+
+//     // 3. Programamos el ocultar, validando el token antes de ejecutar
+//     game.onTick(7000, nuevoToken, {
+//       if (tokenActual == nuevoToken) {     // ← solo el más reciente cierra
+//         game.removeVisual(self)
+//         visible = false
+//       }
+//     })
+//   }
+// }
+
+class ChatBox inherits ImagenAMostrar {
+
+  var property visible = false
+  var property tokenActual = ""
+
+  method hablar(vecino) {
+    self.mostrarSiEsNecesario(vecino)
+    self.agendarOcultar()
+  }
+
+  method mostrarSiEsNecesario(vecino) {
+    if (not visible) {
+      visible = true
+      game.addVisual(self)
     }
+  }
+
+  method agendarOcultar() {
+    const nuevoToken = "cb" + game.currentTime()
+    tokenActual = nuevoToken
+    game.onTick(7000, nuevoToken, {self.ocultarSiEsTokenValido(nuevoToken)})
+  }
+
+  method ocultarSiEsTokenValido(token) {
+    if (tokenActual == token) {
+      game.removeVisual(self)
+      visible = false
+    }
+  }
+}
+
+class ChatBoxLargo inherits ChatBox {
+  override method agendarOcultar() {
+    const nuevoToken = "cb" + game.currentTime()
+    tokenActual = nuevoToken
+    game.onTick(13000, nuevoToken, {self.ocultarSiEsTokenValido(nuevoToken)})
+  }
 }
 
 object misionCompletada {
@@ -344,8 +418,6 @@ const dialogo46 = new Dialogo( lineasDelVecino = dialogoDeMaestra)
 const dialogo47 = new Dialogo( lineasDelVecino = dialogoDeMetalero)
 
 
-
-
 //CREO A LUCIA COMO TAL LO QUE ES : UN VECINO 
 const fernanda = new Vecino( posicionDelVecino = game.at(2, 4), imagenDelVecino = "luciaRed.png", dialogo = dialogo36)
 const juan     = new Vecino( posicionDelVecino = game.at(11,15),imagenDelVecino ="juan.png", dialogo = dialogo5)
@@ -363,52 +435,79 @@ const metalero  = new Vecino( posicionDelVecino = game.at(7, 4), imagenDelVecino
 
 
 
-
-
 const guardaBosque = new VecinoEspecialConMision( posicionDelVecino = game.at(18, 17), imagenDelVecino = "guardaBosqueFINAL.png", 
-                                                  dialogo = dialogo37, itemAEntregar = credencial, 
-                                                  lineaFinal = dialogo38, lineaIntermedio = dialogo39)
+                                                  dialogo = guardaBosqueInicioChatBox, itemAEntregar = credencial, 
+                                                  lineaFinal = guardaBosqueFinalChatBox, lineaIntermedio = guardaBosqueIntermedioChatBox)
+const guardaBosqueInicioChatBox = new ChatBox (image = "GuardaBosqueInicioChatBox.png" , position = game.at(10,1))
+const guardaBosqueIntermedioChatBox = new ChatBox (image = "GuardaBosqueIntermedioChatBox.png" , position = game.at(10,1))
+const guardaBosqueFinalChatBox= new ChatBox (image = "GuardaBosqueFinalChatBox.png" , position = game.at(10,1)) 
 
-const lucia = new VecinoPrincipal ( posicionDelVecino = game.at(19, 10), imagenDelVecino = "luciaFINAL.png", dialogo = dialogo1,
+const lucia = new VecinoPrincipal ( posicionDelVecino = game.at(19, 10), imagenDelVecino = "luciaFINAL.png", dialogo = luciaInicioChatBox,
                                              itemQueNecesita = morena, itemAEntregar = flores, 
-                                             lineaFinal = dialogo34, lineaIntermedio = dialogo35)
+                                             lineaFinal = luciaFinalChatBox, lineaIntermedio = luciaIntermedioChatBox)
+const luciaInicioChatBox = new ChatBox (image = "LuciaInicioChatBox.png" , position = game.at(10,1))
+const luciaIntermedioChatBox = new ChatBox (image = "LuciaIntermedioChatBox.png" , position = game.at(10,1))
+const luciaFinalChatBox= new ChatBox (image = "LuciaFinalChatBox.png" , position = game.at(10,1))                                             
 
-const juli = new VecinoSolitarioConMision( posicionDelVecino = game.at(27, 7), imagenDelVecino = "juliRed.png", dialogo = dialogo3,
+const juli = new VecinoSolitarioConMision( posicionDelVecino = game.at(27, 7), imagenDelVecino = "juliRed.png", dialogo = juliInicioChatBox,
                                            itemQueNecesita = burbujero, itemAEntregar = hoja, 
-                                           lineaFinal = dialogo26, lineaIntermedio = dialogo27)
+                                           lineaFinal = juliFinalChatBox, lineaIntermedio = juliIntermedioChatBox)
+const juliInicioChatBox = new ChatBox (image = "JuliInicioChatBox.png" , position = game.at(10,1))
+const juliIntermedioChatBox = new ChatBox (image = "JuliIntermedioChatBox.png" , position = game.at(10,1))
+const juliFinalChatBox= new ChatBox (image = "JuliFinalChatBox.png" , position = game.at(10,1))
 
-const rami = new VecinoSolitarioConMision( posicionDelVecino = game.at(16,4), imagenDelVecino ="rami.png", dialogo = dialogo4, 
+const rami = new VecinoSolitarioConMision( posicionDelVecino = game.at(16,4), imagenDelVecino ="rami.png", dialogo = ramiInicioChatBox, 
                                            itemQueNecesita = puaGuitarra, itemAEntregar = transportadoraVacia, 
-                                           lineaFinal = dialogo24, lineaIntermedio = dialogo25)
+                                           lineaFinal = ramiFinalChatBox, lineaIntermedio = ramiIntermedioChatBox)
+const ramiInicioChatBox = new ChatBox (image = "RamiInicioChatBox.png" , position = game.at(10,1))
+const ramiIntermedioChatBox = new ChatBox (image = "RamiIntermedioChatBox.png" , position = game.at(10,1))
+const ramiFinalChatBox= new ChatBoxLargo (image = "RamiFinalChatBox.png" , position = game.at(10,1))
 
-const tomillo = new VecinoSolitarioConMision( posicionDelVecino = game.at(10,16), imagenDelVecino = "scoutRed.png", dialogo = dialogo2,
+const tomillo = new VecinoSolitarioConMision( posicionDelVecino = game.at(10,16), imagenDelVecino = "scoutRed.png", dialogo = tomilloScoutInicioChatBox,
                                               itemQueNecesita = moneda, itemAEntregar = bocadillos, 
-                                              lineaFinal = dialogo32, lineaIntermedio = dialogo33)
-
-
+                                              lineaFinal = tomilloScoutFinalChatBox, lineaIntermedio = tomilloScoutIntermedioChatBox)
+const tomilloScoutInicioChatBox = new ChatBox (image = "TomilloScoutInicioChatBox.png" , position = game.at(10,1))
+const tomilloScoutIntermedioChatBox = new ChatBox (image = "TomilloScoutIntermedioChatBox.png" , position = game.at(10,1))
+const tomilloScoutFinalChatBox= new ChatBox (image = "TomilloScoutFinalChatBox.png" , position = game.at(10,1))
 
 const doc = new VecinoPrincipalConMision( vecinoSecundario = vane , posicionDelVecino = game.at(30,3), imagenDelVecino="docRed.png" ,
-                                          dialogo = dialogo6, itemQueNecesita = dni, itemAEntregar = miel, 
-                                          lineaFinal = dialogo13, lineaIntermedio = dialogo14)
+                                          dialogo = docInicioChatBox, itemQueNecesita = dni, itemAEntregar = miel, 
+                                          lineaFinal = docFinalChatBox, lineaIntermedio = docIntermedioChatBox)
+const docInicioChatBox = new ChatBox (image = "DocInicioChatBox.png" , position = game.at(10,1))
+const docIntermedioChatBox = new ChatBox (image = "DocIntermedioChatBox.png" , position = game.at(10,1))
+const docFinalChatBox= new ChatBox (image = "DocFinalChatBox.png" , position = game.at(10,1))                                          
 
 const poliMujer = new VecinoPrincipalConMision( vecinoSecundario = poliHombre, posicionDelVecino = game.at(4,4), imagenDelVecino="policiaMujerFINAL.png",
-                                                dialogo = dialogo21, itemQueNecesita = llave, itemAEntregar = linterna, 
-                                                lineaFinal = dialogo22, lineaIntermedio = dialogo23)
+                                                dialogo = celestePoliciaInicioChatBox, itemQueNecesita = llave, itemAEntregar = linterna, 
+                                                lineaFinal = celestePoliciaFinalChatBox, lineaIntermedio = celestePoliciaIntermedioChatBox)
+const celestePoliciaInicioChatBox = new ChatBox (image = "CelestePoliciaInicioChatBox.png" , position = game.at(10,1))
+const celestePoliciaIntermedioChatBox = new ChatBox (image = "CelestePoliciaIntermedioChatBox.png" , position = game.at(10,1))
+const celestePoliciaFinalChatBox= new ChatBoxLargo (image = "CelestePoliciaFinalChatBox.png" , position = game.at(10,1))
 
 const nino = new VecinoPrincipalConMision( vecinoSecundario = vete,  posicionDelVecino = game.at(25,6),imagenDelVecino = "nino.png", 
-                                           dialogo = dialogo9, itemQueNecesita = caramelos, itemAEntregar = moneda,
-                                           lineaFinal = dialogo28, lineaIntermedio = dialogo29)
-
-
+                                           dialogo = ninoInicioChatBox, itemQueNecesita = caramelos, itemAEntregar = moneda,
+                                           lineaFinal = ninoFinalChatBox, lineaIntermedio = ninoIntermedioChatBox)
+const ninoInicioChatBox = new ChatBox (image = "NinoInicioChatBox.png" , position = game.at(10,1))
+const ninoIntermedioChatBox = new ChatBox (image = "NinoIntermedioChatBox.png" , position = game.at(10,1))
+const ninoFinalChatBox= new ChatBox (image = "NinoFinalChatBox.png" , position = game.at(10,1))
 
 const poliHombre = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(2,15), imagenDelVecino = "policiaHombreFINAL.png",
-                                                  dialogo = dialogo18, itemAEntregar = llave, 
-                                                  lineaFinal= dialogo19, lineaIntermedio = dialogo20)
+                                                  dialogo = fernandoPoliciaInicioChatBox, itemAEntregar = llave, 
+                                                  lineaFinal= fernandoPoliciaChatBoxPoliciaFinalChatBox, lineaIntermedio = fernandoPoliciaChatBoxePoliciaIntermedioChatBox)
+const fernandoPoliciaInicioChatBox = new ChatBox (image = "FernandoPoliciaInicioChatBox.png" , position = game.at(10,1))
+const fernandoPoliciaChatBoxePoliciaIntermedioChatBox = new ChatBox (image = "FernandoPoliciaIntermedioChatBox.png" , position = game.at(10,1))
+const fernandoPoliciaChatBoxPoliciaFinalChatBox= new ChatBox (image = "FernandoPoliciaFinalChatBox.png" , position = game.at(10,1))
 
 const vete = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(11,14), imagenDelVecino = "veteRed.png", 
-                                            dialogo = dialogo7, itemAEntregar = caramelos,
-                                            lineaFinal = dialogo30, lineaIntermedio = dialogo31)
+                                            dialogo = veteInicioChatBox, itemAEntregar = caramelos,
+                                            lineaFinal = veteFinalChatBox, lineaIntermedio = veteIntermedioChatBox)
+const veteInicioChatBox = new ChatBox (image = "VeteInicialChatBox.png" , position = game.at(10,1))
+const veteIntermedioChatBox = new ChatBox (image = "VeteIntermedioChatBox.png" , position = game.at(10,1))
+const veteFinalChatBox= new ChatBox (image = "VeteFinalChatBox.png" , position = game.at(10,1))
 
 const vane = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(30,3), imagenDelVecino ="vane.png", 
-                                            dialogo = dialogo12, itemAEntregar = dni, 
-                                            lineaFinal = dialogo17, lineaIntermedio = dialogo16)
+                                            dialogo = vaneInicioChatBox, itemAEntregar = dni, 
+                                            lineaFinal = vaneFinalChatBox, lineaIntermedio = vaneIntermedioChatBox)
+const vaneInicioChatBox = new ChatBox (image = "VaneInicialChatBox.png" , position = game.at(10,1))
+const vaneIntermedioChatBox = new ChatBox (image = "VaneIntermedioChatBox.png" , position = game.at(10,1))
+const vaneFinalChatBox= new ChatBox (image = "VaneFinalChatBox.png" , position = game.at(10,1))

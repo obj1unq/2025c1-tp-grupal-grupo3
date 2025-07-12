@@ -10,7 +10,8 @@ class Item inherits Interactuable {
   var property imagen
   const texto  
   var property durabilidad 
-  const property esPista  
+  const property esPista
+  var property listoParaSoltar =  false 
   
   method setPosition(pos) {
     position = pos
@@ -76,6 +77,22 @@ class Item inherits Interactuable {
 
     game.addVisual(self)
   }
+
+  method prepararParaSoltar() {
+    listoParaSoltar = true
+  }
+
+  method fijarAInventario() {
+    listoParaSoltar = false
+  }
+
+  method estaPreparadoParaSoltar() {
+    return listoParaSoltar
+  }
+
+
+
+
 }
 
 class ItemConInformacion inherits Item {

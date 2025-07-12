@@ -74,7 +74,6 @@ class Basurero inherits ObjetoInvisible {
     inventario.agregar(itemAEntregar)
     inventario.refrescar()
   }
-
 }
 
 class Imagen {
@@ -86,9 +85,10 @@ class Imagen {
 
   method ocultar() {
     game.removeVisual(image)
-  }
-  
+  }  
 }
+
 const pantallaInicio = new Imagen(image = imageDeInicio)
 const imageDeInicio = new Mapa (image = "inicioJuegoO.png")
+
 
