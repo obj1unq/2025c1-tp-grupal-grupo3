@@ -10,9 +10,15 @@ import inventario.*
 import animalSalvaje.*
 
 
+
 program detectiveDeMascotas{
   game.title("Detective de mascotas")
+  musicaIntro.shouldLoop(true)
+  musicaIntro.volume(0.1)
+  musicaIntro.play()
+
   detective.escenarioActual().configurar()
+  game.addVisual(imagenContexto)
   pantallaInicio.mostrar()
   keyboard.w().onPressDo({ detective.mover(arriba) })   
   keyboard.a().onPressDo({ detective.mover(izquierda) }) 
@@ -30,7 +36,7 @@ program detectiveDeMascotas{
   keyboard.num8().onPressDo({ inventario.interactuarEnPosicion(7) })
   keyboard.num9().onPressDo({ inventario.interactuarEnPosicion(8) })
   keyboard.num0().onPressDo({ inventario.interactuarEnPosicion(9) })
-  keyboard.space().onPressDo({pantallaInicio.ocultar()})
 
+  keyboard.space().onPressDo({pantallaInicio.ocultar()})
   game.start()
 }

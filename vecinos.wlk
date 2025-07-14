@@ -21,11 +21,15 @@ class Vecino inherits Interactuable{
   }
 
   method hablar() {
-      dialogo.hablar(self)
+    dialogo.hablar(self)
+    const sonido = new Sound(file = "QuestLogOpen.mp3")
+    sonido.play()
   }
 
   override method interactuarCon(detective) {
     self.hablar()
+    // const sonido = new Sound(file = "QuestLogOpen.mp3")
+    // sonido.play()
   }
 
   method esInvisible(){
@@ -73,6 +77,8 @@ class VecinoConMision inherits Vecino{
   method comenzarMision(detective) {
     self.hablar()
     tieneMisionDisponible = false
+    // const sonido = new Sound(file = "QuestLogOpen.mp3")
+    // sonido.play()
   }
 
   method cerrarMision(detective) {
@@ -92,7 +98,9 @@ class VecinoConMision inherits Vecino{
   }
 
   method decirFinal() {
-      lineaFinal.hablar(self)
+    lineaFinal.hablar(self)
+    // const sonido = new Sound(file = "QuestLogOpen.mp3")
+    // sonido.play()
     }
 
   method darItem(detective) {
@@ -101,8 +109,10 @@ class VecinoConMision inherits Vecino{
     }
 
   method decirIntermedio() {
-       lineaIntermedio.hablar(self)
-    }
+    lineaIntermedio.hablar(self)
+    // const sonido = new Sound(file = "QuestLogOpen.mp3")
+    // sonido.play()
+  }
 
 }
 
@@ -139,6 +149,8 @@ class VecinoPrincipal inherits VecinoSolitarioConMision {
     self.hablar()
     detective.recibirItem(item)
     tieneMisionDisponible = false
+    // const sonido = new Sound(file = "QuestLogOpen.mp3")
+    // sonido.play()
   }
 
   override method finalizarMision(detective) {
@@ -214,6 +226,8 @@ class ChatBox inherits ImagenAMostrar {
   method hablar(vecino) {
     self.mostrarSiEsNecesario(vecino)
     self.agendarOcultar()
+    const sonido = new Sound(file = "QuestLogOpen.mp3")
+    sonido.play()
   }
 
   method mostrarSiEsNecesario(vecino) {
@@ -226,7 +240,7 @@ class ChatBox inherits ImagenAMostrar {
   method agendarOcultar() {
     const nuevoToken = "cb" + game.currentTime()
     tokenActual = nuevoToken
-    game.onTick(7000, nuevoToken, {self.ocultarSiEsTokenValido(nuevoToken)})
+    game.onTick(10000, nuevoToken, {self.ocultarSiEsTokenValido(nuevoToken)})
   }
 
   method ocultarSiEsTokenValido(token) {
@@ -241,14 +255,32 @@ class ChatBoxLargo inherits ChatBox {
   override method agendarOcultar() {
     const nuevoToken = "cb" + game.currentTime()
     tokenActual = nuevoToken
-    game.onTick(13000, nuevoToken, {self.ocultarSiEsTokenValido(nuevoToken)})
+    game.onTick(20000, nuevoToken, {self.ocultarSiEsTokenValido(nuevoToken)})
   }
 }
 
+class ChatBoxCorto inherits ChatBox {
+  override method agendarOcultar() {
+    const nuevoToken = "cb" + game.currentTime()
+    tokenActual = nuevoToken
+    game.onTick(7000, nuevoToken, {self.ocultarSiEsTokenValido(nuevoToken)})
+  }
+}
+
+class ChatBoxSuperCorto inherits ChatBox {
+  override method agendarOcultar() {
+    const nuevoToken = "cb" + game.currentTime()
+    tokenActual = nuevoToken
+    game.onTick(4000, nuevoToken, {self.ocultarSiEsTokenValido(nuevoToken)})
+  }
+}
+
+
+
 object misionCompletada {
-        const property image = "misionCumplida.png" 
-        const property position = game.at(10, 0) 
-    }
+  const property image = "misionCumplida.png" 
+  const property position = game.at(10, 0) 
+}
 
 
 //DEFINICION DEL DIALOGO EN LUCIA:
@@ -412,7 +444,7 @@ const lucia = new VecinoPrincipal ( posicionDelVecino = game.at(19, 10), imagenD
                                              itemQueNecesita = morena, itemAEntregar = flores, 
                                              lineaFinal = luciaFinalChatBox, lineaIntermedio = luciaIntermedioChatBox)
 const luciaInicioChatBox = new ChatBox (image = "LuciaInicioChatBox.png" , position = game.at(10,1))
-const luciaIntermedioChatBox = new ChatBox (image = "LuciaIntermedioChatBox.png" , position = game.at(10,1))
+const luciaIntermedioChatBox = new ChatBoxSuperCorto (image = "LuciaIntermedioChatBox.png" , position = game.at(10,1))
 const luciaFinalChatBox= new ChatBox (image = "LuciaFinalChatBox.png" , position = game.at(10,1))                                             
 
 const juli = new VecinoSolitarioConMision( posicionDelVecino = game.at(27, 7), imagenDelVecino = "juliRed.png", dialogo = juliInicioChatBox,
@@ -440,7 +472,7 @@ const doc = new VecinoPrincipalConMision( vecinoSecundario = vane , posicionDelV
                                           dialogo = docInicioChatBox, itemQueNecesita = dni, itemAEntregar = miel, 
                                           lineaFinal = docFinalChatBox, lineaIntermedio = docIntermedioChatBox)
 const docInicioChatBox = new ChatBox (image = "DocInicioChatBox.png" , position = game.at(10,1))
-const docIntermedioChatBox = new ChatBox (image = "DocIntermedioChatBox.png" , position = game.at(10,1))
+const docIntermedioChatBox = new ChatBoxCorto (image = "DocIntermedioChatBox.png" , position = game.at(10,1))
 const docFinalChatBox= new ChatBox (image = "DocFinalChatBox.png" , position = game.at(10,1))                                          
 
 const poliMujer = new VecinoPrincipalConMision( vecinoSecundario = poliHombre, posicionDelVecino = game.at(4,4), imagenDelVecino="policiaMujerFINAL.png",
@@ -461,8 +493,8 @@ const poliHombre = new VecinoSecundarioConMision( esIntearactuable = false, posi
                                                   dialogo = fernandoPoliciaInicioChatBox, itemAEntregar = llave, 
                                                   lineaFinal= fernandoPoliciaChatBoxPoliciaFinalChatBox, lineaIntermedio = fernandoPoliciaChatBoxePoliciaIntermedioChatBox)
 const fernandoPoliciaInicioChatBox = new ChatBox (image = "FernandoPoliciaInicioChatBox.png" , position = game.at(10,1))
-const fernandoPoliciaChatBoxePoliciaIntermedioChatBox = new ChatBox (image = "FernandoPoliciaIntermedioChatBox.png" , position = game.at(10,1))
-const fernandoPoliciaChatBoxPoliciaFinalChatBox= new ChatBox (image = "FernandoPoliciaFinalChatBox.png" , position = game.at(10,1))
+const fernandoPoliciaChatBoxePoliciaIntermedioChatBox = new ChatBoxCorto (image = "FernandoPoliciaIntermedioChatBox.png" , position = game.at(10,1))
+const fernandoPoliciaChatBoxPoliciaFinalChatBox= new ChatBoxCorto (image = "FernandoPoliciaFinalChatBox.png" , position = game.at(10,1))
 
 const vete = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(11,14), imagenDelVecino = "veteRed.png", 
                                             dialogo = veteInicioChatBox, itemAEntregar = caramelos,
@@ -475,5 +507,5 @@ const vane = new VecinoSecundarioConMision( esIntearactuable = false, posicionDe
                                             dialogo = vaneInicioChatBox, itemAEntregar = dni, 
                                             lineaFinal = vaneFinalChatBox, lineaIntermedio = vaneIntermedioChatBox)
 const vaneInicioChatBox = new ChatBox (image = "VaneInicialChatBox.png" , position = game.at(10,1))
-const vaneIntermedioChatBox = new ChatBox (image = "VaneIntermedioChatBox.png" , position = game.at(10,1))
-const vaneFinalChatBox= new ChatBox (image = "VaneFinalChatBox.png" , position = game.at(10,1))
+const vaneIntermedioChatBox = new ChatBoxCorto (image = "VaneIntermedioChatBox.png" , position = game.at(10,1))
+const vaneFinalChatBox= new ChatBoxCorto (image = "VaneFinalChatBox.png" , position = game.at(10,1))

@@ -82,7 +82,6 @@ class Escenario {
 		game.removeVisual(protagonista)
 	}
 
-
 	// method saleDelJuego(posicion) {
 	// 	return !self.esParteDeEscenario(posicion) && !self.hayEscenarioLindanteEn(posicion)
 	// }
@@ -161,7 +160,6 @@ class Escenario {
 	method puedeCambiarse() {
 		return true
 	}
-
 }
 
 class EscenarioConRestriccion inherits Escenario {
@@ -184,7 +182,6 @@ class EscenarioVecino {
 class Mapa {
 	const property position = game.at(0,0)
 	const property image 
-
 }
 
 

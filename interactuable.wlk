@@ -25,7 +25,6 @@ class ObjetoInvisible inherits Interactuable{
   const property texto
   const property image = "objetoinvisible.png"
   
-  
   method image() {
     return image
   }
@@ -88,7 +87,42 @@ class Imagen {
   }  
 }
 
-const pantallaInicio = new Imagen(image = imageDeInicio)
+class ImagenDeInicio inherits Imagen {
+  var property esVisible = true 
+  const property imagenContex =  imagenContexto
+
+
+  override  method ocultar() {
+    if (self.estaVisible()) {
+        super()
+        self.ponerInvisible()
+        audioContexto.shouldLoop(false)
+        audioContexto.volume(0.5)
+        audioContexto.play()
+    }else{
+        game.removeVisual(imagenContex)
+        musicaIntro.stop()
+        audioContexto.stop()
+        musicaPrincipal.shouldLoop(true)
+        musicaPrincipal.volume(0.1)
+        musicaPrincipal.play()
+    }
+  }
+
+  method estaVisible() {
+    return esVisible
+  }
+  method ponerInvisible() {
+    esVisible = false
+  }
+}
+
+const pantallaInicio = new ImagenDeInicio(image = imageDeInicio)
 const imageDeInicio = new Mapa (image = "PantallaInicial.png")
+const imagenContexto = new Mapa ( image = "pantallaContexto.png")
+const musicaIntro = new Sound(file = "musicaIntro.mp3")
+const musicaPrincipal = new Sound(file = "musicaMain.mp3")
+const audioContexto = new Sound(file = "audioContexto.mp3")
+
 
 

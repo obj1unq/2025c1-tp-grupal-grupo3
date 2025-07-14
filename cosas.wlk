@@ -11,7 +11,7 @@ class Item inherits Interactuable {
   const texto  
   var property durabilidad 
   const property esPista
-  var property listoParaSoltar =  false 
+  //var property listoParaSoltar =  false 
   
   method setPosition(pos) {
     position = pos
@@ -78,20 +78,17 @@ class Item inherits Interactuable {
     game.addVisual(self)
   }
 
-  method prepararParaSoltar() {
-    listoParaSoltar = true
-  }
+  // method prepararParaSoltar() {
+  //   listoParaSoltar = true
+  // }
 
-  method fijarAInventario() {
-    listoParaSoltar = false
-  }
+  // method fijarAInventario() {
+  //   listoParaSoltar = false
+  // }
 
-  method estaPreparadoParaSoltar() {
-    return listoParaSoltar
-  }
-
-
-
+  // method estaPreparadoParaSoltar() {
+  //   return listoParaSoltar
+  // }
 
 }
 
@@ -103,9 +100,13 @@ class ItemConInformacion inherits Item {
         super()
         game.addVisual(imgagenAMostrar)
         imgagenAMostrar.ponerVisible()
+        const sonido = new Sound(file = "QuestLogOpen.mp3")
+        sonido.play()
     }else{
         game.removeVisual(imgagenAMostrar)
         imgagenAMostrar.ponerInvisible()
+        const sonido = new Sound(file = "QuestLogOpen.mp3")
+        sonido.play()
     }
   }
 
@@ -146,10 +147,7 @@ class ImagenAMostrar {
   method ponerInvisible(){
     esVisible = false
   }
-
 }
-
-
 
 const lupa = new Item (position = game.at(10,10), 
                           imagenParaInventario = "lupaFINAL.png",

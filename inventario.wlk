@@ -5,6 +5,7 @@ import mascota.*
 
 object inventario {
   const property objetos = [lupa]
+  var property estaAbierto = false
 
   method agregar(item) {
     self.validarSiSePuedeAgregarAlInventario(item)
@@ -30,6 +31,8 @@ object inventario {
     item.setPosition(game.at(self.indiceDe(item) + 15, 0))
     game.addVisual(item)
     self.refrescar()
+    const sonido = new Sound(file = "pickedItem.mp3")
+    sonido.play()
   }
 
   method esInvisible(){
@@ -40,23 +43,42 @@ object inventario {
     return   (0..objetos.size() - 1).find({objeto => objetos.get(objeto) == objetoBuscado})  
   }
 
+  // method abrir() {
+  //   objetos.forEach({item => item.prepararParaSoltar()})
+  //   game.say(detective, "El inventario está abierto")
+  // }
+
+  // method cerrar() {
+  //   return objetos.forEach({item => item.fijarAInventario()})
+  // }
+
   method abrir() {
-    objetos.forEach({item => item.prepararParaSoltar()})
-    game.say(detective, "El inventario está abierto")
-  }
+  estaAbierto = true
+  game.say(detective, "El inventario está abierto")
+  const sonido = new Sound(file = "inventarioSound.mp3")
+  sonido.play()
+ }
 
   method cerrar() {
-    return objetos.forEach({item => item.fijarAInventario()})
-  }
+  estaAbierto = false
+ }
 
+  // method interactuarEnPosicion(slot) {
+  //   if (self.itemEn(slot).estaPreparadoParaSoltar()){
+  //       self.soltarObjetoEn(slot)
+  //       self.cerrar()
+  //   }else{
+  //     self.usarObjetoEn(slot)
+  //   }   
+  // }
   method interactuarEnPosicion(slot) {
-    if (self.itemEn(slot).estaPreparadoParaSoltar()){
-        self.soltarObjetoEn(slot)
-        self.cerrar()
+    if (estaAbierto) {
+      self.soltarObjetoEn(slot)
+      self.cerrar()
     }else{
       self.usarObjetoEn(slot)
-    }   
-  }
+    }
+ }
 
   method itemEn(slot) {
     return self.objetoEn(slot)
@@ -126,6 +148,9 @@ object inventario {
     detective.objetosDeEscenarioActual().add(item)
     game.addVisual(item)
     self.refrescar()
+    const sonido = new Sound(file = "droopItem.mp3")
+    sonido.play()
   }
 
 }
+

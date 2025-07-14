@@ -23,8 +23,7 @@ class Edificio {
   method dependeDeEscenario() {
     return true
   }
-
- }
+}
 
   
 

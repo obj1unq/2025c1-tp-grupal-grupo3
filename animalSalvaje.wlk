@@ -117,6 +117,6 @@ object oso {
 }
 
 object gameOver {
-        const property image = "gameover.png" 
-        const property position = game.at(5, 0) 
+        const property image = "PantallaPerder.png" 
+        const property position = game.at(0, 0) 
     }
