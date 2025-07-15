@@ -9,8 +9,6 @@ import escenarios.*
 import inventario.*
 import animalSalvaje.*
 
-
-
 program detectiveDeMascotas{
   game.title("Detective de mascotas")
   musicaIntro.shouldLoop(true)
