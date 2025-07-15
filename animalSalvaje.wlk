@@ -1,3 +1,4 @@
+import audioManager.*
 import detective.*
 import cosas.*
 
@@ -6,6 +7,9 @@ object oso {
     var  property position  = game.at(5, 5) 
     const property debilidad = miel
     var property imagenActual =  "oso.gif"
+    var property activo = true
+    var property dormido = false
+
 
     method image(){
         return imagenActual
@@ -19,8 +23,12 @@ object oso {
     }
 
     method finalizar() {
-        game.removeTickEvent("mover oso")
-        osoCorriendo.stop()
+        if (activo) {
+            game.removeTickEvent("mover oso")
+            osoCorriendo.stop()
+            //rugidoOso.stop()
+            activo = false
+        }
     }
     
     method nuevaPosicion(){
@@ -60,9 +68,19 @@ object oso {
     }
 
     method dormirse() {
-        imagenActual = "osoDormido.gif"
-        game.say(self, "Mmm... miel")
-        self.finalizar()
+        if (not dormido) {
+            imagenActual = "osoDormido.gif"
+            game.say(self, "Mmm... miel")
+            dormido = true
+            self.finalizar()
+        }
+    }
+
+    method reiniciar() {
+        activo = true
+        dormido = false
+        imagenActual = "oso.gif"
+        osoCorriendo.stop()  
     }
 
     method estaAdyacenteAlDetective() {

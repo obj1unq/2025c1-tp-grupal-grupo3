@@ -1,7 +1,8 @@
+import audioManager.*
+import interactuable.*
 import direcciones.*
 import cosas.*
 import vecinos.*
-import interactuable.*
 import edificios.*
 import detective.*
 import inventario.*
@@ -17,7 +18,8 @@ class Escenario {
 	const property mapCubiertas 
 	const property edificios = []
 	const property iniciables = #{}
-	var property musicaActual = musicaPrincipal
+	//var property musicaActual = musicaPrincipal
+	//const property audio = audioManager
 
 	
     method configurar(){ 	
@@ -26,11 +28,17 @@ class Escenario {
         game.cellSize(60) 
 		
 		self.agregarVisualesDeEscenario()
-		musicaActual.shouldLoop(true)
-  		musicaActual.volume(0.1)
-        musicaActual.play()
+		//audioManager.reproducir(self.musicaDeseada())
+		//audioManager.iniciarMusicaPrincipal()
+		// musicaActual.shouldLoop(true)
+  		// musicaActual.volume(0.1)
+        // musicaActual.play()
 		//game.addVisual(mapCubiertas)
 		//game.boardGround(map)
+	}
+
+	method musicaDeseada() { 
+		return musicaPrincipal
 	}
 
 
@@ -135,9 +143,10 @@ class Escenario {
 
 
 	method cargarEscenarioVecinoDeDireccion(direccion){
-		musicaActual.stop()
+		//musicaActual.stop()
 		self.removerVisualesDeEscenario()
 		self.escenarioEnDireccion(direccion).configurar()
+		audioManager.reproducirPara(self.escenarioEnDireccion(direccion))
 	}
 
 
@@ -175,12 +184,12 @@ class EscenarioConRestriccion inherits Escenario {
 
 	override method configurar() {
 		super()
-		musicaActual.stop()
-		musicaActual = musicaBosque
-		musicaActual.shouldLoop(true)
-  		musicaActual.volume(0.5)
-        musicaActual.play()
-		
+		oso.reiniciar()	
+		oso.iniciar()
+	}
+
+	override method musicaDeseada(){
+		return  musicaBosque
 	}
 
 	// override method agregarVisualesDeEscenario() {

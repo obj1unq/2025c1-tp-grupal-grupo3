@@ -1,25 +1,32 @@
 //import escenarios.*
+import audioManager.*
+import interactuable.*
 import wollok.game.*
 import detective.*
 import direcciones.*
 import cosas.*  
 import vecinos.*
-import interactuable.*
 import escenarios.*
 import inventario.*
 import animalSalvaje.*
 
 program detectiveDeMascotas{
   game.title("Detective de mascotas")
+  game.width(38)
+  game.height(20)
+  game.cellSize(60) 
   musicaIntro.shouldLoop(true)
   musicaIntro.volume(0.1)
   musicaIntro.play()
 
-  detective.escenarioActual().configurar()
-  musicaPrincipal.stop()
+  //detective.escenarioActual().configurar()
+  //musicaPrincipal.stop()
+  //audioManager.reproducir(musicaPrincipal)
+  //audioManager.reproducirPara(detective.escenarioActual())
 
   game.addVisual(imagenContexto)
   pantallaInicio.mostrar()
+  
   keyboard.w().onPressDo({ detective.mover(arriba) })   
   keyboard.a().onPressDo({ detective.mover(izquierda) }) 
   keyboard.s().onPressDo({ detective.mover(abajo) })     
@@ -36,7 +43,9 @@ program detectiveDeMascotas{
   keyboard.num8().onPressDo({ inventario.interactuarEnPosicion(7) })
   keyboard.num9().onPressDo({ inventario.interactuarEnPosicion(8) })
   keyboard.num0().onPressDo({ inventario.interactuarEnPosicion(9) })
+  keyboard.t().onPressDo({chatManager.ocultar()})
 
   keyboard.space().onPressDo({pantallaInicio.ocultar()})
+  
   game.start()
 }

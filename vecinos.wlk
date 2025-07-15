@@ -1,3 +1,4 @@
+import audioManager.*
 import inventario.*
 import detective.*
 import wollok.game.*
@@ -224,10 +225,11 @@ class ChatBox inherits ImagenAMostrar {
   var property tokenActual = ""
 
   method hablar(vecino) {
+    chatManager.mostrar(self)
     self.mostrarSiEsNecesario(vecino)
     self.agendarOcultar()
-    const sonido = new Sound(file = "QuestLogOpen.mp3")
-    sonido.play()
+    const sonidoDeDiaologo = new Sound(file = "QuestLogOpen.mp3")
+    sonidoDeDiaologo.play()
   }
 
   method mostrarSiEsNecesario(vecino) {
@@ -249,6 +251,16 @@ class ChatBox inherits ImagenAMostrar {
       visible = false
     }
   }
+
+  method ocultarManual() {
+  if (visible) {
+    game.removeVisual(self)
+    visible = false
+    game.removeTickEvent(tokenActual) // evita que el onTick lo vuelva a ocultar luego
+  }
+}
+
+
 }
 
 class ChatBoxLargo inherits ChatBox {
@@ -272,6 +284,21 @@ class ChatBoxSuperCorto inherits ChatBox {
     const nuevoToken = "cb" + game.currentTime()
     tokenActual = nuevoToken
     game.onTick(4000, nuevoToken, {self.ocultarSiEsTokenValido(nuevoToken)})
+  }
+}
+
+object chatManager {
+  var chatBoxActivo = null
+
+  method mostrar(chatBox) {
+    chatBoxActivo = chatBox
+  }
+
+  method ocultar() {
+    if (chatBoxActivo != null) {
+      chatBoxActivo.ocultarManual()
+      chatBoxActivo = null
+    }
   }
 }
 

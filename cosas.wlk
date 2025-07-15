@@ -1,3 +1,4 @@
+import audioManager.*
 import interactuable.*
 import detective.*
 import inventario.*
