@@ -337,6 +337,36 @@ const dialogoDeMaestra = ["Hoy fue un día agotador de trabajo", "Los niños pre
 
 const dialogoDeMetalero = ["Viva RAMMSTEIN carajo"]
 
+const dialogoDeOrella = ["Se me fué el colectivo!!!"]
+
+const dialogoDeProfeMiel = ["Buenos dias! Venis a buscar a algún niño?"]
+
+const dialogoDeAlejandro = ["Que satisfactorio respirar este aire fresco"] 
+
+const dialogoDeAgustina = ["Te recomiendo mucho la pizza", "Está muy buena"]
+
+const dialogoDeDaniel = ["Quieres unos tacos al pastor?"]
+
+const dialogoDeMateoYSuHija = ["Tenemos mucho apetito", "Ellie tiene ganas de comer tacos"] 
+
+const dialogoDeNaomiySuHijo = ["Ya nos vamos a ir", "Fué un día lindo y agotador"]
+
+const dialogoDeCarolina = ["Mira lo alto que llegó!!!"]
+
+const dialogoDeTito = ["Hola detective!!"]
+
+const dialogoDeLila = ["El día está bueno para tomar una limonada"]
+
+const dialogoDeAny = ["Nunca se rinda detective!"]
+
+const dialogoDeYozkosYChumy = ["Viva el amor"]
+
+const dialogoDeSaito = ["Mi gamboy se quedó sin pilas :("]
+
+const dialogoDeKingkrimso = ["Cómo tan muchacho?"]
+
+const dialogoDeDaniela = ["Vienes a cargar gasolina?"]
+
 const dialogosDeLucia        = ["Hola, Necesito tu ayuda", "Se perdió Morena, mi gatita", "No puedo estar sin Morena", 
                                 "Morena tiene un collar celeste", "Ella es blanquita", "Te agradeceria que la encuentres"] 
 const dialogoFinalLucia      = ["AAAAA Morena!!!", "Muchas gracias por encontrarla!!", "La extrañaba mucho"]
@@ -441,6 +471,21 @@ const dialogo44 = new Dialogo( lineasDelVecino = dialogoDeGruda)
 const dialogo45 = new Dialogo( lineasDelVecino = dialogoDeNene)
 const dialogo46 = new Dialogo( lineasDelVecino = dialogoDeMaestra)
 const dialogo47 = new Dialogo( lineasDelVecino = dialogoDeMetalero)
+const dialogo48 = new Dialogo( lineasDelVecino = dialogoDeOrella)
+const dialogo49 = new Dialogo( lineasDelVecino = dialogoDeProfeMiel)
+const dialogo50 = new Dialogo( lineasDelVecino = dialogoDeAlejandro)
+const dialogo51 = new Dialogo( lineasDelVecino = dialogoDeAgustina)
+const dialogo52 = new Dialogo( lineasDelVecino = dialogoDeDaniel)
+const dialogo53 = new Dialogo( lineasDelVecino = dialogoDeMateoYSuHija)
+const dialogo54 = new Dialogo( lineasDelVecino = dialogoDeNaomiySuHijo)
+const dialogo55 = new Dialogo( lineasDelVecino = dialogoDeCarolina)
+const dialogo56 = new Dialogo( lineasDelVecino = dialogoDeTito)
+const dialogo57 = new Dialogo( lineasDelVecino = dialogoDeLila)
+const dialogo58 = new Dialogo( lineasDelVecino = dialogoDeAny)
+const dialogo59 = new Dialogo( lineasDelVecino = dialogoDeYozkosYChumy)
+const dialogo60 = new Dialogo( lineasDelVecino = dialogoDeSaito)
+const dialogo61 = new Dialogo( lineasDelVecino = dialogoDeKingkrimso)
+const dialogo62 = new Dialogo( lineasDelVecino = dialogoDeDaniela)
 
 
 //CREO A LUCIA COMO TAL LO QUE ES : UN VECINO 
@@ -457,6 +502,21 @@ const gruda    = new Vecino( posicionDelVecino = game.at(26, 14), imagenDelVecin
 const nene     = new Vecino( posicionDelVecino = game.at(6, 8), imagenDelVecino = "neneJugandoFINAL.png", dialogo = dialogo45)
 const maestra  = new Vecino( posicionDelVecino = game.at(29, 11), imagenDelVecino = "maestraFINAL.png", dialogo = dialogo46)
 const metalero  = new Vecino( posicionDelVecino = game.at(7, 4), imagenDelVecino = "metaleroFINAL.png", dialogo = dialogo47)
+const orella         = new Vecino(posicionDelVecino = game.at(31, 7), imagenDelVecino = "ninaColegioFINAL.png", dialogo = dialogo48)
+const profeMiel      = new Vecino(posicionDelVecino = game.at(3, 15), imagenDelVecino = "profesoraJardinFINAL.png", dialogo = dialogo49)
+const alejandro      = new Vecino(posicionDelVecino = game.at(11, 8), imagenDelVecino = "hombreConPerritoFINAL.png", dialogo = dialogo50)
+const agustina       = new Vecino(posicionDelVecino = game.at(36, 8), imagenDelVecino = "mujerComiendoPizzaFINAL.png", dialogo = dialogo51)
+const daniel         = new Vecino(posicionDelVecino = game.at(22, 8), imagenDelVecino = "vendedorDeTacosFINAL.png", dialogo = dialogo52)
+const mateoYSuHija   = new Vecino(posicionDelVecino = game.at(11, 3), imagenDelVecino = "mateoYSuHijaFINAL.png", dialogo = dialogo53)
+const naomiySuHijo   = new Vecino(posicionDelVecino = game.at(19, 6), imagenDelVecino = "mamaYNeneCaminandoFINAL.png", dialogo = dialogo54)
+const carolina       = new Vecino(posicionDelVecino = game.at(5, 7), imagenDelVecino = "nenaBarrileteFINAL.png", dialogo = dialogo55)
+const tito           = new Vecino(posicionDelVecino = game.at(34, 3), imagenDelVecino = "neneUniformeFINAL.png", dialogo = dialogo56)
+const lila           = new Vecino(posicionDelVecino = game.at(6, 12), imagenDelVecino = "nenaLimonadaFINAL.png", dialogo = dialogo57)
+const any            = new Vecino(posicionDelVecino = game.at(12, 2), imagenDelVecino = "anyFINAL.png", dialogo = dialogo58)
+const yozkosYChumy   = new Vecino(posicionDelVecino = game.at(35, 10), imagenDelVecino = "yozkosYChumyFINAL.png", dialogo = dialogo59)
+const saito          = new Vecino(posicionDelVecino = game.at(19, 17), imagenDelVecino = "saitoFINAL.png", dialogo = dialogo60)
+const kingkrimso     = new Vecino(posicionDelVecino = game.at(26, 10), imagenDelVecino = "kingkrimsoFINAL.png", dialogo = dialogo61)
+const daniela        = new Vecino(posicionDelVecino = game.at(23, 14), imagenDelVecino = "trabajadoraGasolineraFINAL.png", dialogo = dialogo62)
 
 
 
