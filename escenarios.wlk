@@ -17,6 +17,7 @@ class Escenario {
 	const property mapCubiertas 
 	const property edificios = []
 	const property iniciables = #{}
+	var property musicaActual = musicaPrincipal
 
 	
     method configurar(){ 	
@@ -25,6 +26,9 @@ class Escenario {
         game.cellSize(60) 
 		
 		self.agregarVisualesDeEscenario()
+		musicaActual.shouldLoop(true)
+  		musicaActual.volume(0.1)
+        musicaActual.play()
 		//game.addVisual(mapCubiertas)
 		//game.boardGround(map)
 	}
@@ -131,6 +135,7 @@ class Escenario {
 
 
 	method cargarEscenarioVecinoDeDireccion(direccion){
+		musicaActual.stop()
 		self.removerVisualesDeEscenario()
 		self.escenarioEnDireccion(direccion).configurar()
 	}
@@ -166,6 +171,16 @@ class EscenarioConRestriccion inherits Escenario {
 	//const property animalSalvaje
 	override method puedeCambiarse() {
 		return inventario.tieneObjeto(credencial)
+	}
+
+	override method configurar() {
+		super()
+		musicaActual.stop()
+		musicaActual = musicaBosque
+		musicaActual.shouldLoop(true)
+  		musicaActual.volume(0.5)
+        musicaActual.play()
+		
 	}
 
 	// override method agregarVisualesDeEscenario() {
@@ -244,6 +259,7 @@ const escenarioBosque = new EscenarioConRestriccion (protagonista = detective, m
 const mapaEscenarioBosque = new Mapa (image = "escenarioBosqueFINAL1.png")
 const escenarioBosqueCubiertas = new Mapa (image = "escenarioBosqueFINALcubiertas.png")
 const escenarioAlSurDeBosque = new EscenarioVecino (direccion = abajo, escenario = escenarioCamping)
+const musicaBosque = new Sound(file = "musicaBosque.mp3")
 
 const escenarioMercado = new Escenario (protagonista = detective, map = mapaEscenarioMercado, mapCubiertas = escenarioMercadoCubiertas,
 										edificios = [arbustosAbajo1, maquina, paradaColectivo1, arbustosAbajo2, faro, pozo, floresAbajo, floresAbajo2, pozo2, hotel, hotelArriba, paredIzq,

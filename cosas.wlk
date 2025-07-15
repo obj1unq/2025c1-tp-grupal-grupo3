@@ -74,7 +74,6 @@ class Item inherits Interactuable {
   }
 
   method iniciar() {
-
     game.addVisual(self)
   }
 

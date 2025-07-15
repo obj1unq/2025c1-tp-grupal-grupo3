@@ -13,10 +13,14 @@ object oso {
 
     method iniciar() {
         game.onTick(2000, "mover oso", {self.mover()})
+        osoCorriendo.shouldLoop(true)
+  		osoCorriendo.volume(0.5)
+		osoCorriendo.play()
     }
 
     method finalizar() {
         game.removeTickEvent("mover oso")
+        osoCorriendo.stop()
     }
     
     method nuevaPosicion(){
@@ -46,8 +50,12 @@ object oso {
     }
 
     method atacar() {
+        osoCorriendo.stop()
         game.addVisual(gameOver)
         self.finalizar()
+        rugidoOso.shouldLoop(true)
+  		rugidoOso.volume(0.5)
+        rugidoOso.play()
         presa.gameOver()
     }
 
@@ -119,4 +127,7 @@ object oso {
 object gameOver {
         const property image = "PantallaPerder.png" 
         const property position = game.at(0, 0) 
-    }
+}
+
+const rugidoOso = new Sound(file = "osoRugido.mp3")
+const osoCorriendo = new Sound(file = "osoCorriendo.mp3")

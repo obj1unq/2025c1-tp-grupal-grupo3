@@ -96,6 +96,7 @@ class ImagenDeInicio inherits Imagen {
     if (self.estaVisible()) {
         super()
         self.ponerInvisible()
+        musicaPrincipal.stop()
         audioContexto.shouldLoop(false)
         audioContexto.volume(0.5)
         audioContexto.play()
@@ -103,9 +104,10 @@ class ImagenDeInicio inherits Imagen {
         game.removeVisual(imagenContex)
         musicaIntro.stop()
         audioContexto.stop()
-        musicaPrincipal.shouldLoop(true)
-        musicaPrincipal.volume(0.1)
+        audioContexto.shouldLoop(false)
+        audioContexto.volume(0.5)
         musicaPrincipal.play()
+        
     }
   }
 
