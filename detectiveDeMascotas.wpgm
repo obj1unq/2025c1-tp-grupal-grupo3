@@ -18,6 +18,8 @@ program detectiveDeMascotas{
   musicaIntro.play()
 
   detective.escenarioActual().configurar()
+  musicaPrincipal.stop()
+
   game.addVisual(imagenContexto)
   pantallaInicio.mostrar()
   keyboard.w().onPressDo({ detective.mover(arriba) })   

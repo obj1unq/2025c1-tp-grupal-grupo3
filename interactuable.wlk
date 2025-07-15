@@ -96,7 +96,7 @@ class ImagenDeInicio inherits Imagen {
     if (self.estaVisible()) {
         super()
         self.ponerInvisible()
-        musicaPrincipal.stop()
+        
         audioContexto.shouldLoop(false)
         audioContexto.volume(0.5)
         audioContexto.play()
