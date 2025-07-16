@@ -605,7 +605,7 @@ const fernandoPoliciaChatBoxPoliciaFinalChatBox= new ChatBoxCorto (image = "Fern
 const vete = new VecinoSecundarioConMision( esIntearactuable = false, posicionDelVecino = game.at(11,14), imagenDelVecino = "veteRed.png", 
                                             dialogo = veteInicioChatBox, itemAEntregar = caramelos,
                                             lineaFinal = veteFinalChatBox, lineaIntermedio = veteIntermedioChatBox)
-const veteInicioChatBox = new ChatBox (image = "VeteInicialChatBox.png" , position = game.at(10,1))
+const veteInicioChatBox = new ChatBox (image = "VeteInicioChatBox.png" , position = game.at(10,1))
 const veteIntermedioChatBox = new ChatBox (image = "VeteIntermedioChatBox.png" , position = game.at(10,1))
 const veteFinalChatBox= new ChatBox (image = "VeteFinalChatBox.png" , position = game.at(10,1))
 
