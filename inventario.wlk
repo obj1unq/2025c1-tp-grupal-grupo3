@@ -4,7 +4,7 @@ import cosas.*
 import mascota.*
 
 object inventario {
-  const property objetos = [lupa,credencial, miel, arnes, transportadoraVacia, bocadillos]
+  const property objetos = [lupa]
   var property estaAbierto = false
 
   method agregar(item) {

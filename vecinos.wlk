@@ -44,6 +44,15 @@ class Vecino inherits Interactuable{
   override method sePuedeInteractuar() {
     return true
   }
+}
+class VecinoConAudio inherits Vecino{
+
+  override method hablar(){
+    dialogo.hablar(self)
+    const sonido = new Sound(file = "audioSalem.mp3")
+    sonido.volume(0.5)
+    sonido.play()
+  }
 } 
 
 class VecinoConMision inherits Vecino{
@@ -114,7 +123,6 @@ class VecinoConMision inherits Vecino{
     // const sonido = new Sound(file = "QuestLogOpen.mp3")
     // sonido.play()
   }
-
 }
 
 class VecinoEspecialConMision inherits VecinoConMision {
@@ -126,7 +134,6 @@ class VecinoEspecialConMision inherits VecinoConMision {
   override method finalizarMision(detective) {
       super(detective)
       detective.descartarItem(lupa)
-
   }
 }
 
@@ -140,6 +147,7 @@ class VecinoSolitarioConMision inherits VecinoConMision {
     override method finalizarMision(detective) {
       super(detective)
       detective.descartarItem(itemQueNecesita)
+
     }
 }
 
@@ -158,6 +166,11 @@ class VecinoPrincipal inherits VecinoSolitarioConMision {
     super(detective)
     game.addVisual(misionCompletada)
     detective.gameOver()
+    
+    const musicaWin = new Sound(file = "musicaWin.mp3")
+    musicaWin.shouldLoop(true)
+    musicaWin.play()
+    audioManager.detenerMusica()
   }
 }
 
@@ -174,7 +187,6 @@ class VecinoPrincipalConMision inherits VecinoSolitarioConMision {
       super(detective)
       vecinoSecundario.cambiarANoInteractuable()
   }
-
 }
 
 class VecinoSecundarioConMision inherits VecinoConMision {
@@ -199,7 +211,6 @@ class Dialogo {
   var vecino = null
 
   method hablar(_vecino) {
-     //Necesito cambiar cada tres segundos el dialogo hasta finalizar
       indice = 0
       vecino = _vecino
       self.cambiarDialogo()
@@ -217,7 +228,6 @@ class Dialogo {
         }      
   }
 }
-
 
 class ChatBox inherits ImagenAMostrar {
 
@@ -253,12 +263,12 @@ class ChatBox inherits ImagenAMostrar {
   }
 
   method ocultarManual() {
-  if (visible) {
-    game.removeVisual(self)
-    visible = false
-    game.removeTickEvent(tokenActual) // evita que el onTick lo vuelva a ocultar luego
+    if (visible) {
+      game.removeVisual(self)
+      visible = false
+      game.removeTickEvent(tokenActual) 
+    }
   }
-}
 
 
 }
@@ -298,16 +308,17 @@ object chatManager {
     if (chatBoxActivo != null) {
       chatBoxActivo.ocultarManual()
       chatBoxActivo = null
+      const sonidoDeDiaologo = new Sound(file = "QuestLogOpen.mp3")
+      sonidoDeDiaologo.play()
     }
   }
 }
 
-
-
 object misionCompletada {
   const property image = "misionCumplida.png" 
-  const property position = game.at(10, 0) 
+  const property position = game.at(0, 0) 
 }
+
 
 
 //DEFINICION DEL DIALOGO EN LUCIA:
@@ -361,11 +372,15 @@ const dialogoDeAny = ["Nunca se rinda detective!"]
 
 const dialogoDeYozkosYChumy = ["Viva el amor"]
 
-const dialogoDeSaito = ["Mi gamboy se quedó sin pilas :("]
+const dialogoDeSaito = ["Mi gameboy se quedó sin pilas :("]
 
 const dialogoDeKingkrimso = ["Cómo tan muchacho?"]
 
 const dialogoDeDaniela = ["Vienes a cargar gasolina?"]
+
+const dialogoDeSalem = ["les insto a que me acepten como su gobernante", "Digo miau"]
+
+const dialogoDeAceVentura = ["Hola colega!", "No te olvides de tener todo lo necesario", "para ese rescate"]
 
 const dialogosDeLucia        = ["Hola, Necesito tu ayuda", "Se perdió Morena, mi gatita", "No puedo estar sin Morena", 
                                 "Morena tiene un collar celeste", "Ella es blanquita", "Te agradeceria que la encuentres"] 
@@ -486,6 +501,8 @@ const dialogo59 = new Dialogo( lineasDelVecino = dialogoDeYozkosYChumy)
 const dialogo60 = new Dialogo( lineasDelVecino = dialogoDeSaito)
 const dialogo61 = new Dialogo( lineasDelVecino = dialogoDeKingkrimso)
 const dialogo62 = new Dialogo( lineasDelVecino = dialogoDeDaniela)
+const dialogo63 = new Dialogo( lineasDelVecino = dialogoDeAceVentura)
+const dialogo64 = new Dialogo( lineasDelVecino = dialogoDeSalem)
 
 
 //CREO A LUCIA COMO TAL LO QUE ES : UN VECINO 
@@ -517,6 +534,8 @@ const yozkosYChumy   = new Vecino(posicionDelVecino = game.at(35, 10), imagenDel
 const saito          = new Vecino(posicionDelVecino = game.at(19, 17), imagenDelVecino = "saitoFINAL.png", dialogo = dialogo60)
 const kingkrimso     = new Vecino(posicionDelVecino = game.at(26, 10), imagenDelVecino = "kingkrimsoFINAL.png", dialogo = dialogo61)
 const daniela        = new Vecino(posicionDelVecino = game.at(23, 14), imagenDelVecino = "trabajadoraGasolineraFINAL.png", dialogo = dialogo62)
+const aceVentura     = new Vecino(posicionDelVecino = game.at(3, 2), imagenDelVecino = "aceVenturaFINAL.png", dialogo = dialogo63)
+const salem          = new VecinoConAudio(posicionDelVecino = game.at(30, 10), imagenDelVecino = "salemFINAL.png", dialogo = dialogo64)
 
 
 

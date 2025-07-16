@@ -157,6 +157,7 @@ object detective {
   method gameOver() {
     game.removeVisual(self)
     estaVivo = false
+    
   }
 
   method objetosDeEscenarioActual() {

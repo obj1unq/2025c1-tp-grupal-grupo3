@@ -50,7 +50,7 @@ class Item inherits Interactuable {
   method usar() {
     self.actualizarDurabilidad()
     self.actualizarEstadoDe()
-    game.say(detective, "Usé " + texto)
+    game.say(detective, "" + texto)
   }
 
   method actualizarEstadoDe() {
@@ -97,7 +97,8 @@ class ItemConInformacion inherits Item {
 
   override method usar(){
     if (not imgagenAMostrar.estaVisible()){
-        super()
+        self.actualizarDurabilidad()
+        self.actualizarEstadoDe()
         game.addVisual(imgagenAMostrar)
         imgagenAMostrar.ponerVisible()
         const sonido = new Sound(file = "QuestLogOpen.mp3")
@@ -151,14 +152,14 @@ class ImagenAMostrar {
 
 const lupa = new Item (position = game.at(10,10), 
                           imagenParaInventario = "lupaFINAL.png",
-                          texto = "una lupa",
+                          texto = "Una lupa, quizás me ayude a obtener pistas",
                           imagen = "lupaFINAL.png",
                           durabilidad = 10000,
                           esPista = false)
 
 const blockNotas = new ItemConInformacion (position = game.at(15,6), 
                             imagenParaInventario = "blockDeNotasFINAL.png", 
-                            texto = "un block de notas",
+                            texto = "Un block de notas",
                             imagen = "blockDeNotasFINAL.png",
                             durabilidad = 10000,
                             esPista = true,
@@ -167,7 +168,7 @@ const hojaDeBlockDeNotas = new ImagenAMostrar (image = "hojaDeBlockDeNotas.png",
  
 const collar = new Item (position = game.at(7,8), 
                         imagenParaInventario = "collarFINAL.png",
-                        texto = "un collar celeste",
+                        texto = "Un collar celeste",
                         imagen = "collarFINAL.png",
                         durabilidad = 10000,
                         esPista = true)
@@ -175,56 +176,56 @@ const collar = new Item (position = game.at(7,8),
     
 const miel = new Item (position = game.at(9,9), 
                       imagenParaInventario = "mielFINAL.png", 
-                      texto = "miel para el oso",
+                      texto = "Miel",
                       imagen = "mielFINAL.png",
                       durabilidad = 10,
                       esPista = false)
          
 const dni = new Item (position = game.at(10,10),
                       imagenParaInventario = "dniFINAL.png",
-                      texto = "el dni del doc",
+                      texto = "El dni del doc",
                       imagen = "dniFINAL.png",
                       durabilidad = 10000,
                       esPista = false)
 
 const llave = new Item (position = game.at(10,10),
                       imagenParaInventario = "llaveFINAL.png",
-                      texto = "la llave del casillero de la policia",
+                      texto = "La llave del casillero de la policia",
                       imagen = "llaveFINAL.png",
                       durabilidad = 10000,
                       esPista = false)
 
 const linterna = new Item (position = game.at(10,10),
                       imagenParaInventario = "linternaFINAL.png",
-                      texto = "una linterna usada",
+                      texto = "Una linterna usada",
                       imagen = "linternaFINAL.png",
                       durabilidad = 10000,
                       esPista = false)
 
 const puaGuitarra = new Item (position = game.at(8,6),
                       imagenParaInventario = "puaInventarioFINAL.png",
-                      texto = "la pua de Rami",
+                      texto = "La pua de Rami",
                       imagen = "puaFINAL.png",
                       durabilidad = 10000,
                       esPista = false)
 
 const transportadoraVacia = new Item (position = game.at(10,10),
                       imagenParaInventario = "transportadoraVaciaFINAL.png",
-                      texto = "la transportadora vacía me puede servir",
+                      texto = "La transportadora vacía me puede servir",
                       imagen = "transportadoraVaciaFINAL.png",
                       durabilidad = 10000,
                       esPista = true)
 
 const burbujero = new Item (position = game.at(23,16),
                       imagenParaInventario = "burbujeroFINAL.png",
-                      texto = "el burbujero de juli",
+                      texto = "El burbujero de juli",
                       imagen = "burbujeroFINAL.png",
                       durabilidad = 10000,
                       esPista = false)
 
 const hoja = new ItemConInformacion (position = game.at(10,10),
                       imagenParaInventario = "hojaFINAL.png",
-                      texto = "el dibujo",
+                      texto = "El dibujo de la nena",
                       imagen = "hojaFINAL.png",
                       durabilidad = 10000,
                       esPista = true,
@@ -233,56 +234,56 @@ const fotoGrande = new ImagenAMostrar (image = "fotoGrande.png", position = game
 
 const caramelos = new Item (position = game.at(10,10),
                       imagenParaInventario = "caramelosFINAL.png",
-                      texto = "debo entregar los caramelos al niño",
+                      texto = "Debo entregar los caramelos al niño",
                       imagen = "caramelosFINAL.png",
                       durabilidad = 10000,
                       esPista = false)
 
 const moneda = new Item (position = game.at(10,10),
                       imagenParaInventario = "monedaFINAL.png",
-                      texto = "puedo usarla para comprar algo",
+                      texto = "Puedo usarla para comprar algo",
                       imagen = "monedaFINAL.png",
                       durabilidad = 100000,
                       esPista = false)
 
 const bocadillos = new Item (position = game.at(10,10),
                       imagenParaInventario = "bocadilloFINAL.png",
-                      texto = "pueden servir para Morena",
+                      texto = "Pueden servir para Morena",
                       imagen = "bocadilloFINAL.png",
                       durabilidad = 100000,
                       esPista = true)
 
 const pelos = new Item (position = game.at(10,10),
                       imagenParaInventario = "pelosDeMorenaFINAL.png",
-                      texto = "los pelos de Morena",
+                      texto = "Los pelos de Morena",
                       imagen = "pelosDeMorenaFINAL.png",
                       durabilidad = 100000,
                       esPista = true)
 
 const credencial = new Item (position = game.at(10,10),
                       imagenParaInventario = "credencialFINAL.png",
-                      texto = "me sirve para entrar al Bosque",
+                      texto = "Me sirve para entrar al Bosque",
                       imagen = "credencialFINAL.png",
                       durabilidad = 100000,
                       esPista = false)
 
 const morena = new ItemEspecial(position = posibleAparicion.randomized().first(),
                       imagenParaInventario = "transportadoraConMichiFINAL.png",
-                      texto = "tengo a la gata, debo llevarla a su dueña",
+                      texto = "Tengo a la gata, debo llevarla a su dueña",
                       imagen = "morenaFINAL.png",
                       durabilidad = 100000,
                       esPista = false)
 
 const flores = new Item(position = game.at(10,10),
                         imagenParaInventario = "floresFINAL.png",
-                        texto = "unas flores muy lindas",
+                        texto = "Unas flores muy lindas",
                         imagen = "floresFINAL.png",
                         durabilidad = 11110,
                         esPista = false)
 
 const arnes = new Item( position = game.at(10,10),
                         imagenParaInventario = "arnesFINAL.png",
-                        texto = "un arnes azul",
+                        texto = "Un arnes azul",
                         imagen = "arnesFINAL.png",
                         durabilidad = 11110,
                         esPista = true)

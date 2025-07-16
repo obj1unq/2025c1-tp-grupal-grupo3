@@ -35,22 +35,41 @@ object oso {
         return game.at(self.position().x() + self.xAMover(), self.position().y() + self.yAMover())
     }
 
+    // method mover() {
+    //     if (self.estaAdyacenteAlDetective())
+    //             self.responderADetectiveAdyacente()
+    //         else
+    //             self.avanzar()
+    // }
+
     method mover() {
-        if (self.estaAdyacenteAlDetective())
-                self.responderADetectiveAdyacente()
-            else
-                self.avanzar()
+    if (self.puedeActuar())
+        self.responderSegunProximidad()
     }
 
+    method puedeActuar() {
+        return activo and presa.estaVivo()
+    }
+
+    method responderSegunProximidad() {
+        if (self.estaAdyacenteAlDetective()){
+            self.responderADetectiveAdyacente()
+        }else{
+            self.avanzar()
+        }
+    }
+    
     method avanzar() {
         position = self.nuevaPosicion()
     }
 
     method responderADetectiveAdyacente() {
-        if (self.debeAtacar())
+        if (self.debeAtacar()){
             self.atacar()
-          else
+        }else{
+            game.say(detective, "uff la miel me salvó")
             self.dormirse()
+        }
     }
 
     method debeAtacar() {
@@ -58,13 +77,21 @@ object oso {
     }
 
     method atacar() {
-        osoCorriendo.stop()
         game.addVisual(gameOver)
         self.finalizar()
+        //osoCorriendo.stop()
+        // rugidoOso.shouldLoop(true)
+  		// rugidoOso.volume(0.5)
+        // rugidoOso.play()
+        presa.gameOver()
+        audioManager.detenerMusica()
+        finDeJuegoMusica.shouldLoop(true)
+        finDeJuegoMusica.play()
         rugidoOso.shouldLoop(true)
   		rugidoOso.volume(0.5)
         rugidoOso.play()
-        presa.gameOver()
+
+
     }
 
     method dormirse() {
@@ -149,3 +176,4 @@ object gameOver {
 
 const rugidoOso = new Sound(file = "osoRugido.mp3")
 const osoCorriendo = new Sound(file = "osoCorriendo.mp3")
+const finDeJuegoMusica = new Sound(file = "finDeJuegoMusica.mp3")

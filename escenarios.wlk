@@ -28,6 +28,7 @@ class Escenario {
         game.cellSize(60) 
 		
 		self.agregarVisualesDeEscenario()
+		
 		//audioManager.reproducir(self.musicaDeseada())
 		//audioManager.iniciarMusicaPrincipal()
 		// musicaActual.shouldLoop(true)
@@ -58,6 +59,9 @@ class Escenario {
 		game.addVisual(mapCubiertas)
 		inventario.refrescar()
 		self.iniciarIniciables()
+		game.removeVisual(iconoAyuda)
+		game.addVisual(iconoAyuda)
+			
 	}
 
 	method agregarVisualesVecinos() {
@@ -80,6 +84,9 @@ class Escenario {
 		self.removerVisualDetective()
 		game.removeVisual(mapCubiertas)
 		self.finalizarIniciables()
+
+		game.removeVisual(iconoAyuda)
+		
 	}
 
 	method removerVisualesVecinos() {
@@ -229,7 +236,7 @@ const escenarioCentral = new Escenario (protagonista = detective, map = mapaEsce
 						arbustosArribaMedioDer, cochesAmarilloVioleta, arbustoArribaMedioIzq, cochesArribaIzq, edificiosArribaIzq, heladeria, mesaHeladeria, 
 						panaderia, pescaderia, carniceria, edificio, muroArribaIzq, muroArribaDer],
 						objetos = [grafitiEscenarioCentral1, grafitiEscenarioCentral2,basureroEscenarioCentral],
-						vecinos = [juan,doc, poliMujer, abuela, gruda, lucia, yozkosYChumy, saito],
+						vecinos = [juan,doc, poliMujer, abuela, gruda, lucia, yozkosYChumy, saito, aceVentura, salem],
 						escenariosVecinos = [escenarioAIzquierdaDeCentral, escenarioANorteDeCentral, escenarioDerechaDeCentral]						
 						) 
 const mapaEscenarioCentral = new Mapa (image = "escenarioCentroFINAL1.png") 

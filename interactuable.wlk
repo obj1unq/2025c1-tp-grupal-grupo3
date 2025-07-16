@@ -164,14 +164,13 @@ class ImagenDeInicio inherits Imagen {
 
   method ocultarPantallaDeContextoYPasarAlJuego() {
     game.removeVisual(imagenContex)
-
     self.detenerMusicaInicio()
     self.detenerAudioContexto()
-
     audioManager.reproducirPara(detective.escenarioActual())
     detective.escenarioActual().configurar()
-  
     self.marcarJuegoComoIniciado()
+
+    
   }
 
   method marcarJuegoComoIniciado() {
@@ -182,23 +181,11 @@ class ImagenDeInicio inherits Imagen {
     return juegoIniciado
   }
 
-
-
   method detenerMusicaInicio() {
     if (musicaIntro.played()) {
         musicaIntro.stop()
     }
  }
-  
-
-
-
-  // method detenerMusicaInicio() {
-  //   if (musicaInicioActiva) {
-  //     musicaIntro.stop()
-  //     musicaInicioActiva = false
-  //   }
-  // }
 
   method detenerAudioContexto() {
     if (audioContexto.played()) {
@@ -217,49 +204,37 @@ class ImagenDeInicio inherits Imagen {
   }
 }
 
-// object audioManager {
-//   var property musicaActual = null
+class ImagenAyuda inherits Imagen {
+  //const property imagenADesplegar = pantallaDeAyuda
+  var property estaDesplegado = false 
 
-//   const property musicaPrincipal = new Sound(file = "musicaMain.mp3")
-//   const property musicaBosque = new Sound(file = "musicaBosque.mp3")
+  method desplegar() {
+    if (not estaDesplegado) {
+        self.mostrar()
+    }else{
+        self.ocultar()
+    } 
+  }
 
-//   method iniciarMusicaPrincipal() {
-//     if (musicaActual != musicaPrincipal) {
-//       self.detenerMusicaActual()
-
-//       musicaPrincipal.shouldLoop(true)
-//       musicaPrincipal.volume(0.5)
-//       musicaPrincipal.play()
-
-//       musicaActual = musicaPrincipal
-//     }
-//   }
-
-//   method iniciarMusicaBosque() {
-//     if (musicaActual != musicaBosque) {
-//       self.detenerMusicaActual()
-
-//       musicaBosque.shouldLoop(true)
-//       musicaBosque.volume(0.5)
-//       musicaBosque.play()
-
-//       musicaActual = musicaBosque
-//     }
-//   }
-
-//   method detenerMusicaActual() {
-//     if (musicaActual != null && musicaActual.played()) {
-//       musicaActual.stop()
-//     }
-//   }
-// }
+  override method mostrar() {
+    super()
+    estaDesplegado = true
+    const sonidoDeDiaologo = new Sound(file = "QuestLogOpen.mp3")
+    sonidoDeDiaologo.play()
+  }
+  override method ocultar() {
+    super()
+    estaDesplegado = false
+    const sonidoDeDiaologo = new Sound(file = "QuestLogOpen.mp3")
+    sonidoDeDiaologo.play()
+  }
+}
 
 
+const iconoAyuda = new Mapa(image = "botonAyuda.png", position = game.at(33,19))
 
-
-
-
-
+const ayuda = new ImagenAyuda(image = pantallaDeAyuda)
+const pantallaDeAyuda = new Mapa(image = "pantallaAyuda.png", position = game.at(0,0))
 
 const pantallaInicio = new ImagenDeInicio(image = imageDeInicio)
 const imageDeInicio = new Mapa (image = "PantallaInicial.png")

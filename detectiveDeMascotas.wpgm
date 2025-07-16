@@ -26,6 +26,7 @@ program detectiveDeMascotas{
 
   game.addVisual(imagenContexto)
   pantallaInicio.mostrar()
+  game.addVisual(iconoAyuda)
   
   keyboard.w().onPressDo({ detective.mover(arriba) })   
   keyboard.a().onPressDo({ detective.mover(izquierda) }) 
@@ -44,6 +45,7 @@ program detectiveDeMascotas{
   keyboard.num9().onPressDo({ inventario.interactuarEnPosicion(8) })
   keyboard.num0().onPressDo({ inventario.interactuarEnPosicion(9) })
   keyboard.t().onPressDo({chatManager.ocultar()})
+  keyboard.enter().onPressDo({ayuda.desplegar()})
 
   keyboard.space().onPressDo({pantallaInicio.ocultar()})
   

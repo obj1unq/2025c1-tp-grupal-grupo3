@@ -14,19 +14,19 @@ object audioManager {
 //   const property musicaPrincipal = new Sound(file = "musicaMain.mp3")
 //   const property musicaBosque = new Sound(file = "musicaBosque.mp3")
 
-  method reproducir(unSound) {
-    if (musicaActual != unSound) {
+  method reproducir(unSonido) {
+    if (musicaActual != unSonido) {
         self.detenerMusicaActualSiCorresponde()
-        unSound.shouldLoop(true)
-        unSound.volume(0.2)
-        unSound.play()
-        musicaActual = unSound
+        unSonido.shouldLoop(true)
+        unSonido.volume(0.1)
+        unSonido.play()
+        musicaActual = unSonido
     }
   }
 
   method detenerMusicaActualSiCorresponde() {
     if (musicaActual != null && musicaActual.played())
-      musicaActual.stop()
+      self.detenerMusica()
   }
 
   method iniciarMusicaPrincipal() { 
@@ -38,5 +38,9 @@ object audioManager {
 
   method reproducirPara(escenario) {
     self.reproducir(escenario.musicaDeseada())
+  }
+
+  method detenerMusica() {
+    musicaActual.stop()
   }
 }
